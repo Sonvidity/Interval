@@ -10,9 +10,7 @@ import { useUser } from '@/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
 import { useToast } from '@/hooks/use-toast';
-import { suggestPost, SuggestPostInput } from '@/ai/flows/suggestPost';
 import { Skeleton } from '../ui/skeleton';
-import { Sparkles } from 'lucide-react';
 import { VEHICLE_DATABASE } from '@/lib/vehicles';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -30,7 +28,6 @@ export function CreatePostDialog({ isOpen, onClose }: CreatePostDialogProps) {
   const [selectedCarId, setSelectedCarId] = useState<string | null>(null);
   const [postText, setPostText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuggesting, setIsSuggesting] = useState(false);
 
   const selectedCar = useMemo(() => cars.find(c => c.id === selectedCarId), [cars, selectedCarId]);
 
@@ -46,32 +43,6 @@ export function CreatePostDialog({ isOpen, onClose }: CreatePostDialogProps) {
     if (car.customImageUrl) return car.customImageUrl;
     const placeholder = PlaceHolderImages.find(img => img.id === car.imageId);
     return placeholder?.imageUrl || 'https://placehold.co/600x400/1e293b/ffffff?text=Image+Not+Found';
-  };
-
-  const handleGeneratePost = async () => {
-    if (!selectedCar) return;
-
-    const vehicleInfo = VEHICLE_DATABASE.find(v => v.id === selectedCar.vehicleId);
-    if (!vehicleInfo) return;
-
-    setIsSuggesting(true);
-    setPostText('');
-    try {
-      const input: SuggestPostInput = {
-        make: vehicleInfo.make,
-        model: vehicleInfo.model,
-        variant: vehicleInfo.variant,
-        nickname: selectedCar.nickname,
-        modStage: selectedCar.modStage,
-      };
-      const result = await suggestPost(input);
-      setPostText(result.postText);
-    } catch (error) {
-      console.error('Error suggesting post:', error);
-      toast({ variant: 'destructive', title: 'AI Suggestion Failed', description: 'Could not generate a post suggestion.' });
-    } finally {
-      setIsSuggesting(false);
-    }
   };
 
   const handleSubmit = async () => {
@@ -134,27 +105,19 @@ export function CreatePostDialog({ isOpen, onClose }: CreatePostDialogProps) {
             <div>
               <div className="flex justify-between items-center mb-2">
                  <label className="text-sm font-medium">Your Message</label>
-                 <Button variant="outline" size="sm" onClick={handleGeneratePost} disabled={isSuggesting}>
-                    <Sparkles className="mr-2 h-4 w-4" />
-                    {isSuggesting ? 'Thinking...' : 'Suggest'}
-                 </Button>
               </div>
-              {isSuggesting ? (
-                 <Skeleton className="h-24 w-full" />
-              ) : (
-                <Textarea
-                    value={postText}
-                    onChange={(e) => setPostText(e.target.value)}
-                    placeholder={`What's new with ${selectedCar.nickname}?`}
-                    rows={5}
-                />
-              )}
+              <Textarea
+                  value={postText}
+                  onChange={(e) => setPostText(e.target.value)}
+                  placeholder={`What's new with ${selectedCar.nickname}?`}
+                  rows={5}
+              />
             </div>
           )}
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button onClick={handleSubmit} disabled={!selectedCar || !postText || isSubmitting || isSuggesting}>
+          <Button onClick={handleSubmit} disabled={!selectedCar || !postText || isSubmitting}>
             {isSubmitting ? 'Posting...' : 'Post to Feed'}
           </Button>
         </DialogFooter>
