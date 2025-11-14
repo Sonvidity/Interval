@@ -14,7 +14,17 @@ function findLastServiceForItem(serviceHistory: ServiceLog[], itemName: string):
 }
 
 export function calculateAllServices(car: UserCar, vehicle: Vehicle): CalculatedService[] {
-  return vehicle.serviceItems.map(item => calculateSingleService(car, vehicle, item));
+  // Filter service items based on the car's transmission type
+  const relevantServiceItems = vehicle.serviceItems.filter(item => {
+    // If the item doesn't have a transmission property, it's universal (like engine oil)
+    if (!item.transmission) {
+      return true;
+    }
+    // If it does, it must match the car's transmission type
+    return item.transmission === car.transmission;
+  });
+  
+  return relevantServiceItems.map(item => calculateSingleService(car, vehicle, item));
 }
 
 export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceItem: ServiceItem): CalculatedService {
@@ -32,41 +42,43 @@ export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceIt
   // Round to a sensible number for recommendation
   const recommendedIntervalKm = Math.round(adjustedIntervalKm / 500) * 500;
   
-  // Find the last time *this specific item* was serviced from the history
   const lastServiceLog = findLastServiceForItem(car.serviceHistory, serviceItem.name);
 
   // If never serviced, use the car's initial "service" record, which should be its starting state.
   const effectiveLastService = lastServiceLog || car.serviceHistory.find(l => l.serviceType === 'Initial');
   
-  const lastServiceKm = effectiveLastService ? effectiveLastService.kms : 0;
   const lastServiceDate = effectiveLastService ? effectiveLastService.date : new Date().toISOString();
 
-
-  // Correctly determine the current mileage for this component
+  let lastServiceKm: number;
   let currentOdometerForCalc: number;
+
   if (type === 'Engine' && car.engineSwapDetails?.isReplaced) {
     const chassisKmsSinceSwap = car.odometerReading - car.engineSwapDetails.chassisKmsAtSwap;
     currentOdometerForCalc = car.engineSwapDetails.engineKmsAtSwap + chassisKmsSinceSwap;
+
+    if (effectiveLastService?.serviceType === 'Initial') {
+        // If it's the first service on a swapped engine, base it on the engine's mileage at swap time
+        lastServiceKm = car.engineSwapDetails.engineKmsAtSwap;
+    } else {
+        // Find the "engine km" equivalent at the time of the last service
+        const chassisKmAtLastService = effectiveLastService?.kms || 0;
+        const chassisKmsSinceSwapAtLastService = chassisKmAtLastService - car.engineSwapDetails.chassisKmsAtSwap;
+        lastServiceKm = car.engineSwapDetails.engineKmsAtSwap + Math.max(0, chassisKmsSinceSwapAtLastService);
+    }
+
   } else {
     // For chassis items OR non-swapped engines, the reference is always the main odometer.
     currentOdometerForCalc = car.odometerReading;
+    lastServiceKm = effectiveLastService ? effectiveLastService.kms : 0;
   }
   
-  // The 'last service' mileage also needs to consider if it was part of an engine swap.
-  let lastKmForCalc = lastServiceKm;
-  if (type === 'Engine' && car.engineSwapDetails?.isReplaced && effectiveLastService?.id === car.serviceHistory.find(l => l.serviceType === 'Initial')?.id) {
-    // If this is an engine item, and it has never been serviced since being added to the garage,
-    // and there IS an engine swap, its starting mileage is the engine's mileage at swap.
-     lastKmForCalc = car.engineSwapDetails.engineKmsAtSwap;
-  }
-  
-  const nextServiceKm = lastKmForCalc + adjustedIntervalKm;
+  const nextServiceKm = lastServiceKm + adjustedIntervalKm;
   const nextServiceDate = addMonths(new Date(lastServiceDate), adjustedIntervalMonths);
 
   const dueInKm = nextServiceKm - currentOdometerForCalc;
   const dueInDays = differenceInDays(nextServiceDate, new Date());
   
-  const kmProgress = ((currentOdometerForCalc - lastKmForCalc) / adjustedIntervalKm) * 100;
+  const kmProgress = ((currentOdometerForCalc - lastServiceKm) / adjustedIntervalKm) * 100;
 
   const totalDaysInInterval = differenceInDays(nextServiceDate, parseISO(lastServiceDate));
   const daysSinceService = differenceInDays(new Date(), parseISO(lastServiceDate));
@@ -91,7 +103,7 @@ export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceIt
     adjustedIntervalKm,
     adjustedIntervalMonths,
     recommendedIntervalKm,
-    lastServiceKm: lastKmForCalc, // Report the correct last service KM
+    lastServiceKm,
     lastServiceDate,
     nextServiceKm,
     nextServiceDate: format(nextServiceDate, 'yyyy-MM-dd'),

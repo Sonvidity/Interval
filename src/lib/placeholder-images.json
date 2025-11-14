@@ -17,6 +17,90 @@
       "description": "A white Holden Commodore SV6 sedan.",
       "imageUrl": "https://images.unsplash.com/photo-1759516206405-a7a3f765f5c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2hpdGUlMjBzZWRhbnxlbnwwfHx8fDE3NjMwNjIxNjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "white sedan"
+    },
+    {
+      "id": "placeholder-coupe-gray",
+      "description": "A gray sports coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1564890379445-59139cdbf891?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxncmF5JTIwY291cGV8ZW58MHx8fHwxNzYzMDg2Njc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray coupe"
+    },
+    {
+      "id": "placeholder-coupe-dark",
+      "description": "A dark-colored sports coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGFyayUyMGNvdXBlfGVufDB8fHx8MTc2MzEwNTUyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dark coupe"
+    },
+    {
+      "id": "placeholder-coupe-blue",
+      "description": "A blue sports coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1618767036477-2665a9459574?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxibHVlJTIwY291cGV8ZW58MHx8fHwxNzYzMTA1NTI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue coupe"
+    },
+    {
+      "id": "placeholder-coupe-silver",
+      "description": "A silver sports coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1558992658-500f23181b71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzaWx2ZXIlMjBjb3VwZXxlbnwwfHx8fDE3NjMxMDU1MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "silver coupe"
+    },
+    {
+      "id": "placeholder-coupe-blue-fast",
+      "description": "A fast-looking blue sports coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1652368688249-39c6ff353e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVlJTIwY291cGV8ZW58MHx8fHwxNzYzMTA1NTI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue coupe"
+    },
+    {
+      "id": "placeholder-sedan-gold",
+      "description": "A gold sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1761312833847-11856eca0341?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxnb2xkJTIwc2VkYW58ZW58MHx8fHwxNzYzMTA1NTI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gold sedan"
+    },
+    {
+      "id": "placeholder-sedan-silver",
+      "description": "A silver sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1758223724963-5c4f5ef0ce60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzaWx2ZXIlMjBzZWRhbnxlbnwwfHx8fDE3NjMwNDM0ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "silver sedan"
+    },
+    {
+      "id": "placeholder-hatch-blue",
+      "description": "A blue hatchback.",
+      "imageUrl": "https://images.unsplash.com/photo-1640168822373-0c0618fbe099?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVlJTIwaGF0Y2hiYWNrfGVufDB8fHx8MTc2MzAzMjA4OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue hatchback"
+    },
+    {
+      "id": "placeholder-hatch-black",
+      "description": "A black hatchback.",
+      "imageUrl": "https://images.unsplash.com/photo-1610049541995-4bac4404b043?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxibGFjayUyMGhhdGNoYmFja3xlbnwwfHx8fDE3NjMxMDU1MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black hatchback"
+    },
+    {
+      "id": "placeholder-hatch-lapiz",
+      "description": "A lapiz blue hatchback.",
+      "imageUrl": "https://images.unsplash.com/photo-1762944080822-ff6e79bb8099?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxibHVlJTIwaGF0Y2hiYWNrfGVufDB8fHx8MTc2MzAzMjA4OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue hatchback"
+    },
+    {
+      "id": "placeholder-hatch-white-modern",
+      "description": "A modern white hatchback.",
+      "imageUrl": "https://images.unsplash.com/photo-1692305610636-f5157dbe6008?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3aGl0ZSUyMGhhdGNoYmFja3xlbnwwfHx8fDE3NjMwNjcyNjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white hatchback"
+    },
+    {
+      "id": "placeholder-suv-black",
+      "description": "A black SUV.",
+      "imageUrl": "https://images.unsplash.com/photo-1692370793611-7724a38ab701?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxibGFjayUyMHN1dnxlbnwwfHx8fDE3NjMwMzIwODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black suv"
+    },
+    {
+      "id": "placeholder-wagon-gray",
+      "description": "A gray station wagon.",
+      "imageUrl": "https://images.unsplash.com/photo-1698326257379-b7d8b3c209bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxncmF5JTIwd2Fnb258ZW58MHx8fHwxNzYzMTA1NTI2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray wagon"
+    },
+    {
+      "id": "placeholder-sedan-black",
+      "description": "A black sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1734299388217-2ebc605ef43f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxibGFjayUyMHNlZGFufGVufDB8fHx8MTc2MzA3MDIxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black sedan"
     }
   ]
 }

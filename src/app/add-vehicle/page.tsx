@@ -10,8 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Check, Car, History, Gauge, Rocket } from "lucide-react";
-import type { ModStage, DrivingStyle, ServiceLog } from "@/lib/types";
+import { ChevronLeft, ChevronRight, Check, Car, Gauge, Rocket, Settings2 } from "lucide-react";
+import type { ModStage, DrivingStyle, ServiceLog, TransmissionType } from "@/lib/types";
 import { Switch } from "@/components/ui/switch";
 import { useUser } from "@/firebase";
 import Link from "next/link";
@@ -34,6 +34,7 @@ export default function AddVehiclePage() {
     odometerReading: "",
     drivingStyle: "Spirited" as DrivingStyle,
     modStage: "Stock" as ModStage,
+    transmission: "Manual" as TransmissionType,
     hasEngineSwap: false,
     chassisKmsAtSwap: "",
     engineKmsAtSwap: "",
@@ -76,7 +77,6 @@ export default function AddVehiclePage() {
 
     const initialOdometer = parseInt(formData.odometerReading) || 0;
     
-    // Create an initial "service" log to mark the starting point for all service items.
     const initialServiceLog: ServiceLog = {
       id: new Date().toISOString(),
       date: new Date().toISOString(),
@@ -89,12 +89,6 @@ export default function AddVehiclePage() {
     const newCarData: any = {
       ...carData,
       odometerReading: initialOdometer,
-      // These are deprecated but kept for schema compatibility during transition
-      lastServiceEngineKms: initialOdometer,
-      lastServiceEngineDate: new Date().toISOString(),
-      lastServiceChassisKms: initialOdometer,
-      lastServiceChassisDate: new Date().toISOString(),
-      // The service history is the new source of truth
       serviceHistory: [initialServiceLog],
     };
 
@@ -165,10 +159,13 @@ export default function AddVehiclePage() {
                     <Button
                       key={v.id}
                       variant={formData.vehicleId === v.id ? 'secondary' : 'outline'}
-                      className="w-full justify-start"
+                      className="w-full justify-start h-auto py-2 text-left"
                       onClick={() => setFormData({ ...formData, vehicleId: v.id })}
                     >
-                      {v.make} {v.model} ({v.variant}) - {v.years}
+                      <div>
+                        <p className="font-semibold">{v.make} {v.model}</p>
+                        <p className="text-sm text-muted-foreground">{v.variant} ({v.years})</p>
+                      </div>
                     </Button>
                   ))}
                 </div>
@@ -189,6 +186,16 @@ export default function AddVehiclePage() {
                    <Label htmlFor="odometer">Current Odometer Reading (km)</Label>
                    <Input id="odometer" type="number" value={formData.odometerReading} onChange={e => setFormData({ ...formData, odometerReading: e.target.value })} placeholder="e.g., 50000" />
                  </div>
+                 <div>
+                    <Label>Transmission Type</Label>
+                    <Select onValueChange={(v: TransmissionType) => setFormData({...formData, transmission: v})} defaultValue={formData.transmission}>
+                        <SelectTrigger><SelectValue/></SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Manual">Manual</SelectItem>
+                            <SelectItem value="Automatic">Automatic</SelectItem>
+                        </SelectContent>
+                    </Select>
+                  </div>
                </CardContent>
             )}
             
@@ -257,6 +264,7 @@ export default function AddVehiclePage() {
                         <h3 className="text-lg font-bold font-headline">{formData.nickname || `${selectedVehicle.make} ${selectedVehicle.model}`}</h3>
                         <p><strong>Vehicle:</strong> {selectedVehicle.make} {selectedVehicle.model} ({selectedVehicle.variant})</p>
                         <p><strong>Odometer:</strong> {parseInt(formData.odometerReading).toLocaleString()} km</p>
+                        <p><strong>Transmission:</strong> {formData.transmission}</p>
                         <p><strong>Driving Style:</strong> {formData.drivingStyle}</p>
                         <p><strong>Mod Stage:</strong> {formData.modStage}</p>
                         {formData.hasEngineSwap && <p className="text-accent">Engine Swap Details Logged</p>}

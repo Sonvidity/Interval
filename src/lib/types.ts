@@ -3,6 +3,7 @@ export type ServiceItem = {
   oemIntervalKm: number;
   oemIntervalMonths: number;
   type: 'Engine' | 'Chassis';
+  transmission?: 'Automatic' | 'Manual'; // Can be specific to a transmission
 };
 
 export type Vehicle = {
@@ -17,6 +18,7 @@ export type Vehicle = {
 
 export type ModStage = 'Stock' | 'Stage 1' | 'Stage 2' | 'Stage 3';
 export type DrivingStyle = 'Easy' | 'Spirited' | 'Hard';
+export type TransmissionType = 'Automatic' | 'Manual';
 
 export type EngineSwapDetails = {
   isReplaced: boolean;
@@ -33,11 +35,7 @@ export type UserCar = {
   odometerReading: number;
   modStage: ModStage;
   drivingStyle: DrivingStyle;
-  // DEPRECATED - will be removed in a future step. History is the source of truth.
-  lastServiceEngineKms: number;
-  lastServiceEngineDate: string; // ISO date string
-  lastServiceChassisKms: number;
-  lastServiceChassisDate: string; // ISO date string
+  transmission: TransmissionType; // Added transmission type
   engineSwapDetails?: EngineSwapDetails;
   serviceHistory: ServiceLog[];
 };
