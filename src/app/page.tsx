@@ -10,7 +10,6 @@ import { WelcomeScreen } from "@/components/garage/WelcomeScreen";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Car } from "lucide-react";
-import { useMemo } from "react";
 
 export default function MyGaragePage() {
   const { user, loading: userLoading } = useUser();
@@ -62,10 +61,9 @@ export default function MyGaragePage() {
             </div>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {cars.map((car) => {
-              const memoizedCar = useMemo(() => car, [car]);
-              return <CarCard key={memoizedCar.id} car={memoizedCar} />
-            })}
+            {cars.map((car) => (
+              <CarCard key={car.id} car={car} />
+            ))}
           </div>
         </div>
       )}
