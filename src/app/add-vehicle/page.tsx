@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Check, Car, Gauge, Rocket, Settings2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check, Car, Gauge, Rocket } from "lucide-react";
 import type { ModStage, DrivingStyle, ServiceLog, TransmissionType } from "@/lib/types";
 import { Switch } from "@/components/ui/switch";
 import { useUser } from "@/firebase";
@@ -68,31 +68,32 @@ export default function AddVehiclePage() {
   const handleBack = () => setStep((s) => Math.max(s - 1, 0));
 
   const handleSubmit = async () => {
-    const { hasEngineSwap, chassisKmsAtSwap, engineKmsAtSwap, wasServicedAtSwap, ...carData } = formData;
-    
     if (!selectedVehicle) {
-      console.error("No vehicle selected");
-      return;
+        console.error("No vehicle selected");
+        return;
     }
 
+    const { hasEngineSwap, chassisKmsAtSwap, engineKmsAtSwap, wasServicedAtSwap, ...carData } = formData;
+    
     const initialOdometer = parseInt(formData.odometerReading) || 0;
     
     const initialServiceLog: ServiceLog = {
-      id: new Date().toISOString(),
-      date: new Date().toISOString(),
-      kms: initialOdometer,
-      serviceType: 'Initial',
-      itemsDone: selectedVehicle.serviceItems.map(item => item.name),
-      notes: "Initial vehicle state when added to Garage."
+        id: new Date().toISOString(),
+        date: new Date().toISOString(),
+        kms: initialOdometer,
+        serviceType: 'Initial',
+        itemsDone: selectedVehicle.serviceItems.map(item => item.name),
+        notes: "Initial vehicle state when added to Garage."
     };
 
     const newCarData: any = {
-      ...carData,
-      odometerReading: initialOdometer,
-      serviceHistory: [initialServiceLog],
+        ...carData,
+        odometerReading: initialOdometer,
+        serviceHistory: [initialServiceLog],
+        imageId: selectedVehicle.imageId, // Set the initial imageId
     };
 
-    if (hasEngineSwap) {
+    if (hasEngineSwap && chassisKmsAtSwap && engineKmsAtSwap) {
         newCarData.engineSwapDetails = {
             isReplaced: true,
             chassisKmsAtSwap: parseInt(chassisKmsAtSwap) || 0,
@@ -100,10 +101,11 @@ export default function AddVehiclePage() {
             wasServicedAtSwap: wasServicedAtSwap,
         };
     }
-
+    
     await addCar(newCarData);
     router.push('/');
   };
+
 
   const filteredVehicles = VEHICLE_DATABASE.filter(vehicle =>
     `${vehicle.make} ${vehicle.model} ${vehicle.variant} ${vehicle.years}`.toLowerCase().includes(searchTerm.toLowerCase())

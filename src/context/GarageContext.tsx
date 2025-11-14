@@ -3,17 +3,18 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import type { UserCar, ServiceLog } from '@/lib/types';
 import { useUser, useFirestore } from '@/firebase';
-import { collection, doc, onSnapshot, setDoc, addDoc, query, orderBy, deleteDoc } from 'firebase/firestore';
+import { collection, doc, onSnapshot, setDoc, addDoc, query, deleteDoc } from 'firebase/firestore';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError } from '@/firebase/errors';
-import { VEHICLE_DATABASE } from '@/lib/vehicles';
 
 interface GarageContextType {
   cars: UserCar[];
   loading: boolean;
-  addCar: (carData: Omit<UserCar, 'id' | 'serviceHistory' | 'userId'> & { serviceHistory: ServiceLog[] }) => Promise<void>;
+  addCar: (carData: Omit<UserCar, 'id' | 'userId' | 'serviceHistory' >) => Promise<void>;
   updateCar: (updatedCar: UserCar) => Promise<void>;
   logService: (carId: string, serviceLog: Omit<ServiceLog, 'id'>) => Promise<void>;
+  removeCar: (carId: string) => Promise<void>;
+  updateCarPhoto: (carId: string, photoData: { imageId: string; customImageUrl?: string }) => Promise<void>;
   getCarById: (id: string) => UserCar | undefined;
 }
 
@@ -87,6 +88,43 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     });
   }, [firestore, user]);
 
+  const removeCar = useCallback(async (carId: string) => {
+    if (!firestore || !user) return;
+    const carRef = doc(firestore, 'users', user.uid, 'user_vehicles', carId);
+    deleteDoc(carRef).catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+            path: carRef.path,
+            operation: 'delete',
+        });
+        errorEmitter.emit('permission-error', permissionError);
+    });
+  }, [firestore, user]);
+
+  const updateCarPhoto = useCallback(async (carId: string, photoData: { imageId: string; customImageUrl?: string }) => {
+    if (!firestore || !user) return;
+    const carRef = doc(firestore, 'users', user.uid, 'user_vehicles', carId);
+    
+    const updateData: Partial<UserCar> = {
+        imageId: photoData.imageId,
+    };
+
+    if (photoData.customImageUrl) {
+        updateData.customImageUrl = photoData.customImageUrl;
+    } else {
+        // If no custom URL, we can explicitly set it to null or remove it if needed
+        updateData.customImageUrl = ''; // Or use deleteField() if you want to remove it
+    }
+
+    setDoc(carRef, updateData, { merge: true }).catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+            path: carRef.path,
+            operation: 'update',
+            requestResourceData: updateData
+        });
+        errorEmitter.emit('permission-error', permissionError);
+    });
+  }, [firestore, user]);
+
   const logService = useCallback(async (carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => {
     if (!firestore || !user) return;
 
@@ -95,16 +133,13 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
     const carRef = doc(firestore, 'users', user.uid, 'user_vehicles', carId);
     
-    // Create the new log with a unique ID (timestamp)
     const newLog: ServiceLog = {
         ...serviceLogData,
         id: new Date().toISOString(),
     };
 
-    // Prepend the new log to the history
     const updatedHistory = [newLog, ...(car.serviceHistory || [])];
 
-    // Update odometer and the service history in one go
     const updatedFields = {
       odometerReading: serviceLogData.kms,
       serviceHistory: updatedHistory,
@@ -125,9 +160,8 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     return cars.find(car => car.id === id);
   }, [cars]);
 
-
   return (
-    <GarageContext.Provider value={{ cars, loading: loading || userLoading, addCar, updateCar, logService, getCarById }}>
+    <GarageContext.Provider value={{ cars, loading: loading || userLoading, addCar, updateCar, logService, removeCar, updateCarPhoto, getCarById }}>
       {children}
     </GarageContext.Provider>
   );

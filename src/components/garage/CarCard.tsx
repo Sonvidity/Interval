@@ -11,13 +11,24 @@ import { ServiceProgress } from './ServiceProgress';
 import { CalculationModal } from './CalculationModal';
 import { Button } from '../ui/button';
 import { LogServiceModal } from './LogServiceModal';
-import { Wrench } from 'lucide-react';
+import { MoreVertical, Wrench } from 'lucide-react';
 import { ServiceListModal } from './ServiceListModal';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { RemoveCarDialog } from './RemoveCarDialog';
+import { ChangePhotoModal } from './ChangePhotoModal';
+
 
 export function CarCard({ car }: { car: UserCar }) {
   const [calculationModalOpen, setCalculationModalOpen] = useState(false);
   const [logModalOpen, setLogModalOpen] = useState(false);
   const [serviceListModalOpen, setServiceListModalOpen] = useState(false);
+  const [removeCarModalOpen, setRemoveCarModalOpen] = useState(false);
+  const [changePhotoModalOpen, setChangePhotoModalOpen] = useState(false);
   const [calculationData, setCalculationData] = useState<CalculatedService | null>(null);
 
   const vehicleInfo = VEHICLE_DATABASE.find(v => v.id === car.vehicleId);
@@ -28,7 +39,9 @@ export function CarCard({ car }: { car: UserCar }) {
   
   const engineKms = getEngineKms(car);
 
-  const vehicleImage = PlaceHolderImages.find(img => img.id === vehicleInfo.imageId);
+  const vehicleImage = car.customImageUrl || PlaceHolderImages.find(img => img.id === car.imageId)?.imageUrl || vehicleInfo.imageId;
+  const vehicleImageAlt = PlaceHolderImages.find(img => img.id === car.imageId)?.description || car.nickname;
+  const imageHint = PlaceHolderImages.find(img => img.id === car.imageId)?.imageHint;
 
   const handleShowCalculation = (data: CalculatedService) => {
     setCalculationData(data);
@@ -39,16 +52,32 @@ export function CarCard({ car }: { car: UserCar }) {
     <>
       <Card className="flex flex-col">
         <CardHeader className="relative p-0">
-          {vehicleImage && (
-            <Image
-              src={vehicleImage.imageUrl}
-              alt={vehicleImage.description}
+          <Image
+              src={vehicleImage}
+              alt={vehicleImageAlt}
               width={600}
               height={400}
               className="rounded-t-lg object-cover aspect-[3/2] w-full"
-              data-ai-hint={vehicleImage.imageHint}
+              data-ai-hint={imageHint}
             />
-          )}
+          <div className="absolute top-2 right-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="secondary" size="icon" className="h-8 w-8 bg-black/50 hover:bg-black/70 border-none text-white">
+                  <MoreVertical size={16} />
+                  <span className="sr-only">Car Options</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setChangePhotoModalOpen(true)}>
+                  Change Photo
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setRemoveCarModalOpen(true)} className="text-red-500 focus:text-red-500">
+                  Remove Car
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
             <CardTitle className="text-2xl font-headline text-white">{car.nickname}</CardTitle>
             <CardDescription className="text-gray-300">{vehicleInfo.make} {vehicleInfo.model} - {vehicleInfo.variant}</CardDescription>
@@ -109,6 +138,17 @@ export function CarCard({ car }: { car: UserCar }) {
         onClose={() => setServiceListModalOpen(false)}
         services={sortedServices}
         onShowCalculation={handleShowCalculation}
+      />
+       <RemoveCarDialog
+        isOpen={removeCarModalOpen}
+        onClose={() => setRemoveCarModalOpen(false)}
+        carId={car.id}
+        carNickname={car.nickname}
+      />
+      <ChangePhotoModal
+        isOpen={changePhotoModalOpen}
+        onClose={() => setChangePhotoModalOpen(false)}
+        car={car}
       />
     </>
   );

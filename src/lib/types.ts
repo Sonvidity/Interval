@@ -38,6 +38,8 @@ export type UserCar = {
   transmission: TransmissionType; // Added transmission type
   engineSwapDetails?: EngineSwapDetails;
   serviceHistory: ServiceLog[];
+  imageId: string; // The ID of the placeholder image
+  customImageUrl?: string; // Optional URL for a user-provided image
 };
 
 export type ServiceLog = {
