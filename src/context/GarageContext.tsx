@@ -1,8 +1,9 @@
+
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import type { UserCar, ServiceLog } from '@/lib/types';
-import { useUser, useFirestore } from '@/firebase';
+import { useUser, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, doc, onSnapshot, setDoc, addDoc, query, deleteDoc } from 'firebase/firestore';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError } from '@/firebase/errors';
@@ -10,7 +11,7 @@ import { FirestorePermissionError } from '@/firebase/errors';
 interface GarageContextType {
   cars: UserCar[];
   loading: boolean;
-  addCar: (carData: Omit<UserCar, 'id' | 'userId' | 'serviceHistory' >) => Promise<void>;
+  addCar: (carData: Omit<UserCar, 'id' | 'userId' >) => Promise<void>;
   updateCar: (updatedCar: UserCar) => Promise<void>;
   logService: (carId: string, serviceLog: Omit<ServiceLog, 'id'>) => Promise<void>;
   removeCar: (carId: string) => Promise<void>;
@@ -26,47 +27,53 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const { user, loading: userLoading } = useUser();
   const firestore = useFirestore();
 
-  useEffect(() => {
-    if (user && firestore) {
-      setLoading(true);
-      const q = query(collection(firestore, 'users', user.uid, 'user_vehicles'));
-      const unsubscribe = onSnapshot(q, 
-        (querySnapshot) => {
-          const userCars: UserCar[] = [];
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            // Ensure serviceHistory is initialized
-            if (!data.serviceHistory) {
-              data.serviceHistory = [];
-            }
-            userCars.push({ id: doc.id, ...data } as UserCar);
-          });
-          setCars(userCars);
-          setLoading(false);
-        },
-        async (err) => {
-          const permissionError = new FirestorePermissionError({
-            path: `users/${user.uid}/user_vehicles`,
-            operation: 'list',
-          });
-          errorEmitter.emit('permission-error', permissionError);
-          setLoading(false);
-        });
+  const userVehiclesQuery = useMemoFirebase(() => {
+    if (!firestore || !user) return null;
+    return query(collection(firestore, 'users', user.uid, 'user_vehicles'));
+  }, [firestore, user]);
 
-      return () => unsubscribe();
-    } else if (!userLoading) {
+
+  useEffect(() => {
+    if (!userVehiclesQuery) {
       setCars([]);
       setLoading(false);
+      return;
     }
-  }, [user, firestore, userLoading]);
+
+    setLoading(true);
+    const unsubscribe = onSnapshot(userVehiclesQuery,
+      (querySnapshot) => {
+        const userCars: UserCar[] = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (!data.serviceHistory) {
+            data.serviceHistory = [];
+          }
+          userCars.push({ id: doc.id, ...data } as UserCar);
+        });
+        setCars(userCars);
+        setLoading(false);
+      },
+      async (err) => {
+        const permissionError = new FirestorePermissionError({
+          path: `users/${user?.uid}/user_vehicles`,
+          operation: 'list',
+        });
+        errorEmitter.emit('permission-error', permissionError);
+        setLoading(false);
+      });
+
+    return () => unsubscribe();
+  }, [userVehiclesQuery, user]);
+
 
   const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'userId'>) => {
     if (!firestore || !user) return;
     const newCar = { ...carData, userId: user.uid };
-    const carRef = collection(firestore, 'users', user.uid, 'user_vehicles');
-    addDoc(carRef, newCar).catch(async (serverError) => {
+    const carCollectionRef = collection(firestore, 'users', user.uid, 'user_vehicles');
+    addDoc(carCollectionRef, newCar).catch(async (serverError) => {
         const permissionError = new FirestorePermissionError({
-            path: carRef.path,
+            path: carCollectionRef.path,
             operation: 'create',
             requestResourceData: newCar,
         });
@@ -111,8 +118,7 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     if (photoData.customImageUrl) {
         updateData.customImageUrl = photoData.customImageUrl;
     } else {
-        // If no custom URL, we can explicitly set it to null or remove it if needed
-        updateData.customImageUrl = ''; // Or use deleteField() if you want to remove it
+        updateData.customImageUrl = '';
     }
 
     setDoc(carRef, updateData, { merge: true }).catch(async (serverError) => {
