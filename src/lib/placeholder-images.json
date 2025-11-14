@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "ford-falcon-fg-turbo",
+      "description": "A silver Ford Falcon FG XR6 Turbo sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1645596309663-b7b3c795ad85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzaWx2ZXIlMjBzZWRhbnxlbnwwfHx8fDE3NjMwNDM0ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "silver sedan"
+    },
+    {
+      "id": "toyota-86",
+      "description": "A red Toyota 86 sports coupe on a winding road.",
+      "imageUrl": "https://images.unsplash.com/photo-1696581081881-c3d57934f4be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyZWQlMjBjb3VwZXxlbnwwfHx8fDE3NjMwNTQ2NDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red coupe"
+    },
+    {
+      "id": "sv6-commodore",
+      "description": "A white Holden Commodore SV6 sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1759516206405-a7a3f765f5c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d2hpdGUlMjBzZWRhbnxlbnwwfHx8fDE3NjMwNjIxNjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white sedan"
+    }
+  ]
 }

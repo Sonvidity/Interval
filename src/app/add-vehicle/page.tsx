@@ -1,0 +1,268 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useGarage } from "@/context/GarageContext";
+import { VEHICLE_DATABASE } from "@/lib/vehicles";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Check, Car, History, Gauge, Rocket } from "lucide-react";
+import type { ModStage, DrivingStyle, Vehicle } from "@/lib/types";
+import { Switch } from "@/components/ui/switch";
+
+const steps = [
+    { id: 'find', title: 'Find Your Car', icon: Car },
+    { id: 'details', title: 'Car Details', icon: Gauge },
+    { id: 'history', title: 'Service History', icon: History },
+    { id: 'usage', title: 'Usage Profile', icon: Rocket },
+    { id: 'finish', title: 'Finish', icon: Check },
+];
+
+export default function AddVehiclePage() {
+  const router = useRouter();
+  const { addCar } = useGarage();
+  const [step, setStep] = useState(0);
+  const [formData, setFormData] = useState({
+    vehicleId: "",
+    nickname: "",
+    odometerReading: "",
+    lastServiceEngineKms: "",
+    lastServiceEngineDate: new Date().toISOString().split('T')[0],
+    lastServiceChassisKms: "",
+    lastServiceChassisDate: new Date().toISOString().split('T')[0],
+    drivingStyle: "Spirited" as DrivingStyle,
+    modStage: "Stock" as ModStage,
+    hasEngineSwap: false,
+    chassisKmsAtSwap: "",
+    engineKmsAtSwap: "",
+    wasServicedAtSwap: false,
+  });
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const selectedVehicle = VEHICLE_DATABASE.find(v => v.id === formData.vehicleId);
+
+  const handleNext = () => setStep((s) => Math.min(s + 1, steps.length - 1));
+  const handleBack = () => setStep((s) => Math.max(s - 1, 0));
+
+  const handleSubmit = () => {
+    const { hasEngineSwap, chassisKmsAtSwap, engineKmsAtSwap, wasServicedAtSwap, ...carData } = formData;
+    
+    addCar({
+      ...carData,
+      odometerReading: parseInt(formData.odometerReading) || 0,
+      lastServiceEngineKms: parseInt(formData.lastServiceEngineKms) || parseInt(formData.odometerReading) || 0,
+      lastServiceChassisKms: parseInt(formData.lastServiceChassisKms) || parseInt(formData.odometerReading) || 0,
+      engineSwapDetails: hasEngineSwap ? {
+        isReplaced: true,
+        chassisKmsAtSwap: parseInt(chassisKmsAtSwap) || 0,
+        engineKmsAtSwap: parseInt(engineKmsAtSwap) || 0,
+        wasServicedAtSwap: wasServicedAtSwap,
+      } : undefined,
+    });
+    router.push('/');
+  };
+
+  const filteredVehicles = VEHICLE_DATABASE.filter(vehicle =>
+    `${vehicle.make} ${vehicle.model} ${vehicle.variant} ${vehicle.years}`.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const StepIndicator = () => (
+    <div className="flex justify-center items-center space-x-4 mb-8">
+      {steps.map((s, index) => {
+        const isActive = index === step;
+        const isCompleted = index < step;
+        const Icon = s.icon;
+        return (
+          <div key={s.id} className="flex flex-col items-center">
+            <div
+              className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all ${
+                isActive ? 'border-accent bg-accent/20' : isCompleted ? 'border-accent/50 bg-transparent' : 'border-border'
+              }`}
+            >
+              <Icon className={`h-5 w-5 ${isActive || isCompleted ? 'text-accent' : 'text-muted-foreground'}`} />
+            </div>
+            <p className={`mt-2 text-xs font-medium ${isActive || isCompleted ? 'text-foreground' : 'text-muted-foreground'}`}>{s.title}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div className="max-w-3xl mx-auto">
+      <StepIndicator />
+      <Card className="overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={step}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.3 }}
+          >
+            {step === 0 && (
+              <CardContent className="p-6">
+                <CardHeader className="p-0 mb-4">
+                  <CardTitle className="font-headline">Step 1: Find Your Car</CardTitle>
+                  <CardDescription>Search our database for your vehicle's OEM service guide.</CardDescription>
+                </CardHeader>
+                <Input
+                  placeholder="e.g., Toyota 86"
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                />
+                <div className="max-h-60 overflow-y-auto mt-4 space-y-2 pr-2">
+                  {filteredVehicles.map(v => (
+                    <Button
+                      key={v.id}
+                      variant={formData.vehicleId === v.id ? 'secondary' : 'outline'}
+                      className="w-full justify-start"
+                      onClick={() => setFormData({ ...formData, vehicleId: v.id })}
+                    >
+                      {v.make} {v.model} ({v.variant}) - {v.years}
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            )}
+
+            {step === 1 && (
+               <CardContent className="p-6 space-y-4">
+                 <CardHeader className="p-0 mb-4">
+                  <CardTitle className="font-headline">Step 2: Tell Us About Your Car</CardTitle>
+                  <CardDescription>Personalize your vehicle and set its current mileage.</CardDescription>
+                </CardHeader>
+                 <div>
+                   <Label htmlFor="nickname">Nickname</Label>
+                   <Input id="nickname" value={formData.nickname} onChange={e => setFormData({ ...formData, nickname: e.target.value })} placeholder="e.g., My Daily Driver" />
+                 </div>
+                 <div>
+                   <Label htmlFor="odometer">Current Odometer Reading (km)</Label>
+                   <Input id="odometer" type="number" value={formData.odometerReading} onChange={e => setFormData({ ...formData, odometerReading: e.target.value })} placeholder="e.g., 50000" />
+                 </div>
+               </CardContent>
+            )}
+
+            {step === 2 && (
+              <CardContent className="p-6 space-y-4">
+                 <CardHeader className="p-0 mb-4">
+                  <CardTitle className="font-headline">Step 3: Log Recent History</CardTitle>
+                  <CardDescription>When were the last major services? You can use an estimate.</CardDescription>
+                </CardHeader>
+                <Card className="p-4 bg-background/50">
+                    <Label>Last Engine Service (e.g., Oil Change)</Label>
+                    <div className="grid grid-cols-2 gap-4 mt-2">
+                        <Input type="number" value={formData.lastServiceEngineKms} onChange={e => setFormData({ ...formData, lastServiceEngineKms: e.target.value })} placeholder="KMs at service" />
+                        <Input type="date" value={formData.lastServiceEngineDate} onChange={e => setFormData({ ...formData, lastServiceEngineDate: e.target.value })} />
+                    </div>
+                </Card>
+                 <Card className="p-4 bg-background/50">
+                    <Label>Last Chassis Service (e.g., Brake Fluid)</Label>
+                    <div className="grid grid-cols-2 gap-4 mt-2">
+                        <Input type="number" value={formData.lastServiceChassisKms} onChange={e => setFormData({ ...formData, lastServiceChassisKms: e.target.value })} placeholder="KMs at service" />
+                        <Input type="date" value={formData.lastServiceChassisDate} onChange={e => setFormData({ ...formData, lastServiceChassisDate: e.target.value })} />
+                    </div>
+                </Card>
+                 <Button variant="link" className="text-accent" onClick={() => {
+                     setFormData({...formData, lastServiceEngineKms: formData.odometerReading, lastServiceChassisKms: formData.odometerReading });
+                     handleNext();
+                 }}>I don't know / Start from today</Button>
+              </CardContent>
+            )}
+            
+            {step === 3 && (
+                 <CardContent className="p-6 space-y-4">
+                    <CardHeader className="p-0 mb-4">
+                        <CardTitle className="font-headline">Step 4: Define Your Profile</CardTitle>
+                        <CardDescription>How you drive and what mods you have.</CardDescription>
+                    </CardHeader>
+                    <div>
+                        <Label>Driving Style</Label>
+                        <Select onValueChange={(v: DrivingStyle) => setFormData({...formData, drivingStyle: v})} defaultValue={formData.drivingStyle}>
+                            <SelectTrigger><SelectValue/></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Easy">Easy (Daily commute, relaxed driving)</SelectItem>
+                                <SelectItem value="Spirited">Spirited (Weekend back-roads, occasional hard pulls)</SelectItem>
+                                <SelectItem value="Hard">Hard (Regular track days, autocross)</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div>
+                        <Label>Modification Stage</Label>
+                        <Select onValueChange={(v: ModStage) => setFormData({...formData, modStage: v})} defaultValue={formData.modStage}>
+                            <SelectTrigger><SelectValue /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Stock">Stock (OEM configuration)</SelectItem>
+                                <SelectItem value="Stage 1">Stage 1 (e.g., tune, filter)</SelectItem>
+                                <SelectItem value="Stage 2">Stage 2 (e.g., tune, downpipe, intercooler)</SelectItem>
+                                <SelectItem value="Stage 3">Stage 3 (e.g., built motor, E85)</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div>
+                        <div className="flex items-center space-x-2 mt-6">
+                            <Switch id="engine-swap" checked={formData.hasEngineSwap} onCheckedChange={c => setFormData({...formData, hasEngineSwap: c})} />
+                            <Label htmlFor="engine-swap">Advanced: Engine Has Been Replaced</Label>
+                        </div>
+                        {formData.hasEngineSwap && (
+                            <Card className="mt-4 p-4 space-y-4 bg-background/50 animate-in fade-in-50">
+                                <p className="text-sm text-muted-foreground">This helps track engine and chassis mileage separately.</p>
+                                <div>
+                                    <Label>Chassis KMs at Swap</Label>
+                                    <Input type="number" value={formData.chassisKmsAtSwap} onChange={e => setFormData({ ...formData, chassisKmsAtSwap: e.target.value })} placeholder="e.g., 40000"/>
+                                </div>
+                                <div>
+                                    <Label>New Engine KMs at Swap</Label>
+                                    <Input type="number" value={formData.engineKmsAtSwap} onChange={e => setFormData({ ...formData, engineKmsAtSwap: e.target.value })} placeholder="e.g., 5000"/>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <Switch id="serviced-at-swap" checked={formData.wasServicedAtSwap} onCheckedChange={c => setFormData({...formData, wasServicedAtSwap: c})}/>
+                                    <Label htmlFor="serviced-at-swap">Engine was serviced at swap</Label>
+                                </div>
+                            </Card>
+                        )}
+                    </div>
+                 </CardContent>
+            )}
+
+            {step === 4 && selectedVehicle && (
+                 <CardContent className="p-6 text-center">
+                    <CardHeader className="p-0 mb-4">
+                        <CardTitle className="font-headline">All Set!</CardTitle>
+                        <CardDescription>Review your new vehicle and add it to your garage.</CardDescription>
+                    </CardHeader>
+                    <Card className="p-6 text-left space-y-2 bg-background/50">
+                        <h3 className="text-lg font-bold font-headline">{formData.nickname || `${selectedVehicle.make} ${selectedVehicle.model}`}</h3>
+                        <p><strong>Vehicle:</strong> {selectedVehicle.make} {selectedVehicle.model} ({selectedVehicle.variant})</p>
+                        <p><strong>Odometer:</strong> {parseInt(formData.odometerReading).toLocaleString()} km</p>
+                        <p><strong>Driving Style:</strong> {formData.drivingStyle}</p>
+                        <p><strong>Mod Stage:</strong> {formData.modStage}</p>
+                        {formData.hasEngineSwap && <p className="text-accent">Engine Swap Details Logged</p>}
+                    </Card>
+                 </CardContent>
+            )}
+            
+          </motion.div>
+        </AnimatePresence>
+      </Card>
+      <div className="flex justify-between mt-6">
+        <Button variant="outline" onClick={handleBack} disabled={step === 0}>
+          <ChevronLeft className="mr-2 h-4 w-4" /> Back
+        </Button>
+        {step < steps.length - 1 ? (
+          <Button onClick={handleNext} disabled={step === 0 && !formData.vehicleId} className="shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
+            Next <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
+        ) : (
+          <Button onClick={handleSubmit} className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
+            <Check className="mr-2 h-4 w-4" /> Finish & Add to Garage
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
