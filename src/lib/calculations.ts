@@ -17,6 +17,22 @@ function findLastServiceForItem(serviceHistory: ServiceLog[], itemName: string):
   return relevantLogs[0];
 }
 
+
+/**
+ * Finds the most recent "General" service log, which is created when a user manually logs a service.
+ * This should be prioritized over the "Initial" log for items not explicitly serviced.
+ */
+function findLastGeneralService(serviceHistory: ServiceLog[]): ServiceLog | undefined {
+    if (!serviceHistory) {
+        return undefined;
+    }
+    const generalLogs = serviceHistory
+        .filter(log => log.serviceType === 'General')
+        .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime());
+    return generalLogs[0];
+}
+
+
 export function calculateAllServices(car: UserCar, vehicle: Vehicle): CalculatedService[] {
   // Filter service items based on the car's transmission type
   const relevantServiceItems = vehicle.serviceItems.filter(item => {
@@ -46,10 +62,13 @@ export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): 
   // Round to a sensible number for recommendation
   const recommendedIntervalKm = Math.round(adjustedIntervalKm / 500) * 500;
   
-  const lastServiceLog = findLastServiceForItem(car.serviceHistory, serviceItem.name);
+  const lastServiceLogForItem = findLastServiceForItem(car.serviceHistory, serviceItem.name);
+  const lastGeneralLog = findLastGeneralService(car.serviceHistory);
+  const initialLog = car.serviceHistory.find(l => l.serviceType === 'Initial');
 
-  // If never serviced, use the car's initial "service" record, which should be its starting state.
-  const effectiveLastService = lastServiceLog || car.serviceHistory.find(l => l.serviceType === 'Initial');
+  // The effective last service is the specific one for the item,
+  // or the most recent general service, or the initial state of the car.
+  const effectiveLastService = lastServiceLogForItem || lastGeneralLog || initialLog;
   
   const lastServiceDate = effectiveLastService ? effectiveLastService.date : new Date().toISOString();
 
