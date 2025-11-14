@@ -46,7 +46,7 @@ export default function MyGaragePage() {
             <div className="text-center">
                 <h2 className="text-2xl font-bold font-headline mb-2">Welcome to Interval</h2>
                 <p className="text-muted-foreground mb-6">Press Start to begin managing your garage.</p>
-                <Button onClick={handleLogin}>
+                <Button onClick={handleLogin} disabled={!auth}>
                     <LogIn className="mr-2 h-4 w-4" />
                     Start
                 </Button>
