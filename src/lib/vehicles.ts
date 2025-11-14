@@ -29,7 +29,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2012-Present',
     imageId: 'toyota-86',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 105000, oemIntervalMonths: 84, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
       { name: 'Manual Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Manual' },
