@@ -47,12 +47,22 @@ export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): 
   // Round to a sensible number for recommendation
   const recommendedIntervalKm = Math.round(adjustedIntervalKm / 500) * 500;
   
-  // Find the last specific log for this item, or fall back to the initial state of the car
+  // Find the last specific log for this item.
   const lastLogForItem = findLastServiceForItem(car.serviceHistory, serviceItem.name);
+
+  // Find the most recent 'General' service log, if any.
+  const mostRecentGeneralLog = car.serviceHistory
+      .filter(log => log.serviceType === 'General')
+      .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime())[0];
+
+  // Find the 'Initial' log created when the car was added.
   const initialLog = car.serviceHistory.find(l => l.serviceType === 'Initial');
   
-  // The effective last service is the specific one for the item, or the initial state of the car if the item has never been serviced.
-  const effectiveLastService = lastLogForItem || initialLog;
+  // The effective last service is:
+  // 1. The specific log for the item if it exists.
+  // 2. Fallback to the most recent 'General' service if no specific log exists.
+  // 3. Final fallback to the 'Initial' state of the car.
+  const effectiveLastService = lastLogForItem || mostRecentGeneralLog || initialLog;
   
   const lastServiceDate = effectiveLastService ? effectiveLastService.date : new Date().toISOString();
 
