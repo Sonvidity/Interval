@@ -78,14 +78,14 @@ export default function ServiceHistoryPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <Button variant="ghost" onClick={() => router.push('/')} className="mb-4">
+      <Button variant="ghost" onClick={() => router.push('/')} className="mb-4 -ml-4">
         <ArrowLeft className="mr-2 h-4 w-4" />
         Back to Garage
       </Button>
 
       <Card className="animate-in fade-in-50">
         <CardHeader>
-          <CardTitle className="text-3xl font-headline flex items-center gap-3">
+          <CardTitle className="text-2xl sm:text-3xl font-headline flex items-center gap-3">
              <Car size={30} className="text-accent"/>
              <span>{car.nickname}</span>
           </CardTitle>
@@ -95,39 +95,43 @@ export default function ServiceHistoryPage() {
         </CardHeader>
         <CardContent>
           {sortedHistory.length > 0 ? (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Odometer</TableHead>
-                  <TableHead>Items Serviced</TableHead>
-                  <TableHead className="text-right">Cost</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {sortedHistory.map((log) => (
-                  <TableRow key={log.id}>
-                    <TableCell className="font-medium">
-                      {format(parseISO(log.date), "dd MMM yyyy")}
-                    </TableCell>
-                    <TableCell>{log.kms.toLocaleString()} km</TableCell>
-                    <TableCell>
-                      <div className="flex flex-wrap gap-2">
-                        {log.itemsDone.map(item => (
-                          <Badge key={item} variant="secondary" className="font-normal">{item}</Badge>
-                        ))}
-                         {log.notes && (
-                            <p className="text-xs text-muted-foreground w-full mt-1 italic">Note: {log.notes}</p>
-                         )}
-                      </div>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {log.cost ? `$${log.cost.toFixed(2)}` : '-'}
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Odometer</TableHead>
+                    <TableHead>Items Serviced</TableHead>
+                    <TableHead className="text-right">Cost</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {sortedHistory.map((log) => (
+                    <TableRow key={log.id}>
+                      <TableCell className="font-medium whitespace-nowrap">
+                        {format(parseISO(log.date), "dd MMM yyyy")}
+                      </TableCell>
+                      <TableCell>{log.kms.toLocaleString()} km</TableCell>
+                      <TableCell>
+                        <div className="flex flex-col gap-2">
+                           <div className="flex flex-wrap gap-1">
+                            {log.itemsDone.map(item => (
+                              <Badge key={item} variant="secondary" className="font-normal">{item}</Badge>
+                            ))}
+                          </div>
+                           {log.notes && (
+                              <p className="text-xs text-muted-foreground italic max-w-xs truncate">Note: {log.notes}</p>
+                           )}
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right whitespace-nowrap">
+                        {log.cost ? `$${log.cost.toFixed(2)}` : '-'}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           ) : (
             <div className="text-center py-12">
                 <p className="text-muted-foreground">No service history has been logged for this vehicle yet.</p>

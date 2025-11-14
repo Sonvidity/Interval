@@ -24,7 +24,7 @@ export default function MyGaragePage() {
           <h1 className="text-3xl font-headline font-bold">My Garage</h1>
           <Skeleton className="h-10 w-32" />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Skeleton className="h-[480px] rounded-lg" />
           <Skeleton className="h-[480px] rounded-lg" />
         </div>
@@ -43,7 +43,7 @@ export default function MyGaragePage() {
       ) : (
         <div className="space-y-8">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-headline font-bold">My Garage</h1>
+            <h1 className="text-2xl sm:text-3xl font-headline font-bold">My Garage</h1>
              <Link href="/add-vehicle" passHref>
               <Button className="shadow-sm hover:shadow-glow-accent transition-shadow duration-300 sm:hidden">
                   <Car className="mr-2 h-4 w-4" />
@@ -60,7 +60,7 @@ export default function MyGaragePage() {
                 </p>
             </div>
           )}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {cars.map((car) => (
               <CarCard key={car.id} car={car} />
             ))}

@@ -17,9 +17,9 @@ import { useToast } from "@/hooks/use-toast";
 
 
 const steps = [
-    { id: 'find', title: 'Find Your Car', icon: Car },
-    { id: 'details', title: 'Car Details', icon: Gauge },
-    { id: 'usage', title: 'Usage Profile', icon: Rocket },
+    { id: 'find', title: 'Find', icon: Car },
+    { id: 'details', title: 'Details', icon: Gauge },
+    { id: 'usage', title: 'Usage', icon: Rocket },
     { id: 'finish', title: 'Finish', icon: Check },
 ];
 
@@ -115,13 +115,13 @@ export default function AddVehiclePage() {
   );
 
   const StepIndicator = () => (
-    <div className="flex justify-center items-center space-x-4 mb-8">
+    <div className="flex justify-center items-center space-x-2 sm:space-x-4 mb-8">
       {steps.map((s, index) => {
         const isActive = index === step;
         const isCompleted = index < step;
         const Icon = s.icon;
         return (
-          <div key={s.id} className="flex flex-col items-center">
+          <div key={s.id} className="flex flex-col items-center text-center">
             <div
               className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all ${
                 isActive ? 'border-accent bg-accent/20' : isCompleted ? 'border-accent/50 bg-transparent' : 'border-border'
@@ -149,9 +149,9 @@ export default function AddVehiclePage() {
             transition={{ duration: 0.3 }}
           >
             {step === 0 && (
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <CardHeader className="p-0 mb-4">
-                  <CardTitle className="font-headline">Step 1: Find Your Car</CardTitle>
+                  <CardTitle className="font-headline text-xl sm:text-2xl">Step 1: Find Your Car</CardTitle>
                   <CardDescription>Search our database for your vehicle's OEM service guide.</CardDescription>
                 </CardHeader>
                 <Input
@@ -178,9 +178,9 @@ export default function AddVehiclePage() {
             )}
 
             {step === 1 && (
-               <CardContent className="p-6 space-y-4">
+               <CardContent className="p-4 sm:p-6 space-y-4">
                  <CardHeader className="p-0 mb-4">
-                  <CardTitle className="font-headline">Step 2: Tell Us About Your Car</CardTitle>
+                  <CardTitle className="font-headline text-xl sm:text-2xl">Step 2: Tell Us About Your Car</CardTitle>
                   <CardDescription>Personalize your vehicle and set its current mileage. This will be the starting point for all service calculations.</CardDescription>
                 </CardHeader>
                  <div>
@@ -205,9 +205,9 @@ export default function AddVehiclePage() {
             )}
             
             {step === 2 && (
-                 <CardContent className="p-6 space-y-4">
+                 <CardContent className="p-4 sm:p-6 space-y-4">
                     <CardHeader className="p-0 mb-4">
-                        <CardTitle className="font-headline">Step 3: Define Your Profile</CardTitle>
+                        <CardTitle className="font-headline text-xl sm:text-2xl">Step 3: Define Your Profile</CardTitle>
                         <CardDescription>How you drive and what mods you have.</CardDescription>
                     </CardHeader>
                     <div>
@@ -260,12 +260,12 @@ export default function AddVehiclePage() {
             )}
 
             {step === 3 && selectedVehicle && (
-                 <CardContent className="p-6 text-center">
+                 <CardContent className="p-4 sm:p-6 text-center">
                     <CardHeader className="p-0 mb-4">
-                        <CardTitle className="font-headline">All Set!</CardTitle>
+                        <CardTitle className="font-headline text-xl sm:text-2xl">All Set!</CardTitle>
                         <CardDescription>Review your new vehicle and add it to your garage.</CardDescription>
                     </CardHeader>
-                    <Card className="p-6 text-left space-y-2 bg-background/50">
+                    <Card className="p-4 text-left space-y-2 bg-background/50">
                         <h3 className="text-lg font-bold font-headline">{formData.nickname || `${selectedVehicle.make} ${selectedVehicle.model}`}</h3>
                         <p><strong>Vehicle:</strong> {selectedVehicle.make} {selectedVehicle.model} ({selectedVehicle.variant})</p>
                         <p><strong>Odometer:</strong> {parseInt(formData.odometerReading).toLocaleString()} km</p>

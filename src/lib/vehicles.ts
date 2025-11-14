@@ -18,7 +18,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Manual Transmission Fluid (TR-6060)', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Manual' },
       { name: 'Differential Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 60, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 120000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
   },
   {
@@ -30,13 +30,13 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     imageId: 'toyota-86',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
-      { name: 'Spark Plugs (Iridium)', oemIntervalKm: 105000, oemIntervalMonths: 84, type: 'Engine' },
+      { name: 'Spark Plugs (Iridium)', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
       { name: 'Manual Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Manual' },
       { name: 'Automatic Transmission Fluid', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Differential Fluid', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant (Super Long Life)', oemIntervalKm: 160000, oemIntervalMonths: 96, type: 'Chassis' },
+      { name: 'Coolant (Super Long Life)', oemIntervalKm: 150000, oemIntervalMonths: 96, type: 'Chassis' },
     ],
   },
   {
@@ -47,14 +47,14 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2006-2017',
     imageId: 'sv6-commodore',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
-      { name: 'Spark Plugs', oemIntervalKm: 120000, oemIntervalMonths: 84, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 84, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
-      { name: 'Automatic Transmission Fluid', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Automatic Transmission Fluid', oemIntervalKm: 120000, oemIntervalMonths: 100, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Manual Transmission Fluid', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Chassis', transmission: 'Manual' },
-      { name: 'Differential Fluid', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
+      { name: 'Differential Fluid', oemIntervalKm: 120000, oemIntervalMonths: 100, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 240000, oemIntervalMonths: 60, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
   },
   // Nissan Skylines
@@ -168,14 +168,14 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1998-2002',
     imageId: 'placeholder-sedan-gold',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
       { name: 'Fuel Filter', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
       { name: 'Automatic Transmission Fluid', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Differential Fluid', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 60, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 120000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
   },
   {
@@ -186,7 +186,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2002-2008',
     imageId: 'placeholder-sedan-silver',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
       { name: 'Fuel Filter', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
@@ -194,7 +194,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Manual Transmission Fluid', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Chassis', transmission: 'Manual' },
       { name: 'Differential Fluid', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 240000, oemIntervalMonths: 120, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
   },
   // VW Golf R
@@ -206,7 +206,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2005-2008',
     imageId: 'placeholder-hatch-blue',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Fuel Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -214,7 +214,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'DSG Transmission Fluid & Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Manual Transmission Fluid', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Chassis', transmission: 'Manual' },
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 60, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 120000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
   },
   {
@@ -225,7 +225,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2009-2013',
     imageId: 'placeholder-hatch-black',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Fuel Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -245,7 +245,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2013-2020',
     imageId: 'placeholder-hatch-lapiz',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Haldex Fluid', oemIntervalKm: 40000, oemIntervalMonths: 36, type: 'Chassis' },
@@ -262,7 +262,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2021-Present',
     imageId: 'placeholder-hatch-white-modern',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Haldex Fluid', oemIntervalKm: 40000, oemIntervalMonths: 36, type: 'Chassis' },
@@ -279,7 +279,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2007-2011',
     imageId: 'placeholder-suv-black',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 20000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Automatic Transmission Fluid (7G-Tronic)', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Chassis', transmission: 'Automatic' },
@@ -297,12 +297,12 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2015-2022',
     imageId: 'placeholder-wagon-gray',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
-      { name: 'Automatic Transmission Fluid', oemIntervalKm: 240000, oemIntervalMonths: 120, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Automatic Transmission Fluid', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 240000, oemIntervalMonths: 120, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
   },
   {
@@ -319,7 +319,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Manual Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Manual' },
       { name: 'Automatic Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Brake Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 200000, oemIntervalMonths: 120, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
   },
   // START OF NEW CARS
@@ -487,7 +487,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
       { name: 'Manual Transmission Fluid', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Chassis', transmission: 'Manual' },
       { name: 'Brake Fluid', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 200000, oemIntervalMonths: 120, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
   },
   // BMW
@@ -519,7 +519,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2016-2021',
     imageId: 'placeholder-coupe-blue',
     serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Engine' },
       { name: 'Manual Transmission Fluid', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Chassis', transmission: 'Manual' },
@@ -538,11 +538,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     imageId: 'placeholder-coupe-dark',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
-      { name: 'Spark Plugs', oemIntervalKm: 160000, oemIntervalMonths: 96, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 120000, oemIntervalMonths: 96, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 48000, oemIntervalMonths: 36, type: 'Engine' },
-      { name: 'Manual Transmission Fluid', oemIntervalKm: 160000, oemIntervalMonths: 96, type: 'Chassis', transmission: 'Manual' },
-      { name: 'Automatic Transmission Fluid', oemIntervalKm: 240000, oemIntervalMonths: 120, type: 'Chassis', transmission: 'Automatic' },
-      { name: 'Differential Fluid', oemIntervalKm: 160000, oemIntervalMonths: 96, type: 'Chassis' },
+      { name: 'Manual Transmission Fluid', oemIntervalKm: 150000, oemIntervalMonths: 96, type: 'Chassis', transmission: 'Manual' },
+      { name: 'Automatic Transmission Fluid', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Differential Fluid', oemIntervalKm: 150000, oemIntervalMonths: 96, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 48000, oemIntervalMonths: 36, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 160000, oemIntervalMonths: 72, type: 'Chassis' },
     ],
