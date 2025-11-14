@@ -43,7 +43,7 @@ function PostCard({ post }: { post: Post }) {
         <div>
           <p className="font-semibold">{post.authorName}</p>
           <p className="text-sm text-muted-foreground">
-            {formatDistanceToNow(post.createdAt.toDate(), { addSuffix: true })}
+            {post.createdAt ? formatDistanceToNow(post.createdAt.toDate(), { addSuffix: true }) : 'Just now'}
           </p>
         </div>
         {user?.uid === post.authorId && (
