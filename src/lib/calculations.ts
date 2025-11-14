@@ -1,12 +1,23 @@
-import { UserCar, Vehicle, CalculatedService, ServiceItem } from './types';
+import { UserCar, Vehicle, CalculatedService, ServiceItem, ServiceLog } from './types';
 import { MOD_FACTORS, DRIVE_FACTORS } from './constants';
-import { addMonths, differenceInDays, format } from 'date-fns';
+import { addMonths, differenceInDays, format, parseISO } from 'date-fns';
 
-export function calculateAllServices(car: UserCar, vehicle: Vehicle): CalculatedService[] {
-  return vehicle.serviceItems.map(item => calculateSingleService(car, item));
+/**
+ * Finds the most recent service log for a specific service item.
+ * It searches the service history for any log that includes the item's name.
+ */
+function findLastServiceForItem(serviceHistory: ServiceLog[], itemName: string): ServiceLog | undefined {
+  const relevantLogs = serviceHistory
+    .filter(log => Array.isArray(log.itemsDone) && log.itemsDone.includes(itemName))
+    .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime());
+  return relevantLogs[0];
 }
 
-export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): CalculatedService {
+export function calculateAllServices(car: UserCar, vehicle: Vehicle): CalculatedService[] {
+  return vehicle.serviceItems.map(item => calculateSingleService(car, vehicle, item));
+}
+
+export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceItem: ServiceItem): CalculatedService {
   const baseIntervalKm = serviceItem.oemIntervalKm;
   const baseIntervalMonths = serviceItem.oemIntervalMonths;
   const type = serviceItem.type;
@@ -21,9 +32,15 @@ export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): 
   // Round to a sensible number for recommendation
   const recommendedIntervalKm = Math.round(adjustedIntervalKm / 500) * 500;
   
-  // Use the correct last service data based on the item type
-  const lastServiceKm = type === 'Engine' ? car.lastServiceEngineKms : car.lastServiceChassisKms;
-  const lastServiceDate = type === 'Engine' ? car.lastServiceEngineDate : car.lastServiceChassisDate;
+  // Find the last time *this specific item* was serviced from the history
+  const lastServiceLog = findLastServiceForItem(car.serviceHistory, serviceItem.name);
+
+  // If never serviced, use the car's initial "service" record, which should be its starting state.
+  const effectiveLastService = lastServiceLog || car.serviceHistory.find(l => l.serviceType === 'Initial');
+  
+  const lastServiceKm = effectiveLastService ? effectiveLastService.kms : 0;
+  const lastServiceDate = effectiveLastService ? effectiveLastService.date : new Date().toISOString();
+
 
   // Engine KMs calculation for swapped engines
   let currentOdometerForCalc = car.odometerReading;
@@ -39,7 +56,10 @@ export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): 
   const dueInDays = differenceInDays(nextServiceDate, new Date());
   
   const kmProgress = ((currentOdometerForCalc - lastServiceKm) / adjustedIntervalKm) * 100;
-  const dateProgress = ((baseIntervalMonths * 30.44 - dueInDays) / (baseIntervalMonths * 30.44)) * 100;
+
+  const totalDaysInInterval = differenceInDays(nextServiceDate, parseISO(lastServiceDate));
+  const daysSinceService = differenceInDays(new Date(), parseISO(lastServiceDate));
+  const dateProgress = totalDaysInInterval > 0 ? (daysSinceService / totalDaysInInterval) * 100 : 0;
   
   const progress = Math.max(kmProgress, dateProgress);
 
@@ -72,8 +92,8 @@ export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): 
 }
 
 export function getEngineKms(car: UserCar): number | null {
-  if (!car.engineSwapDetails?.isReplaced) {
-    return null;
+  if (!car.engineSwapDetails?.isReplaced || car.engineSwapDetails.chassisKmsAtSwap > car.odometerReading) {
+    return car.odometerReading;
   }
   const chassisKmsSinceSwap = car.odometerReading - car.engineSwapDetails.chassisKmsAtSwap;
   return car.engineSwapDetails.engineKmsAtSwap + chassisKmsSinceSwap;

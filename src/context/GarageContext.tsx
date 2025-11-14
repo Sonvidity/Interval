@@ -6,11 +6,12 @@ import { useUser, useFirestore } from '@/firebase';
 import { collection, doc, onSnapshot, setDoc, addDoc, query, orderBy, deleteDoc } from 'firebase/firestore';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError } from '@/firebase/errors';
+import { VEHICLE_DATABASE } from '@/lib/vehicles';
 
 interface GarageContextType {
   cars: UserCar[];
   loading: boolean;
-  addCar: (carData: Omit<UserCar, 'id' | 'serviceHistory' | 'userId'>) => Promise<void>;
+  addCar: (carData: Omit<UserCar, 'id' | 'serviceHistory' | 'userId'> & { serviceHistory: ServiceLog[] }) => Promise<void>;
   updateCar: (updatedCar: UserCar) => Promise<void>;
   logService: (carId: string, serviceLog: Omit<ServiceLog, 'id'>) => Promise<void>;
   getCarById: (id: string) => UserCar | undefined;
@@ -58,9 +59,9 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     }
   }, [user, firestore, userLoading]);
 
-  const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'serviceHistory' | 'userId'>) => {
+  const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'userId'>) => {
     if (!firestore || !user) return;
-    const newCar = { ...carData, userId: user.uid, serviceHistory: [] };
+    const newCar = { ...carData, userId: user.uid };
     const carRef = collection(firestore, 'users', user.uid, 'user_vehicles');
     addDoc(carRef, newCar).catch(async (serverError) => {
         const permissionError = new FirestorePermissionError({
@@ -91,39 +92,32 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
     const car = cars.find(c => c.id === carId);
     if (!car) return;
-    
-    // Log to subcollection (optional, can be complex. For now, we update the main doc)
-    // For simplicity, we'll update the parent car document with the latest service dates/kms
-    // and assume serviceHistory is managed if needed elsewhere or added later.
 
     const carRef = doc(firestore, 'users', user.uid, 'user_vehicles', carId);
-    const updatedFields: Partial<UserCar> = {
-      odometerReading: serviceLogData.kms,
+    
+    // Create the new log with a unique ID (timestamp)
+    const newLog: ServiceLog = {
+        ...serviceLogData,
+        id: new Date().toISOString(),
     };
 
-    if (serviceLogData.serviceType === 'Engine' || serviceLogData.serviceType === 'General') {
-        updatedFields.lastServiceEngineDate = serviceLogData.date;
-        updatedFields.lastServiceEngineKms = serviceLogData.kms;
-    }
-    if (serviceLogData.serviceType === 'Chassis' || serviceLogData.serviceType === 'General') {
-        updatedFields.lastServiceChassisDate = serviceLogData.date;
-        updatedFields.lastServiceChassisKms = serviceLogData.kms;
-    }
-    
-    // Add to service history array if it exists
-    const updatedHistory = [...(car.serviceHistory || []), { ...serviceLogData, id: new Date().toISOString() }];
-    updatedFields.serviceHistory = updatedHistory;
+    // Prepend the new log to the history
+    const updatedHistory = [newLog, ...(car.serviceHistory || [])];
 
-    if (Object.keys(updatedFields).length > 0) {
-        setDoc(carRef, updatedFields, { merge: true }).catch(async (serverError) => {
-            const permissionError = new FirestorePermissionError({
-                path: carRef.path,
-                operation: 'update',
-                requestResourceData: updatedFields,
-            });
-            errorEmitter.emit('permission-error', permissionError);
+    // Update odometer and the service history in one go
+    const updatedFields = {
+      odometerReading: serviceLogData.kms,
+      serviceHistory: updatedHistory,
+    };
+
+    setDoc(carRef, updatedFields, { merge: true }).catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+            path: carRef.path,
+            operation: 'update',
+            requestResourceData: updatedFields,
         });
-    }
+        errorEmitter.emit('permission-error', permissionError);
+    });
 
   }, [firestore, user, cars]);
 

@@ -33,6 +33,7 @@ export type UserCar = {
   odometerReading: number;
   modStage: ModStage;
   drivingStyle: DrivingStyle;
+  // DEPRECATED - will be removed in a future step. History is the source of truth.
   lastServiceEngineKms: number;
   lastServiceEngineDate: string; // ISO date string
   lastServiceChassisKms: number;
@@ -42,13 +43,13 @@ export type UserCar = {
 };
 
 export type ServiceLog = {
-  id: string; // Document ID from Firestore
+  id: string; // ISO timestamp to ensure uniqueness
   date: string; // ISO date string
   kms: number;
-  serviceType: 'Engine' | 'Chassis' | 'General' | 'Repair';
+  serviceType: 'Engine' | 'Chassis' | 'General' | 'Repair' | 'Initial';
   cost?: number;
   notes?: string;
-  itemsDone: string;
+  itemsDone: string[]; // Now an array of strings
 };
 
 export type CalculatedService = {

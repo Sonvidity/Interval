@@ -12,11 +12,12 @@ import { CalculationModal } from './CalculationModal';
 import { Button } from '../ui/button';
 import { LogServiceModal } from './LogServiceModal';
 import { Wrench } from 'lucide-react';
-import { ScrollArea } from '../ui/scroll-area';
+import { ServiceListModal } from './ServiceListModal';
 
 export function CarCard({ car }: { car: UserCar }) {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [calculationModalOpen, setCalculationModalOpen] = useState(false);
   const [logModalOpen, setLogModalOpen] = useState(false);
+  const [serviceListModalOpen, setServiceListModalOpen] = useState(false);
   const [calculationData, setCalculationData] = useState<CalculatedService | null>(null);
 
   const vehicleInfo = VEHICLE_DATABASE.find(v => v.id === car.vehicleId);
@@ -31,12 +32,12 @@ export function CarCard({ car }: { car: UserCar }) {
 
   const handleShowCalculation = (data: CalculatedService) => {
     setCalculationData(data);
-    setModalOpen(true);
+    setCalculationModalOpen(true);
   };
   
   return (
     <>
-      <Card className="flex flex-col max-h-[700px]">
+      <Card className="flex flex-col">
         <CardHeader className="relative p-0">
           {vehicleImage && (
             <Image
@@ -48,7 +49,7 @@ export function CarCard({ car }: { car: UserCar }) {
               data-ai-hint={vehicleImage.imageHint}
             />
           )}
-          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent rounded-b-lg">
+          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
             <CardTitle className="text-2xl font-headline text-white">{car.nickname}</CardTitle>
             <CardDescription className="text-gray-300">{vehicleInfo.make} {vehicleInfo.model} - {vehicleInfo.variant}</CardDescription>
           </div>
@@ -61,36 +62,39 @@ export function CarCard({ car }: { car: UserCar }) {
               </div>
               <div>
                   <p className="text-sm text-muted-foreground">Engine KMs</p>
-                  <p className={`text-xl font-bold ${engineKms !== null ? '' : 'text-muted-foreground'}`}>{engineKms !== null ? engineKms.toLocaleString() : 'N/A'}</p>
+                  <p className={`text-xl font-bold ${engineKms !== car.odometerReading ? 'text-accent' : ''}`}>{engineKms ? engineKms.toLocaleString() : car.odometerReading.toLocaleString()}</p>
               </div>
           </div>
 
           <div className="flex-grow flex flex-col">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2 px-1">Upcoming Service Items</h3>
-            <ScrollArea className="flex-grow h-[200px] pr-3">
-              <div className="space-y-3">
-                {sortedServices.map((service) => (
-                  <ServiceProgress
-                    key={service.name}
-                    service={service}
-                    onShowCalculation={() => handleShowCalculation(service)}
-                  />
-                ))}
-              </div>
-            </ScrollArea>
+            <h3 className="text-sm font-medium text-muted-foreground mb-2 px-1">Top Upcoming Services</h3>
+            <div className="space-y-3">
+              {sortedServices.slice(0, 4).map((service) => (
+                <ServiceProgress
+                  key={service.name}
+                  service={service}
+                  onShowCalculation={() => handleShowCalculation(service)}
+                />
+              ))}
+            </div>
           </div>
           
-          <Button onClick={() => setLogModalOpen(true)} className="w-full mt-auto shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
-            <Wrench className="mr-2 h-4 w-4" />
-            Log Service
-          </Button>
+          <div className="flex gap-2 mt-4">
+            <Button onClick={() => setLogModalOpen(true)} className="w-full shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
+              <Wrench className="mr-2 h-4 w-4" />
+              Log Service
+            </Button>
+            <Button onClick={() => setServiceListModalOpen(true)} variant="outline" className="w-full">
+                View All
+            </Button>
+          </div>
         </CardContent>
       </Card>
       
       {calculationData && (
         <CalculationModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
+          isOpen={calculationModalOpen}
+          onClose={() => setCalculationModalOpen(false)}
           data={calculationData}
         />
       )}
@@ -98,6 +102,13 @@ export function CarCard({ car }: { car: UserCar }) {
         isOpen={logModalOpen}
         onClose={() => setLogModalOpen(false)}
         car={car}
+        vehicleInfo={vehicleInfo}
+      />
+       <ServiceListModal 
+        isOpen={serviceListModalOpen}
+        onClose={() => setServiceListModalOpen(false)}
+        services={sortedServices}
+        onShowCalculation={handleShowCalculation}
       />
     </>
   );

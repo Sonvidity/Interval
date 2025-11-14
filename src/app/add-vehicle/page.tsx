@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check, Car, History, Gauge, Rocket } from "lucide-react";
-import type { ModStage, DrivingStyle } from "@/lib/types";
+import type { ModStage, DrivingStyle, ServiceLog } from "@/lib/types";
 import { Switch } from "@/components/ui/switch";
 import { useUser } from "@/firebase";
 import Link from "next/link";
@@ -19,7 +19,6 @@ import Link from "next/link";
 const steps = [
     { id: 'find', title: 'Find Your Car', icon: Car },
     { id: 'details', title: 'Car Details', icon: Gauge },
-    { id: 'history', title: 'Service History', icon: History },
     { id: 'usage', title: 'Usage Profile', icon: Rocket },
     { id: 'finish', title: 'Finish', icon: Check },
 ];
@@ -33,10 +32,6 @@ export default function AddVehiclePage() {
     vehicleId: "",
     nickname: "",
     odometerReading: "",
-    lastServiceEngineKms: "",
-    lastServiceEngineDate: new Date().toISOString().split('T')[0],
-    lastServiceChassisKms: "",
-    lastServiceChassisDate: new Date().toISOString().split('T')[0],
     drivingStyle: "Spirited" as DrivingStyle,
     modStage: "Stock" as ModStage,
     hasEngineSwap: false,
@@ -74,11 +69,33 @@ export default function AddVehiclePage() {
   const handleSubmit = async () => {
     const { hasEngineSwap, chassisKmsAtSwap, engineKmsAtSwap, wasServicedAtSwap, ...carData } = formData;
     
+    if (!selectedVehicle) {
+      console.error("No vehicle selected");
+      return;
+    }
+
+    const initialOdometer = parseInt(formData.odometerReading) || 0;
+    
+    // Create an initial "service" log to mark the starting point for all service items.
+    const initialServiceLog: ServiceLog = {
+      id: new Date().toISOString(),
+      date: new Date().toISOString(),
+      kms: initialOdometer,
+      serviceType: 'Initial',
+      itemsDone: selectedVehicle.serviceItems.map(item => item.name),
+      notes: "Initial vehicle state when added to Garage."
+    };
+
     await addCar({
       ...carData,
-      odometerReading: parseInt(formData.odometerReading) || 0,
-      lastServiceEngineKms: parseInt(formData.lastServiceEngineKms) || parseInt(formData.odometerReading) || 0,
-      lastServiceChassisKms: parseInt(formData.lastServiceChassisKms) || parseInt(formData.odometerReading) || 0,
+      odometerReading: initialOdometer,
+      // These are deprecated but kept for schema compatibility during transition
+      lastServiceEngineKms: initialOdometer,
+      lastServiceEngineDate: new Date().toISOString(),
+      lastServiceChassisKms: initialOdometer,
+      lastServiceChassisDate: new Date().toISOString(),
+      // The service history is the new source of truth
+      serviceHistory: [initialServiceLog],
       engineSwapDetails: hasEngineSwap ? {
         isReplaced: true,
         chassisKmsAtSwap: parseInt(chassisKmsAtSwap) || 0,
@@ -157,7 +174,7 @@ export default function AddVehiclePage() {
                <CardContent className="p-6 space-y-4">
                  <CardHeader className="p-0 mb-4">
                   <CardTitle className="font-headline">Step 2: Tell Us About Your Car</CardTitle>
-                  <CardDescription>Personalize your vehicle and set its current mileage.</CardDescription>
+                  <CardDescription>Personalize your vehicle and set its current mileage. This will be the starting point for all service calculations.</CardDescription>
                 </CardHeader>
                  <div>
                    <Label htmlFor="nickname">Nickname</Label>
@@ -169,38 +186,11 @@ export default function AddVehiclePage() {
                  </div>
                </CardContent>
             )}
-
-            {step === 2 && (
-              <CardContent className="p-6 space-y-4">
-                 <CardHeader className="p-0 mb-4">
-                  <CardTitle className="font-headline">Step 3: Log Recent History</CardTitle>
-                  <CardDescription>When were the last major services? You can use an estimate.</CardDescription>
-                </CardHeader>
-                <Card className="p-4 bg-background/50">
-                    <Label>Last Engine Service (e.g., Oil Change)</Label>
-                    <div className="grid grid-cols-2 gap-4 mt-2">
-                        <Input type="number" value={formData.lastServiceEngineKms} onChange={e => setFormData({ ...formData, lastServiceEngineKms: e.target.value })} placeholder="KMs at service" />
-                        <Input type="date" value={formData.lastServiceEngineDate} onChange={e => setFormData({ ...formData, lastServiceEngineDate: e.target.value })} />
-                    </div>
-                </Card>
-                 <Card className="p-4 bg-background/50">
-                    <Label>Last Chassis Service (e.g., Brake Fluid)</Label>
-                    <div className="grid grid-cols-2 gap-4 mt-2">
-                        <Input type="number" value={formData.lastServiceChassisKms} onChange={e => setFormData({ ...formData, lastServiceChassisKms: e.target.value })} placeholder="KMs at service" />
-                        <Input type="date" value={formData.lastServiceChassisDate} onChange={e => setFormData({ ...formData, lastServiceChassisDate: e.target.value })} />
-                    </div>
-                </Card>
-                 <Button variant="link" className="text-accent" onClick={() => {
-                     setFormData({...formData, lastServiceEngineKms: formData.odometerReading, lastServiceChassisKms: formData.odometerReading });
-                     handleNext();
-                 }}>I don't know / Start from today</Button>
-              </CardContent>
-            )}
             
-            {step === 3 && (
+            {step === 2 && (
                  <CardContent className="p-6 space-y-4">
                     <CardHeader className="p-0 mb-4">
-                        <CardTitle className="font-headline">Step 4: Define Your Profile</CardTitle>
+                        <CardTitle className="font-headline">Step 3: Define Your Profile</CardTitle>
                         <CardDescription>How you drive and what mods you have.</CardDescription>
                     </CardHeader>
                     <div>
@@ -252,7 +242,7 @@ export default function AddVehiclePage() {
                  </CardContent>
             )}
 
-            {step === 4 && selectedVehicle && (
+            {step === 3 && selectedVehicle && (
                  <CardContent className="p-6 text-center">
                     <CardHeader className="p-0 mb-4">
                         <CardTitle className="font-headline">All Set!</CardTitle>
@@ -277,7 +267,7 @@ export default function AddVehiclePage() {
           <ChevronLeft className="mr-2 h-4 w-4" /> Back
         </Button>
         {step < steps.length - 1 ? (
-          <Button onClick={handleNext} disabled={step === 0 && !formData.vehicleId} className="shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
+          <Button onClick={handleNext} disabled={(step === 0 && !formData.vehicleId) || (step === 1 && !formData.odometerReading)}>
             Next <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         ) : (
