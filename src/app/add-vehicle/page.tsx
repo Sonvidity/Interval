@@ -15,6 +15,9 @@ import { Switch } from "@/components/ui/switch";
 import { useGarage } from "@/context/GarageContext";
 import { VEHICLE_DATABASE } from "@/lib/vehicles";
 import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "@/components/ui/checkbox";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 
 
 const steps = [
@@ -42,6 +45,9 @@ export default function AddVehiclePage() {
     chassisKmsAtSwap: "",
     engineKmsAtSwap: "",
     wasServicedAtSwap: false,
+    lastServiceDate: "",
+    lastServiceKms: "",
+    lastServiceItems: [] as string[],
   });
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -49,6 +55,15 @@ export default function AddVehiclePage() {
 
   const handleNext = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const handleBack = () => setStep((s) => Math.max(s - 1, 0));
+
+  const handleItemsDoneChange = (item: string) => {
+    setFormData(prev => {
+      const newItems = prev.lastServiceItems.includes(item)
+        ? prev.lastServiceItems.filter(i => i !== item)
+        : [...prev.lastServiceItems, item];
+      return { ...prev, lastServiceItems: newItems };
+    });
+  };
 
   const handleSubmit = async () => {
     if (!selectedVehicle) {
@@ -70,14 +85,28 @@ export default function AddVehiclePage() {
 
     const initialOdometer = parseInt(formData.odometerReading) || 0;
     
-    const initialServiceLog: ServiceLog = {
-        id: new Date().toISOString(),
-        date: new Date().toISOString(),
-        kms: initialOdometer,
-        serviceType: 'Initial',
-        itemsDone: selectedVehicle.serviceItems.map(item => item.name),
-        notes: "Initial vehicle state when added to Garage."
-    };
+    let initialServiceLog: ServiceLog;
+
+    // If user provided last service details, use them. Otherwise, create a default "Initial" log.
+    if (formData.lastServiceDate && formData.lastServiceKms && formData.lastServiceItems.length > 0) {
+        initialServiceLog = {
+            id: new Date().toISOString(),
+            date: formData.lastServiceDate,
+            kms: parseInt(formData.lastServiceKms) || 0,
+            serviceType: 'General',
+            itemsDone: formData.lastServiceItems,
+            notes: "Manually entered previous service during vehicle setup."
+        };
+    } else {
+        initialServiceLog = {
+            id: new Date().toISOString(),
+            date: new Date().toISOString(),
+            kms: initialOdometer,
+            serviceType: 'Initial',
+            itemsDone: selectedVehicle.serviceItems.map(item => item.name),
+            notes: "Initial vehicle state when added to Garage. Assumes all items serviced."
+        };
+    }
     
     const carData = {
         vehicleId: formData.vehicleId,
@@ -220,6 +249,43 @@ export default function AddVehiclePage() {
                         </SelectContent>
                     </Select>
                   </div>
+                  
+                  <Separator className="my-6" />
+
+                  <div>
+                     <CardTitle className="font-headline text-lg">Last Service Details (Optional)</CardTitle>
+                     <CardDescription className="text-sm">If you know when your car was last serviced, enter it here for the most accurate schedule.</CardDescription>
+                     <div className="grid grid-cols-2 gap-4 mt-4">
+                        <div>
+                           <Label htmlFor="last-service-date">Last Service Date</Label>
+                           <Input id="last-service-date" type="date" value={formData.lastServiceDate} onChange={e => setFormData({ ...formData, lastServiceDate: e.target.value })} />
+                        </div>
+                        <div>
+                           <Label htmlFor="last-service-kms">Odometer at Service</Label>
+                           <Input id="last-service-kms" type="number" value={formData.lastServiceKms} onChange={e => setFormData({ ...formData, lastServiceKms: e.target.value })} placeholder="e.g., 45000"/>
+                        </div>
+                     </div>
+                     <div className="mt-4">
+                        <Label>Items Serviced</Label>
+                        <ScrollArea className="h-32 rounded-md border p-4 mt-2">
+                           <div className="space-y-2">
+                              {selectedVehicle.serviceItems.map(item => (
+                                 <div key={item.name} className="flex items-center space-x-2">
+                                    <Checkbox 
+                                       id={`item-init-${item.name}`} 
+                                       checked={formData.lastServiceItems.includes(item.name)}
+                                       onCheckedChange={() => handleItemsDoneChange(item.name)}
+                                    />
+                                    <label htmlFor={`item-init-${item.name}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                       {item.name}
+                                    </label>
+                                 </div>
+                              ))}
+                           </div>
+                        </ScrollArea>
+                     </div>
+                  </div>
+
                </CardContent>
             )}
             
@@ -316,3 +382,5 @@ export default function AddVehiclePage() {
     </div>
   );
 }
+
+    
