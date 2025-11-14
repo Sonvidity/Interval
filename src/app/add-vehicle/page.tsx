@@ -86,7 +86,7 @@ export default function AddVehiclePage() {
       notes: "Initial vehicle state when added to Garage."
     };
 
-    await addCar({
+    const newCarData: any = {
       ...carData,
       odometerReading: initialOdometer,
       // These are deprecated but kept for schema compatibility during transition
@@ -96,13 +96,18 @@ export default function AddVehiclePage() {
       lastServiceChassisDate: new Date().toISOString(),
       // The service history is the new source of truth
       serviceHistory: [initialServiceLog],
-      engineSwapDetails: hasEngineSwap ? {
-        isReplaced: true,
-        chassisKmsAtSwap: parseInt(chassisKmsAtSwap) || 0,
-        engineKmsAtSwap: parseInt(engineKmsAtSwap) || 0,
-        wasServicedAtSwap: wasServicedAtSwap,
-      } : undefined,
-    });
+    };
+
+    if (hasEngineSwap) {
+        newCarData.engineSwapDetails = {
+            isReplaced: true,
+            chassisKmsAtSwap: parseInt(chassisKmsAtSwap) || 0,
+            engineKmsAtSwap: parseInt(engineKmsAtSwap) || 0,
+            wasServicedAtSwap: wasServicedAtSwap,
+        };
+    }
+
+    await addCar(newCarData);
     router.push('/');
   };
 
