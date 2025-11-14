@@ -38,7 +38,7 @@ export type UserCar = {
   lastServiceChassisKms: number;
   lastServiceChassisDate: string; // ISO date string
   engineSwapDetails?: EngineSwapDetails;
-  serviceHistory: ServiceLog[]; // This will be a subcollection
+  serviceHistory: ServiceLog[];
 };
 
 export type ServiceLog = {

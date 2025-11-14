@@ -32,12 +32,17 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         (querySnapshot) => {
           const userCars: UserCar[] = [];
           querySnapshot.forEach((doc) => {
-            userCars.push({ id: doc.id, ...doc.data() } as UserCar);
+            const data = doc.data();
+            // Ensure serviceHistory is initialized
+            if (!data.serviceHistory) {
+              data.serviceHistory = [];
+            }
+            userCars.push({ id: doc.id, ...data } as UserCar);
           });
           setCars(userCars);
           setLoading(false);
         },
-        (err) => {
+        async (err) => {
           const permissionError = new FirestorePermissionError({
             path: `users/${user.uid}/cars`,
             operation: 'list',
@@ -86,19 +91,15 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
     const car = cars.find(c => c.id === carId);
     if (!car) return;
-
-    const historyRef = collection(firestore, 'users', user.uid, 'cars', carId, 'serviceHistory');
-    addDoc(historyRef, serviceLogData).catch(async (serverError) => {
-        const permissionError = new FirestorePermissionError({
-            path: historyRef.path,
-            operation: 'create',
-            requestResourceData: serviceLogData,
-        });
-        errorEmitter.emit('permission-error', permissionError);
-    });
+    
+    // Log to subcollection (optional, can be complex. For now, we update the main doc)
+    // For simplicity, we'll update the parent car document with the latest service dates/kms
+    // and assume serviceHistory is managed if needed elsewhere or added later.
 
     const carRef = doc(firestore, 'users', user.uid, 'cars', carId);
-    const updatedFields: Partial<UserCar> = {};
+    const updatedFields: Partial<UserCar> = {
+      odometerReading: serviceLogData.kms,
+    };
 
     if (serviceLogData.serviceType === 'Engine' || serviceLogData.serviceType === 'General') {
         updatedFields.lastServiceEngineDate = serviceLogData.date;
@@ -109,6 +110,10 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         updatedFields.lastServiceChassisKms = serviceLogData.kms;
     }
     
+    // Add to service history array if it exists
+    const updatedHistory = [...(car.serviceHistory || []), { ...serviceLogData, id: new Date().toISOString() }];
+    updatedFields.serviceHistory = updatedHistory;
+
     if (Object.keys(updatedFields).length > 0) {
         setDoc(carRef, updatedFields, { merge: true }).catch(async (serverError) => {
             const permissionError = new FirestorePermissionError({
