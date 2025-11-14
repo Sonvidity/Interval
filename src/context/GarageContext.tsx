@@ -1,109 +1,134 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import type { UserCar, ServiceLog } from '@/lib/types';
-import { v4 as uuidv4 } from 'uuid';
+import { useUser, useFirestore } from '@/firebase';
+import { collection, doc, onSnapshot, setDoc, addDoc, query, orderBy, deleteDoc } from 'firebase/firestore';
+import { errorEmitter } from '@/firebase/error-emitter';
+import { FirestorePermissionError } from '@/firebase/errors';
 
 interface GarageContextType {
   cars: UserCar[];
   loading: boolean;
-  addCar: (carData: Omit<UserCar, 'id' | 'serviceHistory'>) => void;
-  updateCar: (updatedCar: UserCar) => void;
-  logService: (carId: string, serviceLog: Omit<ServiceLog, 'id'>) => void;
+  addCar: (carData: Omit<UserCar, 'id' | 'serviceHistory' | 'userId'>) => Promise<void>;
+  updateCar: (updatedCar: UserCar) => Promise<void>;
+  logService: (carId: string, serviceLog: Omit<ServiceLog, 'id'>) => Promise<void>;
   getCarById: (id: string) => UserCar | undefined;
 }
 
 const GarageContext = createContext<GarageContextType | undefined>(undefined);
 
-// A simple polyfill for environments where crypto is not available.
-const getCrypto = () => {
-    return (
-      (typeof window !== 'undefined' && (window.crypto || (window as any).msCrypto)) ||
-      (typeof self !== 'undefined' && (self.crypto || (self as any).msCrypto))
-    );
-  };
-  
-const simpleUuidV4 = () => {
-    const crypto = getCrypto();
-    if (crypto && crypto.randomUUID) {
-      return crypto.randomUUID();
-    }
-    // Fallback for older browsers or environments without crypto.randomUUID
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = (Math.random() * 16) | 0,
-        v = c === 'x' ? r : (r & 0x3) | 0x8;
-      return v.toString(16);
-    });
-};
-
 export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cars, setCars] = useState<UserCar[]>([]);
   const [loading, setLoading] = useState(true);
+  const { user, loading: userLoading } = useUser();
+  const firestore = useFirestore();
 
   useEffect(() => {
-    try {
-      const storedCars = localStorage.getItem('userGarage');
-      if (storedCars) {
-        setCars(JSON.parse(storedCars));
-      }
-    } catch (error) {
-      console.error("Failed to load cars from localStorage", error);
+    if (user && firestore) {
+      setLoading(true);
+      const q = query(collection(firestore, 'users', user.uid, 'cars'));
+      const unsubscribe = onSnapshot(q, 
+        (querySnapshot) => {
+          const userCars: UserCar[] = [];
+          querySnapshot.forEach((doc) => {
+            userCars.push({ id: doc.id, ...doc.data() } as UserCar);
+          });
+          setCars(userCars);
+          setLoading(false);
+        },
+        (err) => {
+          const permissionError = new FirestorePermissionError({
+            path: `users/${user.uid}/cars`,
+            operation: 'list',
+          });
+          errorEmitter.emit('permission-error', permissionError);
+          setLoading(false);
+        });
+
+      return () => unsubscribe();
+    } else if (!userLoading) {
+      setCars([]);
+      setLoading(false);
     }
-    setLoading(false);
-  }, []);
+  }, [user, firestore, userLoading]);
 
-  useEffect(() => {
-    if(!loading) {
-      try {
-        localStorage.setItem('userGarage', JSON.stringify(cars));
-      } catch (error) {
-        console.error("Failed to save cars to localStorage", error);
-      }
+  const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'serviceHistory' | 'userId'>) => {
+    if (!firestore || !user) return;
+    const newCar = { ...carData, userId: user.uid, serviceHistory: [] };
+    const carRef = collection(firestore, 'users', user.uid, 'cars');
+    addDoc(carRef, newCar).catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+            path: carRef.path,
+            operation: 'create',
+            requestResourceData: newCar,
+        });
+        errorEmitter.emit('permission-error', permissionError);
+    });
+  }, [firestore, user]);
+
+  const updateCar = useCallback(async (updatedCar: UserCar) => {
+    if (!firestore || !user) return;
+    const { id, ...carData } = updatedCar;
+    const carRef = doc(firestore, 'users', user.uid, 'cars', id);
+    setDoc(carRef, carData, { merge: true }).catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+            path: carRef.path,
+            operation: 'update',
+            requestResourceData: carData,
+        });
+        errorEmitter.emit('permission-error', permissionError);
+    });
+  }, [firestore, user]);
+
+  const logService = useCallback(async (carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => {
+    if (!firestore || !user) return;
+
+    const car = cars.find(c => c.id === carId);
+    if (!car) return;
+
+    const historyRef = collection(firestore, 'users', user.uid, 'cars', carId, 'serviceHistory');
+    addDoc(historyRef, serviceLogData).catch(async (serverError) => {
+        const permissionError = new FirestorePermissionError({
+            path: historyRef.path,
+            operation: 'create',
+            requestResourceData: serviceLogData,
+        });
+        errorEmitter.emit('permission-error', permissionError);
+    });
+
+    const carRef = doc(firestore, 'users', user.uid, 'cars', carId);
+    const updatedFields: Partial<UserCar> = {};
+
+    if (serviceLogData.serviceType === 'Engine' || serviceLogData.serviceType === 'General') {
+        updatedFields.lastServiceEngineDate = serviceLogData.date;
+        updatedFields.lastServiceEngineKms = serviceLogData.kms;
     }
-  }, [cars, loading]);
-
-  const addCar = (carData: Omit<UserCar, 'id' | 'serviceHistory'>) => {
-    const newCar: UserCar = {
-      ...carData,
-      id: simpleUuidV4(),
-      serviceHistory: [],
-    };
-    setCars(prevCars => [...prevCars, newCar]);
-  };
-
-  const updateCar = (updatedCar: UserCar) => {
-    setCars(prevCars => prevCars.map(car => (car.id === updatedCar.id ? updatedCar : car)));
-  };
-
-  const logService = (carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => {
-    const newServiceLog: ServiceLog = { ...serviceLogData, id: simpleUuidV4() };
+    if (serviceLogData.serviceType === 'Chassis' || serviceLogData.serviceType === 'General') {
+        updatedFields.lastServiceChassisDate = serviceLogData.date;
+        updatedFields.lastServiceChassisKms = serviceLogData.kms;
+    }
     
-    setCars(prevCars => prevCars.map(car => {
-      if (car.id === carId) {
-        const updatedCar = { ...car, serviceHistory: [newServiceLog, ...car.serviceHistory] };
+    if (Object.keys(updatedFields).length > 0) {
+        setDoc(carRef, updatedFields, { merge: true }).catch(async (serverError) => {
+            const permissionError = new FirestorePermissionError({
+                path: carRef.path,
+                operation: 'update',
+                requestResourceData: updatedFields,
+            });
+            errorEmitter.emit('permission-error', permissionError);
+        });
+    }
 
-        if (newServiceLog.serviceType === 'Engine' || newServiceLog.serviceType === 'General') {
-            updatedCar.lastServiceEngineDate = newServiceLog.date;
-            updatedCar.lastServiceEngineKms = newServiceLog.kms;
-        }
-        if (newServiceLog.serviceType === 'Chassis' || newServiceLog.serviceType === 'General') {
-            updatedCar.lastServiceChassisDate = newServiceLog.date;
-            updatedCar.lastServiceChassisKms = newServiceLog.kms;
-        }
-        
-        return updatedCar;
-      }
-      return car;
-    }));
-  };
+  }, [firestore, user, cars]);
 
-  const getCarById = (id: string): UserCar | undefined => {
+  const getCarById = useCallback((id: string): UserCar | undefined => {
     return cars.find(car => car.id === id);
-  };
+  }, [cars]);
 
 
   return (
-    <GarageContext.Provider value={{ cars, loading, addCar, updateCar, logService, getCarById }}>
+    <GarageContext.Provider value={{ cars, loading: loading || userLoading, addCar, updateCar, logService, getCarById }}>
       {children}
     </GarageContext.Provider>
   );

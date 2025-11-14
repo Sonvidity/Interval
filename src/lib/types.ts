@@ -26,7 +26,8 @@ export type EngineSwapDetails = {
 };
 
 export type UserCar = {
-  id: string; // Internal ID for the user's car
+  id: string; // Document ID from Firestore
+  userId: string; // The user's ID
   vehicleId: string; // Links to the Vehicle DB
   nickname: string;
   odometerReading: number;
@@ -37,11 +38,11 @@ export type UserCar = {
   lastServiceChassisKms: number;
   lastServiceChassisDate: string; // ISO date string
   engineSwapDetails?: EngineSwapDetails;
-  serviceHistory: ServiceLog[];
+  serviceHistory: ServiceLog[]; // This will be a subcollection
 };
 
 export type ServiceLog = {
-  id: string;
+  id: string; // Document ID from Firestore
   date: string; // ISO date string
   kms: number;
   serviceType: 'Engine' | 'Chassis' | 'General' | 'Repair';

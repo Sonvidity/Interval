@@ -4,9 +4,27 @@ import { useGarage } from "@/context/GarageContext";
 import { CarCard } from "@/components/garage/CarCard";
 import { AddVehiclePrompt } from "@/components/garage/AddVehiclePrompt";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useUser } from "@/firebase";
+import { Button } from "@/components/ui/button";
+import { LogIn } from "lucide-react";
+import { useAuth } from "@/firebase";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 export default function MyGaragePage() {
-  const { cars, loading } = useGarage();
+  const { cars, loading: garageLoading } = useGarage();
+  const { user, loading: userLoading } = useUser();
+  const auth = useAuth();
+  const loading = garageLoading || userLoading;
+
+  const handleLogin = async () => {
+    if (!auth) return;
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Error signing in with Google", error);
+    }
+  };
 
   if (loading) {
     return (
@@ -16,11 +34,26 @@ export default function MyGaragePage() {
           <Skeleton className="h-10 w-32" />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Skeleton className="h-[380px] rounded-lg" />
-          <Skeleton className="h-[380px] rounded-lg" />
+          <Skeleton className="h-[480px] rounded-lg" />
+          <Skeleton className="h-[480px] rounded-lg" />
         </div>
       </div>
     );
+  }
+
+  if (!user) {
+    return (
+        <div className="flex items-center justify-center h-full min-h-[60vh]">
+            <div className="text-center">
+                <h2 className="text-2xl font-bold font-headline mb-2">Welcome to Interval</h2>
+                <p className="text-muted-foreground mb-6">Please log in to manage your garage.</p>
+                <Button onClick={handleLogin}>
+                    <LogIn className="mr-2 h-4 w-4" />
+                    Login with Google
+                </Button>
+            </div>
+        </div>
+    )
   }
 
   return (

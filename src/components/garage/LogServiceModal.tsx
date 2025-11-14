@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import type { UserCar, ServiceLog } from '@/lib/types';
-import { toast } from '@/hooks/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 interface LogServiceModalProps {
   isOpen: boolean;
@@ -19,6 +19,7 @@ interface LogServiceModalProps {
 
 export function LogServiceModal({ isOpen, onClose, car }: LogServiceModalProps) {
   const { logService } = useGarage();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     date: new Date().toISOString().split('T')[0],
     kms: car.odometerReading.toString(),
