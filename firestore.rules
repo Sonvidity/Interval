@@ -1,8 +1,9 @@
+
 /**
  * @fileoverview Firestore Security Rules for the Interval application.
  *
  * Core Philosophy:
- * This ruleset enforces a strict user-ownership model for user-specific data while allowing public read access to central vehicle data and the social feed.
+ * This ruleset enforces a strict user-ownership model for user-specific data while allowing public read access to central vehicle data.
  * Authorization Independence is achieved through denormalization.
  *
  * Data Structure:
@@ -12,7 +13,6 @@
  * - /users/{userId}/user_vehicles/{userVehicleId}: Vehicles owned by a specific user, accessible only by the user.
  * - /users/{userId}/user_vehicles/{userVehicleId}/engine_swap: Engine swap details for a user's vehicle, accessible only by the user.
  * - /users/{userId}/user_vehicles/{userVehicleId}/service_history/{serviceHistoryId}: Service history records for a user's vehicle, accessible only by the user.
- * - /posts/{postId}: Publicly readable posts for the social feed.
  */
 rules_version = '2';
 service cloud.firestore {
@@ -111,22 +111,6 @@ service cloud.firestore {
       allow create: if isOwner(userId);
       allow update: if isExistingOwner(userId);
       allow delete: if isExistingOwner(userId);
-    }
-
-     /**
-     * @description Public feed of user posts.
-     * @path /posts/{postId}
-     * @allow list, get: Any signed-in user can read the feed.
-     * @allow create: A user can only create a post as themselves.
-     * @allow delete: A user can only delete their own post.
-     * @deny update: Posts are immutable.
-     */
-    match /posts/{postId} {
-      allow list: if isSignedIn();
-      allow get: if isSignedIn();
-      allow create: if isSignedIn() && request.resource.data.authorId == request.auth.uid;
-      allow delete: if isSignedIn() && resource.data.authorId == request.auth.uid;
-      allow update: if false;
     }
   }
 

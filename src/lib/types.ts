@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase/firestore";
 
 export type ServiceItem = {
   name: string;
@@ -72,15 +71,4 @@ export type CalculatedService = {
   dueInDays: number;
   progress: number;
   status: 'ok' | 'due' | 'overdue';
-};
-
-export type Post = {
-  id: string;
-  authorId: string;
-  authorName: string;
-  authorAvatar: string;
-  carNickname: string;
-  imageUrl: string;
-  text: string;
-  createdAt: Timestamp;
 };

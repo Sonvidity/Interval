@@ -1,13 +1,13 @@
+
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode, useCallback, useEffect, useMemo } from 'react';
-import type { UserCar, ServiceLog, Vehicle } from '@/lib/types';
+import type { UserCar, ServiceLog } from '@/lib/types';
 import { useCollection, useFirestore, useUser } from '@/firebase';
 import {
   addDocumentNonBlocking,
   updateDocumentNonBlocking,
   deleteDocumentNonBlocking,
-  setDocumentNonBlocking,
 } from '@/firebase/non-blocking-updates';
 import { collection, doc, query } from 'firebase/firestore';
 
@@ -59,7 +59,6 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       return;
     }
     const carCollection = collection(firestore, `users/${user.uid}/user_vehicles`);
-    // This returns a promise, but we don't await it here to keep the UI responsive.
     addDocumentNonBlocking(carCollection, { ...carData, userId: user.uid });
   }, [user, firestore]);
 
@@ -98,10 +97,8 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       id: new Date().toISOString(),
     };
 
-    // Add the detailed log to the subcollection
     addDocumentNonBlocking(historyCollectionRef, newLog);
 
-    // Update the parent document with the latest odometer reading
     updateDocumentNonBlocking(carDocRef, {
       odometerReading: serviceLogData.kms,
     });

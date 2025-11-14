@@ -1,118 +1,137 @@
-'use client';
+"use client";
 
+import React, { createContext, useContext, useState, ReactNode, useCallback, useEffect, useMemo } from 'react';
+import type { UserCar, ServiceLog } from '@/lib/types';
 import { useCollection, useFirestore, useUser } from '@/firebase';
-import { collection, query, orderBy, Timestamp } from 'firebase/firestore';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
-import type { Post } from '@/lib/types';
-import Image from 'next/image';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { formatDistanceToNow } from 'date-fns';
-import { CreatePostDialog } from '@/components/feed/CreatePostDialog';
-import { useState } from 'react';
-import { MoreHorizontal } from 'lucide-react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { deleteDoc, doc } from 'firebase/firestore';
-import { useToast } from '@/hooks/use-toast';
-import { WelcomeScreen } from '@/components/garage/WelcomeScreen';
+import {
+  addDocumentNonBlocking,
+  updateDocumentNonBlocking,
+  deleteDocumentNonBlocking,
+} from '@/firebase/non-blocking-updates';
+import { collection, doc, query } from 'firebase/firestore';
 
-function PostCard({ post }: { post: Post }) {
+interface GarageContextType {
+  cars: UserCar[];
+  loading: boolean;
+  addCar: (carData: Omit<UserCar, 'id' | 'userId'>) => Promise<void>;
+  updateCar: (updatedCar: UserCar) => void;
+  logService: (carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => void;
+  removeCar: (carId: string) => Promise<void>;
+  updateCarPhoto: (carId: string, photoData: { imageId: string; customImageUrl?: string }) => Promise<void>;
+  getCarById: (id: string) => UserCar | undefined;
+}
+
+const GarageContext = createContext<GarageContextType | undefined>(undefined);
+
+export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user } = useUser();
   const firestore = useFirestore();
-  const { toast } = useToast();
 
-  const handleDelete = async () => {
-    if (!firestore) return;
-    const postRef = doc(firestore, 'posts', post.id);
-    try {
-      await deleteDoc(postRef);
-      toast({ title: 'Post deleted' });
-    } catch (error) {
-      console.error('Error deleting post:', error);
-      toast({ variant: 'destructive', title: 'Error', description: 'Could not delete post.' });
+  const userCarsQuery = useMemo(() => {
+    if (user && firestore) {
+      return query(collection(firestore, `users/${user.uid}/user_vehicles`));
     }
-  };
+    return null;
+  }, [user, firestore]);
+
+  const { data: carsFromHook, isLoading: loading } = useCollection<UserCar>(userCarsQuery);
+
+  const [cars, setCars] = useState<UserCar[]>([]);
+
+  useEffect(() => {
+    if(carsFromHook) {
+      // Create a new array with the serviceHistory initialized
+      const processedCars = carsFromHook.map(car => ({
+        ...car,
+        serviceHistory: car.serviceHistory || [],
+      }));
+      setCars(processedCars);
+    } else {
+      setCars([]);
+    }
+  }, [carsFromHook]);
+
+
+  const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'userId'>) => {
+    if (!user || !firestore) {
+      console.error("User or Firestore not available");
+      return;
+    }
+    const carCollection = collection(firestore, `users/${user.uid}/user_vehicles`);
+    addDocumentNonBlocking(carCollection, { ...carData, userId: user.uid });
+  }, [user, firestore]);
+
+  const updateCar = useCallback((updatedCar: UserCar) => {
+    if (!user || !firestore) return;
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, updatedCar.id);
+    updateDocumentNonBlocking(carDocRef, updatedCar);
+  }, [user, firestore]);
+
+  const removeCar = useCallback(async (carId: string) => {
+    if (!user || !firestore) return;
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
+    deleteDocumentNonBlocking(carDocRef);
+  }, [user, firestore]);
+
+  const updateCarPhoto = useCallback(async (carId: string, photoData: { imageId: string; customImageUrl?: string }) => {
+    if (!user || !firestore) return;
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
+    const dataToUpdate: any = { imageId: photoData.imageId };
+    if (photoData.customImageUrl) {
+        dataToUpdate.customImageUrl = photoData.customImageUrl;
+    } else {
+        dataToUpdate.customImageUrl = ''; // Explicitly clear it
+    }
+    updateDocumentNonBlocking(carDocRef, dataToUpdate);
+  }, [user, firestore]);
+
+  const logService = useCallback((carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => {
+    if (!user || !firestore || !cars) return;
+    
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
+    const historyCollectionRef = collection(carDocRef, 'service_history');
+
+    const newLog: ServiceLog = {
+      ...serviceLogData,
+      id: new Date().toISOString(),
+    };
+
+    addDocumentNonBlocking(historyCollectionRef, newLog);
+
+    updateDocumentNonBlocking(carDocRef, {
+      odometerReading: serviceLogData.kms,
+    });
+
+  }, [user, firestore, cars]);
+
+
+  const getCarById = useCallback((id: string): UserCar | undefined => {
+    return cars?.find(car => car.id === id);
+  }, [cars]);
+
+  const contextValue = useMemo(() => ({
+    cars: cars || [],
+    loading,
+    addCar,
+    updateCar,
+    logService,
+    removeCar,
+    updateCarPhoto,
+    getCarById,
+  }), [cars, loading, addCar, updateCar, logService, removeCar, updateCarPhoto, getCarById]);
+
 
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="flex-row gap-4 items-center">
-        <Avatar>
-          <AvatarFallback>{post.authorAvatar}</AvatarFallback>
-        </Avatar>
-        <div>
-          <p className="font-semibold">{post.authorName}</p>
-          <p className="text-sm text-muted-foreground">
-            {post.createdAt ? formatDistanceToNow(post.createdAt.toDate(), { addSuffix: true }) : 'Just now'}
-          </p>
-        </div>
-        {user?.uid === post.authorId && (
-            <div className="ml-auto">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon"><MoreHorizontal/></Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent>
-                        <DropdownMenuItem onClick={handleDelete} className="text-red-500">Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-        )}
-      </CardHeader>
-      <CardContent className="space-y-4 pt-0">
-        <div className="aspect-[3/2] relative w-full rounded-lg overflow-hidden border">
-          <Image src={post.imageUrl} alt={`Image of ${post.carNickname}`} layout="fill" objectFit="cover" />
-        </div>
-        <p className="text-foreground/90 whitespace-pre-wrap">{post.text}</p>
-      </CardContent>
-    </Card>
+    <GarageContext.Provider value={contextValue}>
+      {children}
+    </GarageContext.Provider>
   );
-}
+};
 
-
-export default function FeedPage() {
-  const firestore = useFirestore();
-  const [isCreatePostOpen, setCreatePostOpen] = useState(false);
-  const { user, loading: userLoading } = useUser();
-
-  const postsQuery = firestore ? query(collection(firestore, 'posts'), orderBy('createdAt', 'desc')) : null;
-  const { data: posts, isLoading: postsLoading } = useCollection<Post>(postsQuery);
-
-  const loading = userLoading || postsLoading;
-
-  if (userLoading) {
-      return <div className="max-w-xl mx-auto space-y-6"><Skeleton className="h-96 w-full" /></div>;
+export const useGarage = (): GarageContextType => {
+  const context = useContext(GarageContext);
+  if (context === undefined) {
+    throw new Error('useGarage must be used within a GarageProvider');
   }
-  
-  if (!user) {
-    return <WelcomeScreen />;
-  }
-
-  return (
-    <div className="max-w-xl mx-auto space-y-6 animate-in fade-in-50">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold font-headline">Feed</h1>
-        <Button onClick={() => setCreatePostOpen(true)}>Create Post</Button>
-      </div>
-
-      {loading && (
-        <div className="space-y-6">
-          <Skeleton className="h-96 w-full" />
-          <Skeleton className="h-96 w-full" />
-        </div>
-      )}
-
-      {!loading && posts?.length === 0 && (
-        <div className="text-center py-20 border-2 border-dashed rounded-lg">
-          <h2 className="text-xl font-semibold">The feed is quiet...</h2>
-          <p className="text-muted-foreground mt-2">Be the first to share something about your car!</p>
-        </div>
-      )}
-
-      {posts?.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
-      <CreatePostDialog isOpen={isCreatePostOpen} onClose={() => setCreatePostOpen(false)} />
-    </div>
-  );
-}
+  return context;
+};
