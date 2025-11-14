@@ -11,16 +11,18 @@ import { ServiceProgress } from './ServiceProgress';
 import { CalculationModal } from './CalculationModal';
 import { Button } from '../ui/button';
 import { LogServiceModal } from './LogServiceModal';
-import { MoreVertical, Wrench } from 'lucide-react';
+import { MoreVertical, Wrench, History } from 'lucide-react';
 import { ServiceListModal } from './ServiceListModal';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { RemoveCarDialog } from './RemoveCarDialog';
 import { ChangePhotoModal } from './ChangePhotoModal';
+import Link from 'next/link';
 
 
 export function CarCard({ car }: { car: UserCar }) {
@@ -87,6 +89,13 @@ export function CarCard({ car }: { car: UserCar }) {
                 <DropdownMenuItem onClick={() => setChangePhotoModalOpen(true)}>
                   Change Photo
                 </DropdownMenuItem>
+                <Link href={`/history/${car.id}`} passHref>
+                  <DropdownMenuItem>
+                    <History className="mr-2 h-4 w-4" />
+                    View Service History
+                  </DropdownMenuItem>
+                </Link>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => setRemoveCarModalOpen(true)} className="text-red-500 focus:text-red-500">
                   Remove Car
                 </DropdownMenuItem>

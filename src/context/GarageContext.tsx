@@ -82,7 +82,10 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       ...serviceLogData,
       id: new Date().toISOString(),
     };
-    const updatedHistory = [newLog, ...(car.serviceHistory || [])];
+
+    // Ensure serviceHistory is an array before trying to spread it
+    const currentHistory = Array.isArray(car.serviceHistory) ? car.serviceHistory : [];
+    const updatedHistory = [newLog, ...currentHistory];
     
     updateDocumentNonBlocking(carDocRef, {
       odometerReading: serviceLogData.kms,
