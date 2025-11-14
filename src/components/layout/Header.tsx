@@ -63,7 +63,7 @@ export function Header() {
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
           {user && (
-            <Link href="/add-vehicle" legacyBehavior passHref>
+            <Link href="/add-vehicle">
               <Button className="shadow-sm hover:shadow-glow-accent transition-shadow duration-300 hidden sm:inline-flex">
                   <Car className="mr-2 h-4 w-4" />
                   Add Vehicle
@@ -91,7 +91,7 @@ export function Header() {
               </Button>
             </div>
           ) : (
-            <Button onClick={handleLogin} variant="outline">
+            <Button onClick={handleLogin} variant="outline" disabled={!auth}>
               <LogIn className="mr-2 h-4 w-4" />
               Login
             </Button>

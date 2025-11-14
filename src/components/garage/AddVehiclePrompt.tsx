@@ -15,7 +15,7 @@ export function AddVehiclePrompt() {
           <CardDescription>Your garage is currently empty. Add your first vehicle to get a personalized, adaptive maintenance schedule.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Link href="/add-vehicle" passHref legacyBehavior>
+          <Link href="/add-vehicle">
             <Button size="lg" className="w-full shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
               <Car className="mr-2 h-4 w-4" />
               Add Your First Vehicle
