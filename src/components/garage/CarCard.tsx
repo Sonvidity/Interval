@@ -39,9 +39,23 @@ export function CarCard({ car }: { car: UserCar }) {
   
   const engineKms = getEngineKms(car);
 
-  const vehicleImage = car.customImageUrl || PlaceHolderImages.find(img => img.id === car.imageId)?.imageUrl || vehicleInfo.imageId;
+  const getImageUrl = () => {
+    if (car.customImageUrl) {
+      return car.customImageUrl;
+    }
+    const placeholder = PlaceHolderImages.find(img => img.id === car.imageId);
+    if (placeholder) {
+      return placeholder.imageUrl;
+    }
+    // Fallback to the original vehicle placeholder if the car's imageId is somehow invalid
+    const vehiclePlaceholder = PlaceHolderImages.find(img => img.id === vehicleInfo.imageId);
+    return vehiclePlaceholder?.imageUrl || 'https://placehold.co/600x400/1e293b/ffffff?text=Image+Not+Found';
+  };
+
+  const vehicleImage = getImageUrl();
   const vehicleImageAlt = PlaceHolderImages.find(img => img.id === car.imageId)?.description || car.nickname;
   const imageHint = PlaceHolderImages.find(img => img.id === car.imageId)?.imageHint;
+
 
   const handleShowCalculation = (data: CalculatedService) => {
     setCalculationData(data);
@@ -59,6 +73,7 @@ export function CarCard({ car }: { car: UserCar }) {
               height={400}
               className="rounded-t-lg object-cover aspect-[3/2] w-full"
               data-ai-hint={imageHint}
+              onError={(e) => e.currentTarget.src = 'https://placehold.co/600x400/1e293b/ffffff?text=Invalid+Image'}
             />
           <div className="absolute top-2 right-2">
             <DropdownMenu>
