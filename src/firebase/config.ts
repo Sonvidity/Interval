@@ -1,10 +1,10 @@
 // Your web app's Firebase configuration
 // IMPORTANT: Replace this with your actual configuration
 export const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
+  "projectId": "studio-1400697222-3a50c",
+  "appId": "1:428591561200:web:a2816e83ecda0d7ff90535",
+  "apiKey": "AIzaSyDseU2HLg8W5pUe6k0bjHUs9IZNxBeLKeI",
+  "authDomain": "studio-1400697222-3a50c.firebaseapp.com",
+  "measurementId": "",
+  "messagingSenderId": "428591561200"
 };
