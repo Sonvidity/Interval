@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useGarage } from "@/context/GarageContext";
@@ -90,7 +91,7 @@ export default function ServiceHistoryPage() {
              <span>{car.nickname}</span>
           </CardTitle>
           <CardDescription>
-            Complete service history for your {vehicleInfo.make} {vehicleInfo.model}.
+            Complete service history for your {car.year} {vehicleInfo.make} {car.variant}.
           </CardDescription>
         </CardHeader>
         <CardContent>

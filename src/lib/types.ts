@@ -15,6 +15,7 @@ export type Vehicle = {
   years: string;
   imageId: string;
   serviceItems: ServiceItem[];
+  specificVariants?: string[];
 };
 
 export type ModStage = 'Stock' | 'Stage 1' | 'Stage 2' | 'Stage 3';
@@ -34,6 +35,8 @@ export type UserCar = {
   vehicleId: string; // Links to the Vehicle DB
   nickname: string;
   odometerReading: number;
+  year: number;
+  variant: string;
   modStage: ModStage;
   drivingStyle: DrivingStyle;
   transmission: TransmissionType; // Added transmission type

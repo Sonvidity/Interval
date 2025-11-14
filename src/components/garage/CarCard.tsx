@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -104,7 +105,7 @@ export function CarCard({ car }: { car: UserCar }) {
           </div>
           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
             <CardTitle className="text-2xl font-headline text-white">{car.nickname}</CardTitle>
-            <CardDescription className="text-gray-300">{vehicleInfo.make} {vehicleInfo.model} - {vehicleInfo.variant}</CardDescription>
+            <CardDescription className="text-gray-300">{car.year} {vehicleInfo.make} {car.variant}</CardDescription>
           </div>
         </CardHeader>
         <CardContent className="flex-grow p-6 flex flex-col gap-4">

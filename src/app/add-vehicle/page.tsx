@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -31,6 +32,8 @@ export default function AddVehiclePage() {
   const [formData, setFormData] = useState({
     vehicleId: "",
     nickname: "",
+    year: "",
+    variant: "",
     odometerReading: "",
     drivingStyle: "Spirited" as DrivingStyle,
     modStage: "Stock" as ModStage,
@@ -56,11 +59,11 @@ export default function AddVehiclePage() {
         });
         return;
     }
-    if (!formData.odometerReading) {
+    if (!formData.odometerReading || !formData.year || !formData.variant) {
         toast({
             variant: "destructive",
-            title: "Odometer reading missing",
-            description: "Please enter the current odometer reading.",
+            title: "Details Missing",
+            description: "Please fill out the year, variant, and odometer reading.",
         });
         return;
     }
@@ -76,11 +79,12 @@ export default function AddVehiclePage() {
         notes: "Initial vehicle state when added to Garage."
     };
     
-    // Create the base car data object without the temporary form state fields
     const carData = {
         vehicleId: formData.vehicleId,
         nickname: formData.nickname || `${selectedVehicle.make} ${selectedVehicle.model}`,
         odometerReading: initialOdometer,
+        year: parseInt(formData.year),
+        variant: formData.variant,
         drivingStyle: formData.drivingStyle,
         modStage: formData.modStage,
         transmission: formData.transmission,
@@ -90,7 +94,6 @@ export default function AddVehiclePage() {
 
     const newCarData: any = { ...carData };
 
-    // Conditionally add engine swap details if the user has provided them
     if (formData.hasEngineSwap && formData.chassisKmsAtSwap && formData.engineKmsAtSwap) {
         newCarData.engineSwapDetails = {
             isReplaced: true,
@@ -104,7 +107,7 @@ export default function AddVehiclePage() {
 
     toast({
         title: "Vehicle Added!",
-        description: `Your new ${selectedVehicle.make} ${selectedVehicle.model} is in the garage.`,
+        description: `Your new ${formData.year} ${selectedVehicle.make} ${formData.variant} is in the garage.`,
     });
     router.push('/');
   };
@@ -177,7 +180,7 @@ export default function AddVehiclePage() {
               </CardContent>
             )}
 
-            {step === 1 && (
+            {step === 1 && selectedVehicle && (
                <CardContent className="p-4 sm:p-6 space-y-4">
                  <CardHeader className="p-0 mb-4">
                   <CardTitle className="font-headline text-xl sm:text-2xl">Step 2: Tell Us About Your Car</CardTitle>
@@ -185,7 +188,23 @@ export default function AddVehiclePage() {
                 </CardHeader>
                  <div>
                    <Label htmlFor="nickname">Nickname</Label>
-                   <Input id="nickname" value={formData.nickname} onChange={e => setFormData({ ...formData, nickname: e.target.value })} placeholder="e.g., My Daily Driver" />
+                   <Input id="nickname" value={formData.nickname} onChange={e => setFormData({ ...formData, nickname: e.target.value })} placeholder={`e.g., My ${selectedVehicle.make}`} />
+                 </div>
+                 <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <Label htmlFor="year">Year</Label>
+                        <Input id="year" type="number" value={formData.year} onChange={e => setFormData({ ...formData, year: e.target.value })} placeholder="e.g., 2015" />
+                    </div>
+                    <div>
+                        <Label>Variant</Label>
+                        <Select onValueChange={(v: string) => setFormData({...formData, variant: v})} defaultValue={formData.variant}>
+                            <SelectTrigger><SelectValue placeholder="Select variant..."/></SelectTrigger>
+                            <SelectContent>
+                                {selectedVehicle.specificVariants?.map(v => <SelectItem key={v} value={v}>{v}</SelectItem>)}
+                                {!selectedVehicle.specificVariants && <SelectItem value={selectedVehicle.variant}>{selectedVehicle.variant}</SelectItem>}
+                            </SelectContent>
+                        </Select>
+                    </div>
                  </div>
                  <div>
                    <Label htmlFor="odometer">Current Odometer Reading (km)</Label>
@@ -267,7 +286,7 @@ export default function AddVehiclePage() {
                     </CardHeader>
                     <Card className="p-4 text-left space-y-2 bg-background/50">
                         <h3 className="text-lg font-bold font-headline">{formData.nickname || `${selectedVehicle.make} ${selectedVehicle.model}`}</h3>
-                        <p><strong>Vehicle:</strong> {selectedVehicle.make} {selectedVehicle.model} ({selectedVehicle.variant})</p>
+                        <p><strong>Vehicle:</strong> {formData.year} {selectedVehicle.make} {formData.variant}</p>
                         <p><strong>Odometer:</strong> {parseInt(formData.odometerReading).toLocaleString()} km</p>
                         <p><strong>Transmission:</strong> {formData.transmission}</p>
                         <p><strong>Driving Style:</strong> {formData.drivingStyle}</p>
@@ -285,7 +304,7 @@ export default function AddVehiclePage() {
           <ChevronLeft className="mr-2 h-4 w-4" /> Back
         </Button>
         {step < steps.length - 1 ? (
-          <Button onClick={handleNext} disabled={(step === 0 && !formData.vehicleId) || (step === 1 && !formData.odometerReading)}>
+          <Button onClick={handleNext} disabled={(step === 0 && !formData.vehicleId) || (step === 1 && (!formData.odometerReading || !formData.year || !formData.variant))}>
             Next <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         ) : (
