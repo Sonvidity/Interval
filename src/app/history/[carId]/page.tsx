@@ -11,9 +11,10 @@ import { format, parseISO } from "date-fns";
 import { VEHICLE_DATABASE } from "@/lib/vehicles";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
-import { useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
+import { useFirestore, useUser, useCollection } from "@/firebase";
 import { collection, query, orderBy } from "firebase/firestore";
 import type { ServiceLog } from "@/lib/types";
+import { useMemo } from "react";
 
 
 export default function ServiceHistoryPage() {
@@ -26,7 +27,7 @@ export default function ServiceHistoryPage() {
   const car = getCarById(carId as string);
   const vehicleInfo = car ? VEHICLE_DATABASE.find(v => v.id === car.vehicleId) : null;
 
-  const historyCollectionRef = useMemoFirebase(() => {
+  const historyCollectionQuery = useMemo(() => {
     if (user && firestore && carId) {
       return query(
         collection(firestore, `users/${user.uid}/user_vehicles/${carId}/service_history`),
@@ -36,7 +37,7 @@ export default function ServiceHistoryPage() {
     return null;
   }, [user, firestore, carId]);
 
-  const { data: serviceHistory, isLoading: historyLoading } = useCollection<ServiceLog>(historyCollectionRef);
+  const { data: serviceHistory, isLoading: historyLoading } = useCollection<ServiceLog>(historyCollectionQuery);
   
   const loading = garageLoading || historyLoading;
 

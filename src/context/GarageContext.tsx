@@ -2,14 +2,14 @@
 
 import React, { createContext, useContext, useState, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import type { UserCar, ServiceLog, Vehicle } from '@/lib/types';
-import { useCollection, useFirestore, useUser, useMemoFirebase } from '@/firebase';
+import { useCollection, useFirestore, useUser } from '@/firebase';
 import {
   addDocumentNonBlocking,
   updateDocumentNonBlocking,
   deleteDocumentNonBlocking,
   setDocumentNonBlocking,
 } from '@/firebase/non-blocking-updates';
-import { collection, doc, writeBatch } from 'firebase/firestore';
+import { collection, doc, query } from 'firebase/firestore';
 
 interface GarageContextType {
   cars: UserCar[];
@@ -28,14 +28,14 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const { user } = useUser();
   const firestore = useFirestore();
 
-  const userCarsCollectionRef = useMemoFirebase(() => {
+  const userCarsQuery = useMemo(() => {
     if (user && firestore) {
-      return collection(firestore, `users/${user.uid}/user_vehicles`);
+      return query(collection(firestore, `users/${user.uid}/user_vehicles`));
     }
     return null;
   }, [user, firestore]);
 
-  const { data: carsFromHook, isLoading: loading } = useCollection<UserCar>(userCarsCollectionRef);
+  const { data: carsFromHook, isLoading: loading } = useCollection<UserCar>(userCarsQuery);
 
   const [cars, setCars] = useState<UserCar[]>([]);
 

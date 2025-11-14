@@ -152,17 +152,6 @@ export const useFirebaseApp = (): FirebaseApp | null => {
 };
 
 /**
- * Hook to memoize a Firebase reference or query.
- * @param factory A function that returns the Firebase reference or query.
- * @param deps The dependency array for the useMemo hook.
- * @returns The memoized Firebase reference or query.
- */
-export function useMemoFirebase<T>(factory: () => T, deps: DependencyList): T {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useMemo(factory, deps);
-}
-
-/**
  * Hook specifically for accessing the authenticated user's state.
  * This provides the User object, loading status, and any auth errors.
  * @returns {UserHookResult} Object with user, isUserLoading, userError.
