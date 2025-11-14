@@ -42,20 +42,31 @@ export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceIt
   const lastServiceDate = effectiveLastService ? effectiveLastService.date : new Date().toISOString();
 
 
-  // Engine KMs calculation for swapped engines
-  let currentOdometerForCalc = car.odometerReading;
+  // Correctly determine the current mileage for this component
+  let currentOdometerForCalc: number;
   if (type === 'Engine' && car.engineSwapDetails?.isReplaced) {
     const chassisKmsSinceSwap = car.odometerReading - car.engineSwapDetails.chassisKmsAtSwap;
     currentOdometerForCalc = car.engineSwapDetails.engineKmsAtSwap + chassisKmsSinceSwap;
+  } else {
+    // For chassis items OR non-swapped engines, the reference is always the main odometer.
+    currentOdometerForCalc = car.odometerReading;
   }
-
-  const nextServiceKm = lastServiceKm + adjustedIntervalKm;
+  
+  // The 'last service' mileage also needs to consider if it was part of an engine swap.
+  let lastKmForCalc = lastServiceKm;
+  if (type === 'Engine' && car.engineSwapDetails?.isReplaced && effectiveLastService?.id === car.serviceHistory.find(l => l.serviceType === 'Initial')?.id) {
+    // If this is an engine item, and it has never been serviced since being added to the garage,
+    // and there IS an engine swap, its starting mileage is the engine's mileage at swap.
+     lastKmForCalc = car.engineSwapDetails.engineKmsAtSwap;
+  }
+  
+  const nextServiceKm = lastKmForCalc + adjustedIntervalKm;
   const nextServiceDate = addMonths(new Date(lastServiceDate), adjustedIntervalMonths);
 
   const dueInKm = nextServiceKm - currentOdometerForCalc;
   const dueInDays = differenceInDays(nextServiceDate, new Date());
   
-  const kmProgress = ((currentOdometerForCalc - lastServiceKm) / adjustedIntervalKm) * 100;
+  const kmProgress = ((currentOdometerForCalc - lastKmForCalc) / adjustedIntervalKm) * 100;
 
   const totalDaysInInterval = differenceInDays(nextServiceDate, parseISO(lastServiceDate));
   const daysSinceService = differenceInDays(new Date(), parseISO(lastServiceDate));
@@ -80,7 +91,7 @@ export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceIt
     adjustedIntervalKm,
     adjustedIntervalMonths,
     recommendedIntervalKm,
-    lastServiceKm,
+    lastServiceKm: lastKmForCalc, // Report the correct last service KM
     lastServiceDate,
     nextServiceKm,
     nextServiceDate: format(nextServiceDate, 'yyyy-MM-dd'),
