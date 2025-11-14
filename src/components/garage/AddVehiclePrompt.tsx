@@ -11,8 +11,8 @@ export function AddVehiclePrompt() {
           <div className="mx-auto bg-accent/20 text-accent rounded-full p-3 w-fit">
             <Car className="h-10 w-10" />
           </div>
-          <CardTitle className="mt-4 font-headline text-2xl">Welcome to Interval</CardTitle>
-          <CardDescription>Your garage is currently empty. Add your first vehicle to get a personalized, adaptive maintenance schedule.</CardDescription>
+          <CardTitle className="mt-4 font-headline text-2xl">Your Garage is Empty</CardTitle>
+          <CardDescription>Add your first vehicle to get a personalized, adaptive maintenance schedule.</CardDescription>
         </CardHeader>
         <CardContent>
           <Link href="/add-vehicle">

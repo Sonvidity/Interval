@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useGarage } from "@/context/GarageContext";
-import { VEHICLE_DATABASE } from "@/lib/vehicles";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,6 +11,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check, Car, Gauge, Rocket } from "lucide-react";
 import type { ModStage, DrivingStyle, ServiceLog, TransmissionType } from "@/lib/types";
 import { Switch } from "@/components/ui/switch";
+import { useGarage } from "@/context/GarageContext";
+import { VEHICLE_DATABASE } from "@/lib/vehicles";
+import { useToast } from "@/hooks/use-toast";
+
 
 const steps = [
     { id: 'find', title: 'Find Your Car', icon: Car },
@@ -24,6 +26,7 @@ const steps = [
 export default function AddVehiclePage() {
   const router = useRouter();
   const { addCar } = useGarage();
+  const { toast } = useToast();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     vehicleId: "",
@@ -44,14 +47,24 @@ export default function AddVehiclePage() {
   const handleNext = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const handleBack = () => setStep((s) => Math.max(s - 1, 0));
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!selectedVehicle) {
-        console.error("No vehicle selected");
+        toast({
+            variant: "destructive",
+            title: "No vehicle selected",
+            description: "Please search for and select a vehicle first.",
+        });
+        return;
+    }
+    if (!formData.odometerReading) {
+        toast({
+            variant: "destructive",
+            title: "Odometer reading missing",
+            description: "Please enter the current odometer reading.",
+        });
         return;
     }
 
-    const { hasEngineSwap, chassisKmsAtSwap, engineKmsAtSwap, wasServicedAtSwap, ...carData } = formData;
-    
     const initialOdometer = parseInt(formData.odometerReading) || 0;
     
     const initialServiceLog: ServiceLog = {
@@ -62,24 +75,37 @@ export default function AddVehiclePage() {
         itemsDone: selectedVehicle.serviceItems.map(item => item.name),
         notes: "Initial vehicle state when added to Garage."
     };
-
-    const newCarData: any = {
-        ...carData,
+    
+    // Create the base car data object without the temporary form state fields
+    const carData = {
+        vehicleId: formData.vehicleId,
+        nickname: formData.nickname || `${selectedVehicle.make} ${selectedVehicle.model}`,
         odometerReading: initialOdometer,
+        drivingStyle: formData.drivingStyle,
+        modStage: formData.modStage,
+        transmission: formData.transmission,
         serviceHistory: [initialServiceLog],
-        imageId: selectedVehicle.imageId, // Set the initial imageId
+        imageId: selectedVehicle.imageId,
     };
 
-    if (hasEngineSwap && chassisKmsAtSwap && engineKmsAtSwap) {
+    const newCarData: any = { ...carData };
+
+    // Conditionally add engine swap details if the user has provided them
+    if (formData.hasEngineSwap && formData.chassisKmsAtSwap && formData.engineKmsAtSwap) {
         newCarData.engineSwapDetails = {
             isReplaced: true,
-            chassisKmsAtSwap: parseInt(chassisKmsAtSwap) || 0,
-            engineKmsAtSwap: parseInt(engineKmsAtSwap) || 0,
-            wasServicedAtSwap: wasServicedAtSwap,
+            chassisKmsAtSwap: parseInt(formData.chassisKmsAtSwap) || 0,
+            engineKmsAtSwap: parseInt(formData.engineKmsAtSwap) || 0,
+            wasServicedAtSwap: formData.wasServicedAtSwap,
         };
     }
     
-    addCar(newCarData);
+    await addCar(newCarData);
+
+    toast({
+        title: "Vehicle Added!",
+        description: `Your new ${selectedVehicle.make} ${selectedVehicle.model} is in the garage.`,
+    });
     router.push('/');
   };
 

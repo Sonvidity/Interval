@@ -4,9 +4,14 @@ import { useGarage } from "@/context/GarageContext";
 import { CarCard } from "@/components/garage/CarCard";
 import { AddVehiclePrompt } from "@/components/garage/AddVehiclePrompt";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useUser } from "@/firebase/auth/use-user";
+import { WelcomeScreen } from "@/components/garage/WelcomeScreen";
 
 export default function MyGaragePage() {
-  const { cars, loading } = useGarage();
+  const { user, loading: userLoading } = useUser();
+  const { cars, loading: carsLoading } = useGarage();
+
+  const loading = userLoading || carsLoading;
 
   if (loading) {
     return (
@@ -21,6 +26,10 @@ export default function MyGaragePage() {
         </div>
       </div>
     );
+  }
+
+  if (!user) {
+    return <WelcomeScreen />;
   }
 
   return (

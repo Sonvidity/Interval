@@ -1,84 +1,114 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
-import type { UserCar, ServiceLog } from '@/lib/types';
-import { v4 as uuidv4 } from 'uuid';
-
-// Mock 'uuid' since it might not be available in a browser-only context without a bundler
-const v4 = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-
+import React, { createContext, useContext, useState, ReactNode, useCallback, useEffect, useMemo } from 'react';
+import type { UserCar, ServiceLog, Vehicle } from '@/lib/types';
+import { useCollection, useFirestore, useUser, useMemoFirebase } from '@/firebase';
+import {
+  addDocumentNonBlocking,
+  updateDocumentNonBlocking,
+  deleteDocumentNonBlocking,
+  setDocumentNonBlocking,
+} from '@/firebase/non-blocking-updates';
+import { collection, doc, writeBatch } from 'firebase/firestore';
 
 interface GarageContextType {
   cars: UserCar[];
   loading: boolean;
-  addCar: (carData: Omit<UserCar, 'id' | 'userId'>) => void;
+  addCar: (carData: Omit<UserCar, 'id' | 'userId'>) => Promise<void>;
   updateCar: (updatedCar: UserCar) => void;
-  logService: (carId: string, serviceLog: Omit<ServiceLog, 'id'>) => void;
-  removeCar: (carId: string) => void;
-  updateCarPhoto: (carId: string, photoData: { imageId: string; customImageUrl?: string }) => void;
+  logService: (carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => void;
+  removeCar: (carId: string) => Promise<void>;
+  updateCarPhoto: (carId: string, photoData: { imageId: string; customImageUrl?: string }) => Promise<void>;
   getCarById: (id: string) => UserCar | undefined;
 }
 
 const GarageContext = createContext<GarageContextType | undefined>(undefined);
 
 export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [cars, setCars] = useState<UserCar[]>([]);
-  const [loading, setLoading] = useState(false); // No initial loading from a backend
+  const { user } = useUser();
+  const firestore = useFirestore();
 
-  const addCar = useCallback((carData: Omit<UserCar, 'id' | 'userId'>) => {
-    const newCar: UserCar = {
-      ...carData,
-      id: v4(), // Generate a unique local ID
-      userId: 'local-user', // Assign a mock user ID
-    };
-    setCars(prevCars => [...prevCars, newCar]);
-  }, []);
+  const userCarsCollectionRef = useMemoFirebase(() => {
+    if (user && firestore) {
+      return collection(firestore, `users/${user.uid}/user_vehicles`);
+    }
+    return null;
+  }, [user, firestore]);
+
+  const { data: cars, isLoading: loading } = useCollection<UserCar>(userCarsCollectionRef);
+
+  const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'userId'>) => {
+    if (!user || !firestore) {
+      console.error("User or Firestore not available");
+      return;
+    }
+    const carCollection = collection(firestore, `users/${user.uid}/user_vehicles`);
+    // This returns a promise, but we don't await it here to keep the UI responsive.
+    addDocumentNonBlocking(carCollection, { ...carData, userId: user.uid });
+  }, [user, firestore]);
 
   const updateCar = useCallback((updatedCar: UserCar) => {
-    setCars(prevCars => prevCars.map(car => car.id === updatedCar.id ? updatedCar : car));
-  }, []);
+    if (!user || !firestore) return;
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, updatedCar.id);
+    updateDocumentNonBlocking(carDocRef, updatedCar);
+  }, [user, firestore]);
 
-  const removeCar = useCallback((carId: string) => {
-    setCars(prevCars => prevCars.filter(car => car.id !== carId));
-  }, []);
+  const removeCar = useCallback(async (carId: string) => {
+    if (!user || !firestore) return;
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
+    deleteDocumentNonBlocking(carDocRef);
+  }, [user, firestore]);
 
-  const updateCarPhoto = useCallback((carId: string, photoData: { imageId: string; customImageUrl?: string }) => {
-    setCars(prevCars =>
-      prevCars.map(car => {
-        if (car.id === carId) {
-          return { ...car, imageId: photoData.imageId, customImageUrl: photoData.customImageUrl || '' };
-        }
-        return car;
-      })
-    );
-  }, []);
+  const updateCarPhoto = useCallback(async (carId: string, photoData: { imageId: string; customImageUrl?: string }) => {
+    if (!user || !firestore) return;
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
+    const dataToUpdate: any = { imageId: photoData.imageId };
+    if (photoData.customImageUrl) {
+        dataToUpdate.customImageUrl = photoData.customImageUrl;
+    } else {
+        dataToUpdate.customImageUrl = ''; // Explicitly clear it
+    }
+    updateDocumentNonBlocking(carDocRef, dataToUpdate);
+  }, [user, firestore]);
 
   const logService = useCallback((carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => {
-    setCars(prevCars =>
-      prevCars.map(car => {
-        if (car.id === carId) {
-          const newLog: ServiceLog = {
-            ...serviceLogData,
-            id: new Date().toISOString(),
-          };
-          const updatedHistory = [newLog, ...(car.serviceHistory || [])];
-          return {
-            ...car,
-            odometerReading: serviceLogData.kms,
-            serviceHistory: updatedHistory,
-          };
-        }
-        return car;
-      })
-    );
-  }, []);
+    if (!user || !firestore || !cars) return;
+    const car = cars.find(c => c.id === carId);
+    if (!car) return;
+
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
+    
+    const newLog: ServiceLog = {
+      ...serviceLogData,
+      id: new Date().toISOString(),
+    };
+    const updatedHistory = [newLog, ...(car.serviceHistory || [])];
+    
+    updateDocumentNonBlocking(carDocRef, {
+      odometerReading: serviceLogData.kms,
+      serviceHistory: updatedHistory,
+    });
+  }, [user, firestore, cars]);
+
 
   const getCarById = useCallback((id: string): UserCar | undefined => {
-    return cars.find(car => car.id === id);
+    return cars?.find(car => car.id === id);
   }, [cars]);
 
+  const contextValue = useMemo(() => ({
+    cars: cars || [],
+    loading,
+    addCar,
+    updateCar,
+    logService,
+    removeCar,
+    updateCarPhoto,
+    getCarById,
+  }), [cars, loading, addCar, updateCar, logService, removeCar, updateCarPhoto, getCarById]);
+
+
   return (
-    <GarageContext.Provider value={{ cars, loading, addCar, updateCar, logService, removeCar, updateCarPhoto, getCarById }}>
+    <GarageContext.Provider value={contextValue}>
       {children}
     </GarageContext.Provider>
   );

@@ -7,6 +7,9 @@ import { addMonths, differenceInDays, format, parseISO } from 'date-fns';
  * It searches the service history for any log that includes the item's name.
  */
 function findLastServiceForItem(serviceHistory: ServiceLog[], itemName: string): ServiceLog | undefined {
+  if (!serviceHistory) {
+    return undefined;
+  }
   const relevantLogs = serviceHistory
     .filter(log => Array.isArray(log.itemsDone) && log.itemsDone.includes(itemName))
     .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime());
@@ -24,10 +27,10 @@ export function calculateAllServices(car: UserCar, vehicle: Vehicle): Calculated
     return item.transmission === car.transmission;
   });
   
-  return relevantServiceItems.map(item => calculateSingleService(car, vehicle, item));
+  return relevantServiceItems.map(item => calculateSingleService(car, item));
 }
 
-export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceItem: ServiceItem): CalculatedService {
+export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): CalculatedService {
   const baseIntervalKm = serviceItem.oemIntervalKm;
   const baseIntervalMonths = serviceItem.oemIntervalMonths;
   const type = serviceItem.type;
@@ -51,27 +54,31 @@ export function calculateSingleService(car: UserCar, vehicle: Vehicle, serviceIt
 
   let lastServiceKm: number;
   let currentOdometerForCalc: number;
+  
+  const hasEngineSwap = car.engineSwapDetails?.isReplaced;
+  const initialLog = car.serviceHistory.find(l => l.serviceType === 'Initial');
 
-  if (type === 'Engine' && car.engineSwapDetails?.isReplaced) {
+  if (type === 'Engine' && hasEngineSwap) {
     const chassisKmsSinceSwap = car.odometerReading - car.engineSwapDetails.chassisKmsAtSwap;
     currentOdometerForCalc = car.engineSwapDetails.engineKmsAtSwap + chassisKmsSinceSwap;
 
-    if (effectiveLastService?.serviceType === 'Initial') {
-        // If it's the first service on a swapped engine, base it on the engine's mileage at swap time
+    // If the last service for this item was the initial log, the engine's "last service" was at swap time.
+    if (effectiveLastService?.serviceType === 'Initial' || !lastServiceLog) {
         lastServiceKm = car.engineSwapDetails.engineKmsAtSwap;
     } else {
-        // Find the "engine km" equivalent at the time of the last service
-        const chassisKmAtLastService = effectiveLastService?.kms || 0;
+        // Find the "engine km" equivalent at the time of the last specific service
+        const chassisKmAtLastService = lastServiceLog.kms;
         const chassisKmsSinceSwapAtLastService = chassisKmAtLastService - car.engineSwapDetails.chassisKmsAtSwap;
         lastServiceKm = car.engineSwapDetails.engineKmsAtSwap + Math.max(0, chassisKmsSinceSwapAtLastService);
     }
-
   } else {
-    // For chassis items OR non-swapped engines, the reference is always the main odometer.
-    currentOdometerForCalc = car.odometerReading;
-    lastServiceKm = effectiveLastService ? effectiveLastService.kms : 0;
+      // For CHASSIS items on a swapped car, or ANY item on a non-swapped car.
+      currentOdometerForCalc = car.odometerReading;
+      // The last service mileage is taken directly from the relevant log.
+      // If no specific log exists, fall back to the initial state.
+      lastServiceKm = effectiveLastService ? effectiveLastService.kms : 0;
   }
-  
+
   const nextServiceKm = lastServiceKm + adjustedIntervalKm;
   const nextServiceDate = addMonths(new Date(lastServiceDate), adjustedIntervalMonths);
 

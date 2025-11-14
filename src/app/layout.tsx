@@ -4,6 +4,7 @@ import { Providers } from './providers';
 import { Header } from '@/components/layout/Header';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
   title: 'Interval: Adaptive Vehicle Maintenance',
@@ -23,13 +24,15 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("font-body antialiased bg-background text-foreground min-h-screen flex flex-col")}>
-        <Providers>
-          <Header />
-          <main className="flex-grow container mx-auto px-4 py-8">
-            {children}
-          </main>
-          <Toaster />
-        </Providers>
+        <FirebaseClientProvider>
+          <Providers>
+            <Header />
+            <main className="flex-grow container mx-auto px-4 py-8">
+              {children}
+            </main>
+            <Toaster />
+          </Providers>
+        </FirebaseClientProvider>
       </body>
     </html>
   );
