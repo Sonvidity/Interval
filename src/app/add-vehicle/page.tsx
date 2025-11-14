@@ -13,8 +13,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check, Car, Gauge, Rocket } from "lucide-react";
 import type { ModStage, DrivingStyle, ServiceLog, TransmissionType } from "@/lib/types";
 import { Switch } from "@/components/ui/switch";
-import { useUser } from "@/firebase";
-import Link from "next/link";
 
 const steps = [
     { id: 'find', title: 'Find Your Car', icon: Car },
@@ -26,7 +24,6 @@ const steps = [
 export default function AddVehiclePage() {
   const router = useRouter();
   const { addCar } = useGarage();
-  const { user, loading } = useUser();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     vehicleId: "",
@@ -44,30 +41,10 @@ export default function AddVehiclePage() {
 
   const selectedVehicle = VEHICLE_DATABASE.find(v => v.id === formData.vehicleId);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
-    return (
-      <Card className="max-w-md mx-auto text-center">
-        <CardHeader>
-          <CardTitle>Please Login</CardTitle>
-          <CardDescription>You need to be logged in to add a vehicle to your garage.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Link href="/">
-            <Button>Back to Home</Button>
-          </Link>
-        </CardContent>
-      </Card>
-    );
-  }
-
   const handleNext = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const handleBack = () => setStep((s) => Math.max(s - 1, 0));
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!selectedVehicle) {
         console.error("No vehicle selected");
         return;
@@ -102,7 +79,7 @@ export default function AddVehiclePage() {
         };
     }
     
-    await addCar(newCarData);
+    addCar(newCarData);
     router.push('/');
   };
 

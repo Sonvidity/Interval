@@ -4,26 +4,9 @@ import { useGarage } from "@/context/GarageContext";
 import { CarCard } from "@/components/garage/CarCard";
 import { AddVehiclePrompt } from "@/components/garage/AddVehiclePrompt";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useUser } from "@/firebase";
-import { Button } from "@/components/ui/button";
-import { LogIn } from "lucide-react";
-import { useAuth } from "@/firebase";
-import { signInAnonymously } from "firebase/auth";
 
 export default function MyGaragePage() {
-  const { cars, loading: garageLoading } = useGarage();
-  const { user, loading: userLoading } = useUser();
-  const auth = useAuth();
-  const loading = garageLoading || userLoading;
-
-  const handleLogin = async () => {
-    if (!auth) return;
-    try {
-      await signInAnonymously(auth);
-    } catch (error) {
-      console.error("Error signing in anonymously", error);
-    }
-  };
+  const { cars, loading } = useGarage();
 
   if (loading) {
     return (
@@ -38,21 +21,6 @@ export default function MyGaragePage() {
         </div>
       </div>
     );
-  }
-
-  if (!user) {
-    return (
-        <div className="flex items-center justify-center h-full min-h-[60vh]">
-            <div className="text-center">
-                <h2 className="text-2xl font-bold font-headline mb-2">Welcome to Interval</h2>
-                <p className="text-muted-foreground mb-6">Press Start to begin managing your garage.</p>
-                <Button onClick={handleLogin} disabled={!auth}>
-                    <LogIn className="mr-2 h-4 w-4" />
-                    Start
-                </Button>
-            </div>
-        </div>
-    )
   }
 
   return (

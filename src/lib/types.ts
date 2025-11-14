@@ -28,8 +28,8 @@ export type EngineSwapDetails = {
 };
 
 export type UserCar = {
-  id: string; // Document ID from Firestore
-  userId: string; // The user's ID
+  id: string; // Document ID from Firestore or local UUID
+  userId: string; // The user's ID or 'local-user'
   vehicleId: string; // Links to the Vehicle DB
   nickname: string;
   odometerReading: number;

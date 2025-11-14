@@ -4,7 +4,6 @@ import { Providers } from './providers';
 import { Header } from '@/components/layout/Header';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
-import { FirebaseErrorListener } from '@/components/FirebaseErrorListener';
 
 export const metadata: Metadata = {
   title: 'Interval: Adaptive Vehicle Maintenance',
@@ -25,7 +24,6 @@ export default function RootLayout({
       </head>
       <body className={cn("font-body antialiased bg-background text-foreground min-h-screen flex flex-col")}>
         <Providers>
-          <FirebaseErrorListener />
           <Header />
           <main className="flex-grow container mx-auto px-4 py-8">
             {children}
