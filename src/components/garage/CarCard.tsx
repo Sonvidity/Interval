@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import type { UserCar, CalculatedService } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { VEHICLE_DATABASE } from '@/lib/vehicles';
@@ -34,13 +34,21 @@ export function CarCard({ car }: { car: UserCar }) {
   const [changePhotoModalOpen, setChangePhotoModalOpen] = useState(false);
   const [calculationData, setCalculationData] = useState<CalculatedService | null>(null);
 
-  const vehicleInfo = VEHICLE_DATABASE.find(v => v.id === car.vehicleId);
+  const vehicleInfo = useMemo(() => VEHICLE_DATABASE.find(v => v.id === car.vehicleId), [car.vehicleId]);
+
+  const allServices = useMemo(() => {
+    if (!vehicleInfo) return [];
+    return calculateAllServices(car, vehicleInfo);
+  }, [car, vehicleInfo]);
+
+  const sortedServices = useMemo(() => {
+      return [...allServices].sort((a, b) => a.dueInKm - b.dueInKm);
+  }, [allServices]);
+  
+  const engineKms = useMemo(() => getEngineKms(car), [car]);
+
   if (!vehicleInfo) return null;
 
-  const allServices = calculateAllServices(car, vehicleInfo);
-  const sortedServices = allServices.sort((a, b) => a.dueInKm - b.dueInKm);
-  
-  const engineKms = getEngineKms(car);
 
   const getImageUrl = () => {
     if (car.customImageUrl) {
