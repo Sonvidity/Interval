@@ -1,6 +1,5 @@
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CalculatedService } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { HelpCircle } from "lucide-react";
@@ -16,41 +15,28 @@ export function ServiceProgress({ service, onShowCalculation }: ServiceProgressP
   
   const progressColor = isOverdue ? 'bg-red-500' : isDue ? 'bg-yellow-500' : 'bg-accent';
 
-  const formatDays = (days: number) => {
-    if (days < 0) return `${Math.abs(days)} days overdue`;
-    if (days < 30) return `${days} days`;
-    const months = Math.floor(days / 30);
-    return `~${months} month${months > 1 ? 's' : ''}`;
+  const formatKm = (km: number) => {
+    const roundedKm = Math.abs(Math.round(km / 100) * 100);
+    return `${roundedKm.toLocaleString()} km`;
   };
 
-  const formatKm = (km: number) => {
-    return `${Math.abs(Math.round(km)).toLocaleString()} km`;
-  };
+  const dueText = isOverdue 
+    ? <span className="text-red-400">Overdue by {formatKm(service.dueInKm)}</span>
+    : <span className="text-foreground">Due in {formatKm(service.dueInKm)}</span>;
 
   return (
-    <Card className="bg-card/50">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">{service.type} Service</CardTitle>
-        <Button variant="ghost" size="icon" className="h-6 w-6" onClick={onShowCalculation}>
-            <HelpCircle className="h-4 w-4 text-muted-foreground" />
-            <span className="sr-only">Show calculation</span>
-        </Button>
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">
-          {isOverdue 
-              ? <span className="text-red-500">Service Overdue</span>
-              : `Due in ${formatKm(service.dueInKm)}`
-          }
+    <div className="p-3 rounded-lg bg-card/50 flex items-center gap-3">
+      <div className="flex-grow">
+        <div className="flex justify-between items-center mb-1">
+          <span className="text-sm font-medium">{service.name}</span>
+          <span className="text-xs text-muted-foreground">{dueText}</span>
         </div>
-        <p className="text-xs text-muted-foreground">
-            {isOverdue 
-                ? `by ${formatKm(service.dueInKm)} or ${formatDays(service.dueInDays)}`
-                : `or ${formatDays(service.dueInDays)}`
-            }
-        </p>
-        <Progress value={service.progress} className="mt-4 h-2 [&>*]:bg-transparent" indicatorClassName={cn("transition-all", progressColor)} />
-      </CardContent>
-    </Card>
+        <Progress value={service.progress} className="h-2 [&>*]:bg-transparent" indicatorClassName={cn("transition-all", progressColor)} />
+      </div>
+       <Button variant="ghost" size="icon" className="h-8 w-8 flex-shrink-0" onClick={onShowCalculation}>
+            <HelpCircle className="h-4 w-4 text-muted-foreground" />
+            <span className="sr-only">Show calculation for {service.name}</span>
+        </Button>
+    </div>
   );
 }

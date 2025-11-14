@@ -52,6 +52,7 @@ export type ServiceLog = {
 };
 
 export type CalculatedService = {
+  name: string; // Name of the specific service item
   type: 'Engine' | 'Chassis';
   baseIntervalKm: number;
   baseIntervalMonths: number;

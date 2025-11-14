@@ -1,25 +1,18 @@
 import { UserCar, Vehicle, CalculatedService, ServiceItem } from './types';
 import { MOD_FACTORS, DRIVE_FACTORS } from './constants';
-import { addMonths, differenceInDays, format, isAfter } from 'date-fns';
+import { addMonths, differenceInDays, format } from 'date-fns';
 
-function getAggregatedServiceItem(items: ServiceItem[]): ServiceItem {
-  if (items.length === 0) {
-    return { name: 'Service', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' };
-  }
-  // Find the item with the shortest interval in kilometers
-  return items.reduce((prev, current) => 
-    (prev.oemIntervalKm < current.oemIntervalKm ? prev : current)
-  );
+export function calculateAllServices(car: UserCar, vehicle: Vehicle): CalculatedService[] {
+  return vehicle.serviceItems.map(item => calculateSingleService(car, item));
 }
 
-export function calculateService(car: UserCar, vehicle: Vehicle, type: 'Engine' | 'Chassis'): CalculatedService {
-  const serviceItems = vehicle.serviceItems.filter(item => item.type === type);
-  const representativeItem = getAggregatedServiceItem(serviceItems);
-
-  const baseIntervalKm = representativeItem.oemIntervalKm;
-  const baseIntervalMonths = representativeItem.oemIntervalMonths;
+export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): CalculatedService {
+  const baseIntervalKm = serviceItem.oemIntervalKm;
+  const baseIntervalMonths = serviceItem.oemIntervalMonths;
+  const type = serviceItem.type;
 
   const driveFactor = DRIVE_FACTORS[car.drivingStyle];
+  // Mod factor only applies to engine components
   const modFactor = type === 'Engine' ? MOD_FACTORS[car.modStage] : 1.0;
 
   const adjustedIntervalKm = baseIntervalKm * modFactor * driveFactor;
@@ -28,6 +21,7 @@ export function calculateService(car: UserCar, vehicle: Vehicle, type: 'Engine' 
   // Round to a sensible number for recommendation
   const recommendedIntervalKm = Math.round(adjustedIntervalKm / 500) * 500;
   
+  // Use the correct last service data based on the item type
   const lastServiceKm = type === 'Engine' ? car.lastServiceEngineKms : car.lastServiceChassisKms;
   const lastServiceDate = type === 'Engine' ? car.lastServiceEngineDate : car.lastServiceChassisDate;
 
@@ -57,6 +51,7 @@ export function calculateService(car: UserCar, vehicle: Vehicle, type: 'Engine' 
   }
 
   return {
+    name: serviceItem.name,
     type,
     baseIntervalKm,
     baseIntervalMonths,

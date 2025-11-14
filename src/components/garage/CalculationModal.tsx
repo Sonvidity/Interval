@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow, TableHead, TableHeader } from "@/components/ui/table";
 import { X, ArrowDown } from "lucide-react";
 import type { CalculatedService } from "@/lib/types";
 
@@ -20,9 +20,9 @@ export function CalculationModal({ isOpen, onClose, data }: CalculationModalProp
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[480px]">
         <DialogHeader>
-          <DialogTitle className="font-headline text-2xl">{data.type} Service Calculation</DialogTitle>
+          <DialogTitle className="font-headline text-2xl">{data.name} Calculation</DialogTitle>
           <DialogDescription>
-            Here's how we calculated your personalized service interval.
+            Here's how we calculated your personalized service interval for this item.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-4">
@@ -34,13 +34,13 @@ export function CalculationModal({ isOpen, onClose, data }: CalculationModalProp
               </TableRow>
               {isEngine && (
                 <TableRow>
-                  <TableCell>Your Mods (Stage {data.modFactor === 1.0 ? '0' : data.modFactor === 0.8 ? '1' : data.modFactor === 0.6 ? '2' : '3'})</TableCell>
-                  <TableCell className="text-right font-mono">x {data.modFactor}</TableCell>
+                  <TableCell>Your Mods ({data.modFactor === 1.0 ? 'Stock' : `x${data.modFactor}`})</TableCell>
+                  <TableCell className="text-right font-mono text-red-400">x {data.modFactor}</TableCell>
                 </TableRow>
               )}
               <TableRow>
                 <TableCell>Your Driving ({data.driveFactor === 1.0 ? 'Easy' : data.driveFactor === 0.85 ? 'Spirited' : 'Hard'})</TableCell>
-                <TableCell className="text-right font-mono">x {data.driveFactor}</TableCell>
+                <TableCell className="text-right font-mono text-yellow-400">x {data.driveFactor}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -58,13 +58,19 @@ export function CalculationModal({ isOpen, onClose, data }: CalculationModalProp
           </div>
 
           <Table>
+             <TableHeader>
+              <TableRow>
+                <TableHead>Metric</TableHead>
+                <TableHead className="text-right">Value</TableHead>
+              </TableRow>
+            </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell>Last Service</TableCell>
                 <TableCell className="text-right font-mono">{data.lastServiceKm.toLocaleString()} km</TableCell>
               </TableRow>
                <TableRow>
-                <TableCell>Next Service Due</TableCell>
+                <TableCell>Next Service Due (Est.)</TableCell>
                 <TableCell className="text-right font-mono">{Math.round(data.nextServiceKm).toLocaleString()} km</TableCell>
               </TableRow>
             </TableBody>

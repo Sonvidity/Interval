@@ -1,41 +1,43 @@
 "use client";
 
 import { useState } from 'react';
-import type { UserCar } from '@/lib/types';
+import type { UserCar, CalculatedService } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { VEHICLE_DATABASE } from '@/lib/vehicles';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { getEngineKms, calculateService } from '@/lib/calculations';
+import { getEngineKms, calculateAllServices } from '@/lib/calculations';
 import { ServiceProgress } from './ServiceProgress';
 import { CalculationModal } from './CalculationModal';
 import { Button } from '../ui/button';
 import { LogServiceModal } from './LogServiceModal';
 import { Wrench } from 'lucide-react';
+import { ScrollArea } from '../ui/scroll-area';
 
 export function CarCard({ car }: { car: UserCar }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [logModalOpen, setLogModalOpen] = useState(false);
-  const [calculationData, setCalculationData] = useState<any>(null);
+  const [calculationData, setCalculationData] = useState<CalculatedService | null>(null);
 
   const vehicleInfo = VEHICLE_DATABASE.find(v => v.id === car.vehicleId);
   if (!vehicleInfo) return null;
 
-  const engineService = calculateService(car, vehicleInfo, 'Engine');
-  const chassisService = calculateService(car, vehicleInfo, 'Chassis');
+  const allServices = calculateAllServices(car, vehicleInfo);
+  const sortedServices = allServices.sort((a, b) => a.dueInKm - b.dueInKm);
+  
   const engineKms = getEngineKms(car);
 
   const vehicleImage = PlaceHolderImages.find(img => img.id === vehicleInfo.imageId);
 
-  const handleShowCalculation = (data: any) => {
+  const handleShowCalculation = (data: CalculatedService) => {
     setCalculationData(data);
     setModalOpen(true);
   };
   
   return (
     <>
-      <Card className="flex flex-col">
-        <CardHeader className="relative">
+      <Card className="flex flex-col max-h-[700px]">
+        <CardHeader className="relative p-0">
           {vehicleImage && (
             <Image
               src={vehicleImage.imageUrl}
@@ -59,22 +61,26 @@ export function CarCard({ car }: { car: UserCar }) {
               </div>
               <div>
                   <p className="text-sm text-muted-foreground">Engine KMs</p>
-                  <p className={`text-xl font-bold ${engineKms ? '' : 'text-muted-foreground'}`}>{engineKms ? engineKms.toLocaleString() : 'N/A'}</p>
+                  <p className={`text-xl font-bold ${engineKms !== null ? '' : 'text-muted-foreground'}`}>{engineKms !== null ? engineKms.toLocaleString() : 'N/A'}</p>
               </div>
           </div>
 
-          <div className="flex-grow space-y-4">
-            <ServiceProgress
-              service={engineService}
-              onShowCalculation={() => handleShowCalculation(engineService)}
-            />
-            <ServiceProgress
-              service={chassisService}
-              onShowCalculation={() => handleShowCalculation(chassisService)}
-            />
+          <div className="flex-grow flex flex-col">
+            <h3 className="text-sm font-medium text-muted-foreground mb-2 px-1">Upcoming Service Items</h3>
+            <ScrollArea className="flex-grow h-[200px] pr-3">
+              <div className="space-y-3">
+                {sortedServices.map((service) => (
+                  <ServiceProgress
+                    key={service.name}
+                    service={service}
+                    onShowCalculation={() => handleShowCalculation(service)}
+                  />
+                ))}
+              </div>
+            </ScrollArea>
           </div>
           
-          <Button onClick={() => setLogModalOpen(true)} className="w-full mt-4 shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
+          <Button onClick={() => setLogModalOpen(true)} className="w-full mt-auto shadow-sm hover:shadow-glow-accent transition-shadow duration-300">
             <Wrench className="mr-2 h-4 w-4" />
             Log Service
           </Button>

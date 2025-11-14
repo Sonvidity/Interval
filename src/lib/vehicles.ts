@@ -9,9 +9,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2008-2016',
     imageId: 'ford-falcon-fg-turbo',
     serviceItems: [
+      // More realistic intervals for a turbo performance engine
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Fuel Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'ZF 6HP Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
       { name: 'Differential Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
