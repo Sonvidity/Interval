@@ -1,10 +1,11 @@
+
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Car, Wrench } from "lucide-react";
+import { Car, Wrench, User } from "lucide-react";
 import { useUser } from "@/firebase/auth/use-user";
 import { Skeleton } from "../ui/skeleton";
 import {
@@ -17,16 +18,29 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { useAuth } from "@/firebase";
+import { useToast } from "@/hooks/use-toast";
 
 export function Header() {
   const pathname = usePathname();
   const { user, loading } = useUser();
   const auth = useAuth();
+  const { toast } = useToast();
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     if (auth) {
-      auth.signOut();
+      await auth.signOut();
+      toast({
+        title: "Signed Out",
+        description: "You have been successfully signed out.",
+      });
     }
+  };
+
+  const getAvatarFallback = () => {
+    if (!user) return '';
+    if (user.isAnonymous) return 'A';
+    if (user.email) return user.email.charAt(0).toUpperCase();
+    return 'U';
   };
 
   const navLinks = [
@@ -73,7 +87,7 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar className="h-8 w-8">
-                  <AvatarFallback>{user.isAnonymous ? 'A' : 'U'}</AvatarFallback>
+                  <AvatarFallback>{getAvatarFallback()}</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -81,10 +95,22 @@ export function Header() {
                   {user.isAnonymous ? "Anonymous User" : user.email}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut}>Sign Out</DropdownMenuItem>
+                {user.isAnonymous && (
+                  <Link href="/login" passHref>
+                     <DropdownMenuItem>Sign Up / Login</DropdownMenuItem>
+                  </Link>
+                )}
+                <DropdownMenuItem onClick={handleSignOut} className="text-red-500 focus:text-red-500">Sign Out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          ) : null}
+          ) : (
+             <Link href="/login" passHref>
+              <Button variant="outline">
+                  <User className="mr-2 h-4 w-4" />
+                  Login
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </header>
