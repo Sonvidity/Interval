@@ -1,5 +1,3 @@
-// Your web app's Firebase configuration
-// IMPORTANT: Replace this with your actual configuration
 export const firebaseConfig = {
   "projectId": "studio-1400697222-3a50c",
   "appId": "1:428591561200:web:a2816e83ecda0d7ff90535",

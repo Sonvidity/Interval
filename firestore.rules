@@ -1,0 +1,134 @@
+/**
+ * @fileoverview Firestore Security Rules for the Interval application.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for user-specific data while allowing public read access to central vehicle data.
+ * Authorization Independence is achieved through denormalization.
+ *
+ * Data Structure:
+ * - /vehicles/{vehicleId}: Public, read-only vehicle data.
+ * - /service_items/{serviceItemId}: Public, read-only service item data.
+ * - /users/{userId}: User profile data, accessible only by the user.
+ * - /users/{userId}/user_vehicles/{userVehicleId}: Vehicles owned by a specific user, accessible only by the user.
+ * - /users/{userId}/user_vehicles/{userVehicleId}/engine_swap: Engine swap details for a user's vehicle, accessible only by the user.
+ * - /users/{userId}/user_vehicles/{userVehicleId}/service_history/{serviceHistoryId}: Service history records for a user's vehicle, accessible only by the user.
+ *
+ * Key Security Decisions:
+ * - Public read access to vehicle and service item data.
+ * - Strict user-ownership for all user-specific data (profile, vehicles, service history).
+ * - No user listing is allowed.
+ * - Denormalization of `userId` in the `user_vehicles` collection to avoid costly `get()` calls.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Allows public read access to vehicle data.
+     * @path /vehicles/{vehicleId}
+     * @allow (get, list) Anyone can read vehicle data.
+     * @deny (create, update, delete) No one can create, update, or delete vehicle data.
+     * @principle Allows public read access to central vehicle data; restricts write access.
+     */
+    match /vehicles/{vehicleId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to service item data.
+     * @path /service_items/{serviceItemId}
+     * @allow (get, list) Anyone can read service item data.
+     * @deny (create, update, delete) No one can create, update, or delete service item data.
+     * @principle Allows public read access to central service item data; restricts write access.
+     */
+    match /service_items/{serviceItemId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Allows a user to read and write their own profile data.
+     * @path /users/{userId}
+     * @allow (get, list) The user can read their own profile.
+     * @allow (create) The user can create their own profile.
+     * @allow (update, delete) The user can update and delete their own profile.
+     * @deny Requests from other users.
+     * @principle Enforces user-ownership for profile data.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Allows a user to manage their own vehicles.
+     * @path /users/{userId}/user_vehicles/{userVehicleId}
+     * @allow (get, list) The user can read their own vehicles.
+     * @allow (create, update, delete) The user can create, update, and delete their own vehicles.
+     * @deny Requests from other users.
+     * @principle Enforces user-ownership for user vehicle data.
+     */
+    match /users/{userId}/user_vehicles/{userVehicleId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.userId == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Allows a user to manage engine swap details for their vehicles.
+     * @path /users/{userId}/user_vehicles/{userVehicleId}/engine_swap
+     * @allow (get, list) The user can read engine swap details for their vehicles.
+     * @allow (create, update, delete) The user can create, update, and delete engine swap details for their vehicles.
+     * @deny Requests from other users.
+     * @principle Enforces user-ownership for engine swap data.
+     */
+    match /users/{userId}/user_vehicles/{userVehicleId}/engine_swap {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Allows a user to manage service history records for their vehicles.
+     * @path /users/{userId}/user_vehicles/{userVehicleId}/service_history/{serviceHistoryId}
+     * @allow (get, list) The user can read service history records for their vehicles.
+     * @allow (create, update, delete) The user can create, update, and delete service history records for their vehicles.
+     * @deny Requests from other users.
+     * @principle Enforces user-ownership for service history data.
+     */
+    match /users/{userId}/user_vehicles/{userVehicleId}/service_history/{serviceHistoryId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+
+  // Helper functions
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  function isOwner(userId) {
+    return isSignedIn() && request.auth.uid == userId;
+  }
+
+  function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+  }
+}

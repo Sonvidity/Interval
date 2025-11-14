@@ -1,0 +1,359 @@
+{
+  "entities": {
+    "Vehicle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Vehicle",
+      "type": "object",
+      "description": "Represents a vehicle model in the central vehicle database.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the vehicle model."
+        },
+        "make": {
+          "type": "string",
+          "description": "The make of the vehicle (e.g., Ford)."
+        },
+        "model": {
+          "type": "string",
+          "description": "The model of the vehicle (e.g., Falcon)."
+        },
+        "variant": {
+          "type": "string",
+          "description": "The variant of the vehicle model (e.g., FG Turbo)."
+        },
+        "years": {
+          "type": "string",
+          "description": "The years the vehicle model was produced (e.g., 2008-2014)."
+        }
+      },
+      "required": [
+        "id",
+        "make",
+        "model",
+        "variant",
+        "years"
+      ]
+    },
+    "ServiceItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ServiceItem",
+      "type": "object",
+      "description": "Represents a service item for a specific vehicle model.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the service item."
+        },
+        "vehicleId": {
+          "type": "string",
+          "description": "Reference to Vehicle. (Relationship: Vehicle 1:N ServiceItem)"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the service item (e.g., Engine Oil, Brake Fluid)."
+        },
+        "oemIntervalKm": {
+          "type": "number",
+          "description": "The OEM service interval in kilometers."
+        },
+        "oemIntervalMonths": {
+          "type": "number",
+          "description": "The OEM service interval in months."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of service item (Engine or Chassis)."
+        }
+      },
+      "required": [
+        "id",
+        "vehicleId",
+        "name",
+        "oemIntervalKm",
+        "oemIntervalMonths",
+        "type"
+      ]
+    },
+    "UserVehicle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserVehicle",
+      "type": "object",
+      "description": "Represents a vehicle owned by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user vehicle."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N UserVehicle)"
+        },
+        "vehicleId": {
+          "type": "string",
+          "description": "Reference to Vehicle. (Relationship: Vehicle 1:N UserVehicle)"
+        },
+        "nickname": {
+          "type": "string",
+          "description": "The user's nickname for the vehicle."
+        },
+        "odometerReading": {
+          "type": "number",
+          "description": "The current odometer reading of the vehicle."
+        },
+        "modStage": {
+          "type": "string",
+          "description": "The modification stage of the vehicle (Stock, Stage 1, Stage 2, Stage 3)."
+        },
+        "drivingStyle": {
+          "type": "string",
+          "description": "The user's driving style (Easy, Spirited, Hard)."
+        },
+        "lastServiceEngine": {
+          "type": "string",
+          "description": "Reference to ServiceHistory. (Relationship: ServiceHistory 1:1 UserVehicle.lastServiceEngine)"
+        },
+        "lastServiceChassis": {
+          "type": "string",
+          "description": "Reference to ServiceHistory. (Relationship: ServiceHistory 1:1 UserVehicle.lastServiceChassis)"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "vehicleId",
+        "nickname",
+        "odometerReading",
+        "modStage",
+        "drivingStyle"
+      ]
+    },
+    "EngineSwap": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "EngineSwap",
+      "type": "object",
+      "description": "Represents engine swap details for a user's vehicle (optional).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the engine swap details."
+        },
+        "userVehicleId": {
+          "type": "string",
+          "description": "Reference to UserVehicle. (Relationship: UserVehicle 1:1 EngineSwap)"
+        },
+        "isReplaced": {
+          "type": "boolean",
+          "description": "Indicates whether the engine has been replaced (true/false)."
+        },
+        "chassisKMsAtSwap": {
+          "type": "number",
+          "description": "The chassis kilometers at the time of the engine swap."
+        },
+        "engineKMsAtSwap": {
+          "type": "number",
+          "description": "The kilometers on the new engine when it was installed."
+        },
+        "wasServicedAtSwap": {
+          "type": "boolean",
+          "description": "Indicates whether the engine was serviced at the time of the swap (true/false)."
+        }
+      },
+      "required": [
+        "id",
+        "userVehicleId",
+        "isReplaced",
+        "chassisKMsAtSwap",
+        "engineKMsAtSwap",
+        "wasServicedAtSwap"
+      ]
+    },
+    "ServiceHistory": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ServiceHistory",
+      "type": "object",
+      "description": "Represents a service record for a user's vehicle.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the service record."
+        },
+        "userVehicleId": {
+          "type": "string",
+          "description": "Reference to UserVehicle. (Relationship: UserVehicle 1:N ServiceHistory)"
+        },
+        "date": {
+          "type": "string",
+          "description": "The date the service was performed.",
+          "format": "date-time"
+        },
+        "kms": {
+          "type": "number",
+          "description": "The odometer reading at the time of service."
+        },
+        "serviceType": {
+          "type": "string",
+          "description": "The type of service performed (Engine, Chassis, General, Repair)."
+        },
+        "cost": {
+          "type": "number",
+          "description": "The cost of the service."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes about the service."
+        },
+        "itemsDone": {
+          "type": "string",
+          "description": "A list of items that were serviced (e.g., Oil & Filter, Brake Fluid)."
+        }
+      },
+      "required": [
+        "id",
+        "userVehicleId",
+        "date",
+        "kms",
+        "serviceType",
+        "itemsDone"
+      ]
+    },
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/vehicles/{vehicleId}",
+        "definition": {
+          "entityName": "Vehicle",
+          "schema": {
+            "$ref": "#/backend/entities/Vehicle"
+          },
+          "description": "Central, read-only database of vehicle makes, models, and years.",
+          "params": [
+            {
+              "name": "vehicleId",
+              "description": "Unique identifier for the vehicle model."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/service_items/{serviceItemId}",
+        "definition": {
+          "entityName": "ServiceItem",
+          "schema": {
+            "$ref": "#/backend/entities/ServiceItem"
+          },
+          "description": "Central, read-only database of service items for each vehicle model.",
+          "params": [
+            {
+              "name": "serviceItemId",
+              "description": "Unique identifier for the service item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information. Only the user can read/write their own profile.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/user_vehicles/{userVehicleId}",
+        "definition": {
+          "entityName": "UserVehicle",
+          "schema": {
+            "$ref": "#/backend/entities/UserVehicle"
+          },
+          "description": "Stores vehicles owned by a specific user. Includes denormalized 'userId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "userVehicleId",
+              "description": "Unique identifier for the user's vehicle."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/user_vehicles/{userVehicleId}/engine_swap",
+        "definition": {
+          "entityName": "EngineSwap",
+          "schema": {
+            "$ref": "#/backend/entities/EngineSwap"
+          },
+          "description": "Stores engine swap details for a user's vehicle. Accessible only by the user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "userVehicleId",
+              "description": "Unique identifier for the user's vehicle."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/user_vehicles/{userVehicleId}/service_history/{serviceHistoryId}",
+        "definition": {
+          "entityName": "ServiceHistory",
+          "schema": {
+            "$ref": "#/backend/entities/ServiceHistory"
+          },
+          "description": "Stores service history records for a user's vehicle. Accessible only by the user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "Unique identifier for the user."
+            },
+            {
+              "name": "userVehicleId",
+              "description": "Unique identifier for the user's vehicle."
+            },
+            {
+              "name": "serviceHistoryId",
+              "description": "Unique identifier for the service record."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to optimize for speed, security, and the specific requirements of the Interval application. The core principle is Authorization Independence, achieved through denormalization, to avoid costly `get()` calls in security rules. This allows for atomic operations and easier debugging. The structure also segregates data with different access needs into separate collections, simplifying rules and enhancing security.\n\n**Vehicle Database:** The `vehicles` and `service_items` collections store global, read-only data.\n\n**User-Specific Data:** User-related data is stored under the `/users/{userId}` path. This approach provides a clear ownership model, where only the authenticated user can access their own data.\n\n**Denormalization for Authorization Independence:** The `user_vehicles` collection is key to achieving Authorization Independence. Each document denormalizes the `userId` to avoid `get()` calls to the `/users/{userId}` collection in security rules.\n\n**QAPs (Rules are not Filters):**\n*   **List Operations:** The structure supports secure list operations because each collection has a homogeneous security posture. For example, listing `/users/{userId}/user_vehicles` is secure because all documents in the collection belong to the specified user.\n*   **Data Segregation:** Separating global vehicle data from user-specific vehicle data enables different security rules. The global vehicle data can be read by anyone, while user-specific data is restricted to the authenticated user.\n*   **Membership Map:** Not explicitly used in this design, but it would be implemented using a members map if we wanted other users to have access to a specific user vehicle, or to service records, allowing collaborative access.\n\n**Global Roles:** While the current schema doesn't use global roles, we would store them in a dedicated collection like `/roles_admin/{uid}` and secure with existence checks."
+  }
+}
