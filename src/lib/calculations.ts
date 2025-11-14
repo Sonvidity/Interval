@@ -81,13 +81,14 @@ export function calculateSingleService(car: UserCar, serviceItem: ServiceItem): 
       const chassisKmsSinceSwap = car.odometerReading - car.engineSwapDetails.chassisKmsAtSwap;
       currentOdometerForCalc = car.engineSwapDetails.engineKmsAtSwap + chassisKmsSinceSwap;
 
-      if (effectiveLastService && effectiveLastService.serviceType !== 'Initial') {
-          // If a specific service was done, calculate its equivalent engine kms
+      if (effectiveLastService && effectiveLastService.kms > car.engineSwapDetails.chassisKmsAtSwap) {
+          // If a specific service was done *after* the swap, calculate its equivalent engine kms
           const chassisKmAtLastService = effectiveLastService.kms;
           const chassisKmsSinceSwapAtLastService = chassisKmAtLastService - car.engineSwapDetails.chassisKmsAtSwap;
           lastServiceKm = car.engineSwapDetails.engineKmsAtSwap + Math.max(0, chassisKmsSinceSwapAtLastService);
       } else {
-          // If never serviced or only initial log, the last service was effectively at swap time
+          // If never serviced since swap, or if last service was before swap,
+          // the last effective service point for the *engine* was at swap time.
           lastServiceKm = car.engineSwapDetails.engineKmsAtSwap;
       }
   } else {
