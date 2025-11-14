@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Car, Wrench, LogIn, LogOut } from "lucide-react";
 import { useUser, useAuth } from "@/firebase";
-import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { signInAnonymously, signOut } from "firebase/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navLinks = [
@@ -22,11 +22,10 @@ export function Header() {
 
   const handleLogin = async () => {
     if (!auth) return;
-    const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      await signInAnonymously(auth);
     } catch (error) {
-      console.error("Error signing in with Google", error);
+      console.error("Error signing in anonymously", error);
     }
   };
 
@@ -75,11 +74,17 @@ export function Header() {
           {loading ? (
             <div className="h-8 w-20 bg-muted rounded-md animate-pulse" />
           ) : user ? (
-            <div className="flex items-center gap-4">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
-                <AvatarFallback>{user.displayName?.charAt(0) || 'U'}</AvatarFallback>
-              </Avatar>
+             <div className="flex items-center gap-4">
+               {user.isAnonymous ? (
+                 <Avatar className="h-8 w-8">
+                  <AvatarFallback>?</AvatarFallback>
+                </Avatar>
+               ) : (
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={user.photoURL || ''} alt={user.displayName || 'User'} />
+                  <AvatarFallback>{user.displayName?.charAt(0) || 'U'}</AvatarFallback>
+                </Avatar>
+               )}
               <Button onClick={handleLogout} variant="outline" size="sm">
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout

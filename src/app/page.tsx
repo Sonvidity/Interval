@@ -8,7 +8,7 @@ import { useUser } from "@/firebase";
 import { Button } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
 import { useAuth } from "@/firebase";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInAnonymously } from "firebase/auth";
 
 export default function MyGaragePage() {
   const { cars, loading: garageLoading } = useGarage();
@@ -18,11 +18,10 @@ export default function MyGaragePage() {
 
   const handleLogin = async () => {
     if (!auth) return;
-    const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      await signInAnonymously(auth);
     } catch (error) {
-      console.error("Error signing in with Google", error);
+      console.error("Error signing in anonymously", error);
     }
   };
 
@@ -46,10 +45,10 @@ export default function MyGaragePage() {
         <div className="flex items-center justify-center h-full min-h-[60vh]">
             <div className="text-center">
                 <h2 className="text-2xl font-bold font-headline mb-2">Welcome to Interval</h2>
-                <p className="text-muted-foreground mb-6">Please log in to manage your garage.</p>
+                <p className="text-muted-foreground mb-6">Press Start to begin managing your garage.</p>
                 <Button onClick={handleLogin}>
                     <LogIn className="mr-2 h-4 w-4" />
-                    Login with Google
+                    Start
                 </Button>
             </div>
         </div>
