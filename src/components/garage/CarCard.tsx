@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, memo } from 'react';
 import type { UserCar, CalculatedService } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { VEHICLE_DATABASE } from '@/lib/vehicles';
@@ -26,7 +26,7 @@ import { ChangePhotoModal } from './ChangePhotoModal';
 import Link from 'next/link';
 
 
-export function CarCard({ car }: { car: UserCar }) {
+const CarCardComponent = ({ car }: { car: UserCar }) => {
   const [calculationModalOpen, setCalculationModalOpen] = useState(false);
   const [logModalOpen, setLogModalOpen] = useState(false);
   const [serviceListModalOpen, setServiceListModalOpen] = useState(false);
@@ -47,25 +47,30 @@ export function CarCard({ car }: { car: UserCar }) {
   
   const engineKms = useMemo(() => getEngineKms(car), [car]);
 
-  if (!vehicleInfo) return null;
+  const { vehicleImage, vehicleImageAlt, imageHint } = useMemo(() => {
+    let imageUrl = '';
+    let alt = car.nickname;
+    let hint: string | undefined = undefined;
 
-
-  const getImageUrl = () => {
     if (car.customImageUrl) {
-      return car.customImageUrl;
+      imageUrl = car.customImageUrl;
+    } else {
+      const placeholder = PlaceHolderImages.find(img => img.id === car.imageId);
+      if (placeholder) {
+        imageUrl = placeholder.imageUrl;
+        alt = placeholder.description;
+        hint = placeholder.imageHint;
+      } else {
+        const vehiclePlaceholder = PlaceHolderImages.find(img => img.id === vehicleInfo?.imageId);
+        imageUrl = vehiclePlaceholder?.imageUrl || 'https://placehold.co/600x400/1e293b/ffffff?text=Image+Not+Found';
+      }
     }
-    const placeholder = PlaceHolderImages.find(img => img.id === car.imageId);
-    if (placeholder) {
-      return placeholder.imageUrl;
-    }
-    // Fallback to the original vehicle placeholder if the car's imageId is somehow invalid
-    const vehiclePlaceholder = PlaceHolderImages.find(img => img.id === vehicleInfo.imageId);
-    return vehiclePlaceholder?.imageUrl || 'https://placehold.co/600x400/1e293b/ffffff?text=Image+Not+Found';
-  };
 
-  const vehicleImage = getImageUrl();
-  const vehicleImageAlt = PlaceHolderImages.find(img => img.id === car.imageId)?.description || car.nickname;
-  const imageHint = PlaceHolderImages.find(img => img.id === car.imageId)?.imageHint;
+    return { vehicleImage: imageUrl, vehicleImageAlt: alt, imageHint: hint };
+  }, [car.customImageUrl, car.imageId, car.nickname, vehicleInfo?.imageId]);
+
+
+  if (!vehicleInfo) return null;
 
 
   const handleShowCalculation = (data: CalculatedService) => {
@@ -186,3 +191,6 @@ export function CarCard({ car }: { car: UserCar }) {
     </>
   );
 }
+
+
+export const CarCard = memo(CarCardComponent);
