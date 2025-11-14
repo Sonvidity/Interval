@@ -27,7 +27,7 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   useEffect(() => {
     if (user && firestore) {
       setLoading(true);
-      const q = query(collection(firestore, 'users', user.uid, 'cars'));
+      const q = query(collection(firestore, 'users', user.uid, 'user_vehicles'));
       const unsubscribe = onSnapshot(q, 
         (querySnapshot) => {
           const userCars: UserCar[] = [];
@@ -44,7 +44,7 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         },
         async (err) => {
           const permissionError = new FirestorePermissionError({
-            path: `users/${user.uid}/cars`,
+            path: `users/${user.uid}/user_vehicles`,
             operation: 'list',
           });
           errorEmitter.emit('permission-error', permissionError);
@@ -61,7 +61,7 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'serviceHistory' | 'userId'>) => {
     if (!firestore || !user) return;
     const newCar = { ...carData, userId: user.uid, serviceHistory: [] };
-    const carRef = collection(firestore, 'users', user.uid, 'cars');
+    const carRef = collection(firestore, 'users', user.uid, 'user_vehicles');
     addDoc(carRef, newCar).catch(async (serverError) => {
         const permissionError = new FirestorePermissionError({
             path: carRef.path,
@@ -75,7 +75,7 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const updateCar = useCallback(async (updatedCar: UserCar) => {
     if (!firestore || !user) return;
     const { id, ...carData } = updatedCar;
-    const carRef = doc(firestore, 'users', user.uid, 'cars', id);
+    const carRef = doc(firestore, 'users', user.uid, 'user_vehicles', id);
     setDoc(carRef, carData, { merge: true }).catch(async (serverError) => {
         const permissionError = new FirestorePermissionError({
             path: carRef.path,
@@ -96,7 +96,7 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     // For simplicity, we'll update the parent car document with the latest service dates/kms
     // and assume serviceHistory is managed if needed elsewhere or added later.
 
-    const carRef = doc(firestore, 'users', user.uid, 'cars', carId);
+    const carRef = doc(firestore, 'users', user.uid, 'user_vehicles', carId);
     const updatedFields: Partial<UserCar> = {
       odometerReading: serviceLogData.kms,
     };
