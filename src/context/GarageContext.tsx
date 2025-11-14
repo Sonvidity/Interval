@@ -35,7 +35,23 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     return null;
   }, [user, firestore]);
 
-  const { data: cars, isLoading: loading } = useCollection<UserCar>(userCarsCollectionRef);
+  const { data: carsFromHook, isLoading: loading } = useCollection<UserCar>(userCarsCollectionRef);
+
+  const [cars, setCars] = useState<UserCar[]>([]);
+
+  useEffect(() => {
+    if(carsFromHook) {
+      // Create a new array with the serviceHistory initialized
+      const processedCars = carsFromHook.map(car => ({
+        ...car,
+        serviceHistory: car.serviceHistory || [],
+      }));
+      setCars(processedCars);
+    } else {
+      setCars([]);
+    }
+  }, [carsFromHook]);
+
 
   const addCar = useCallback(async (carData: Omit<UserCar, 'id' | 'userId'>) => {
     if (!user || !firestore) {
@@ -73,24 +89,23 @@ export const GarageProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
   const logService = useCallback((carId: string, serviceLogData: Omit<ServiceLog, 'id'>) => {
     if (!user || !firestore || !cars) return;
-    const car = cars.find(c => c.id === carId);
-    if (!car) return;
-
-    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
     
+    const carDocRef = doc(firestore, `users/${user.uid}/user_vehicles`, carId);
+    const historyCollectionRef = collection(carDocRef, 'service_history');
+
     const newLog: ServiceLog = {
       ...serviceLogData,
       id: new Date().toISOString(),
     };
 
-    // Ensure serviceHistory is an array before trying to spread it
-    const currentHistory = Array.isArray(car.serviceHistory) ? car.serviceHistory : [];
-    const updatedHistory = [newLog, ...currentHistory];
-    
+    // Add the detailed log to the subcollection
+    addDocumentNonBlocking(historyCollectionRef, newLog);
+
+    // Update the parent document with the latest odometer reading
     updateDocumentNonBlocking(carDocRef, {
       odometerReading: serviceLogData.kms,
-      serviceHistory: updatedHistory,
     });
+
   }, [user, firestore, cars]);
 
 

@@ -11,15 +11,34 @@ import { format, parseISO } from "date-fns";
 import { VEHICLE_DATABASE } from "@/lib/vehicles";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
+import { useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
+import { collection, query, orderBy } from "firebase/firestore";
+import type { ServiceLog } from "@/lib/types";
 
 
 export default function ServiceHistoryPage() {
   const { carId } = useParams();
   const router = useRouter();
-  const { getCarById, loading } = useGarage();
+  const { getCarById, loading: garageLoading } = useGarage();
+  const { user } = useUser();
+  const firestore = useFirestore();
 
   const car = getCarById(carId as string);
   const vehicleInfo = car ? VEHICLE_DATABASE.find(v => v.id === car.vehicleId) : null;
+
+  const historyCollectionRef = useMemoFirebase(() => {
+    if (user && firestore && carId) {
+      return query(
+        collection(firestore, `users/${user.uid}/user_vehicles/${carId}/service_history`),
+        orderBy("date", "desc")
+      );
+    }
+    return null;
+  }, [user, firestore, carId]);
+
+  const { data: serviceHistory, isLoading: historyLoading } = useCollection<ServiceLog>(historyCollectionRef);
+  
+  const loading = garageLoading || historyLoading;
 
   if (loading) {
     return (
@@ -52,8 +71,9 @@ export default function ServiceHistoryPage() {
       </div>
     );
   }
-
-  const sortedHistory = car.serviceHistory?.sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime()) || [];
+  
+  // The sorting is now handled by the Firestore query, but we can keep this as a fallback.
+  const sortedHistory = serviceHistory || car.serviceHistory?.sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime()) || [];
 
   return (
     <div className="max-w-4xl mx-auto">
