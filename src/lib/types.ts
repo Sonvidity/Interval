@@ -32,6 +32,7 @@ export type ModGuide = {
     description: string;
     common_mods: string;
     cost?: string;
+    power?: string;
   }[];
   common_issues: {
     name: string;
