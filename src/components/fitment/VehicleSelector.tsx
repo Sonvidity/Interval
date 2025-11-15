@@ -19,7 +19,7 @@ interface VehicleSelectorProps {
 export function VehicleSelector({ onVehicleSelect }: VehicleSelectorProps) {
   const { cars: userCars } = useGarage();
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('garage');
+  const [activeTab, setActiveTab] = useState(userCars.length > 0 ? 'garage' : 'search');
 
   const filteredVehicles = VEHICLE_DATABASE.filter(vehicle =>
     `${vehicle.make} ${vehicle.model} ${vehicle.variant} ${vehicle.years}`.toLowerCase().includes(searchTerm.toLowerCase())
@@ -35,7 +35,7 @@ export function VehicleSelector({ onVehicleSelect }: VehicleSelectorProps) {
   return (
     <Card>
       <CardContent className="p-4">
-        <Tabs value={activeTab} onValueChange={setSearchTerm(''); setActiveTab} className="w-full">
+        <Tabs value={activeTab} onValueChange={(value) => { setSearchTerm(''); setActiveTab(value); }} className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="garage">My Garage</TabsTrigger>
             <TabsTrigger value="search">Search All</TabsTrigger>
@@ -44,20 +44,24 @@ export function VehicleSelector({ onVehicleSelect }: VehicleSelectorProps) {
             {userCars.length > 0 ? (
                 <ScrollArea className="h-48">
                     <div className="space-y-2 pr-4">
-                        {userCars.map(car => (
-                            <Button
-                            key={car.id}
-                            variant="outline"
-                            className="w-full justify-start h-auto py-2 text-left"
-                            onClick={() => handleSelectFromGarage(car.vehicleId)}
-                            >
-                            <Car className="mr-4 text-accent" />
-                            <div>
-                                <p className="font-semibold">{car.nickname}</p>
-                                <p className="text-sm text-muted-foreground">{car.year} {VEHICLE_DATABASE.find(v => v.id === car.vehicleId)?.make} {car.variant}</p>
-                            </div>
-                            </Button>
-                        ))}
+                        {userCars.map(car => {
+                            const vehicleInfo = VEHICLE_DATABASE.find(v => v.id === car.vehicleId);
+                            if (!vehicleInfo) return null;
+                            return (
+                                <Button
+                                key={car.id}
+                                variant="outline"
+                                className="w-full justify-start h-auto py-2 text-left"
+                                onClick={() => handleSelectFromGarage(car.vehicleId)}
+                                >
+                                <Car className="mr-4 text-accent" />
+                                <div>
+                                    <p className="font-semibold">{car.nickname}</p>
+                                    <p className="text-sm text-muted-foreground">{car.year} {vehicleInfo.make} {car.variant}</p>
+                                </div>
+                                </Button>
+                            )
+                        })}
                     </div>
                 </ScrollArea>
             ) : (
