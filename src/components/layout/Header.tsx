@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Car, Wrench, User, CircleDot, Menu, Database, HelpCircle, Flame } from "lucide-react";
+import { Car, Wrench, User, CircleDot, Menu, Database, HelpCircle } from "lucide-react";
 import { useUser } from "@/firebase/auth/use-user";
 import { Skeleton } from "../ui/skeleton";
 import {
@@ -50,7 +50,6 @@ export function Header() {
   const navLinks = [
     { href: "/", label: "My Garage", icon: Car },
     { href: "/fitment", label: "Fitment", icon: CircleDot },
-    { href: "/mod-guide", label: "Mod Guide", icon: Flame },
     { href: "/database", label: "Vehicle Database", icon: Database },
     { href: "/how-it-works", label: "How It Works", icon: HelpCircle },
   ];
