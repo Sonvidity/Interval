@@ -1,4 +1,5 @@
 import type { Vehicle } from './types';
+import { FITMENT_DATA } from './fitment-data';
 
 export const VEHICLE_DATABASE: Vehicle[] = [
   // Existing Cars
@@ -21,6 +22,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 120000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['ford-falcon-fg-turbo'],
   },
   {
     id: 'toyota-86',
@@ -40,6 +42,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant (Super Long Life)', oemIntervalKm: 150000, oemIntervalMonths: 96, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['toyota-86'],
   },
   {
     id: 'sv6-commodore',
@@ -59,6 +62,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['sv6-commodore'],
   },
   // Nissan Skylines
   {
@@ -80,6 +84,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['nissan-skyline-r32-gtst'],
   },
   {
     id: 'nissan-skyline-r32-gtr',
@@ -102,6 +107,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['nissan-skyline-r32-gtr'],
   },
   {
     id: 'nissan-skyline-r33-gtst',
@@ -123,6 +129,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['nissan-skyline-r33-gtst'],
   },
   {
     id: 'nissan-skyline-r34-gtt',
@@ -144,6 +151,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['nissan-skyline-r34-gtt'],
   },
   {
     id: 'nissan-skyline-r34-gtr',
@@ -166,6 +174,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['nissan-skyline-r34-gtr'],
   },
   // Ford Falcons
   {
@@ -186,6 +195,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 120000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['ford-falcon-au'],
   },
   {
     id: 'ford-falcon-ba-bf',
@@ -206,6 +216,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['ford-falcon-ba-bf'],
   },
   // VW Golf R
   {
@@ -227,6 +238,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 120000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['vw-golf-r-mk5'],
   },
   {
     id: 'vw-golf-r-mk6',
@@ -248,6 +260,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Manual Transmission Fluid', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Chassis', transmission: 'Manual' },
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['vw-golf-r-mk6'],
   },
   {
     id: 'vw-golf-r-mk7',
@@ -266,6 +279,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Manual Transmission Fluid', oemIntervalKm: 120000, oemIntervalMonths: 96, type: 'Chassis', transmission: 'Manual' },
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['vw-golf-r-mk7'],
   },
   {
     id: 'vw-golf-r-mk8',
@@ -283,6 +297,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'DSG Transmission Fluid & Filter', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['vw-golf-r-mk8'],
   },
   // Other Cars
   {
@@ -303,6 +318,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Rear Differential Fluid', oemIntervalKm: 120000, oemIntervalMonths: 72, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['mercedes-ml500'],
   },
   {
     id: 'ford-mondeo-mc',
@@ -320,6 +336,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['ford-mondeo-mc'],
   },
   {
     id: 'honda-accord-cl9',
@@ -338,6 +355,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['honda-accord-cl9'],
   },
   // START OF NEW CARS
   // Subaru
@@ -360,6 +378,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['subaru-wrx-sti-gc8'],
   },
   {
     id: 'subaru-wrx-sti-gd',
@@ -380,6 +399,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['subaru-wrx-sti-gd'],
   },
   {
     id: 'subaru-wrx-sti-va',
@@ -399,6 +419,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 48000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 120000, oemIntervalMonths: 72, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['subaru-wrx-sti-va'],
   },
   // Mitsubishi
   {
@@ -420,6 +441,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'AYC/ACD Fluid', oemIntervalKm: 48000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 48000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['mitsubishi-evo-8-9'],
   },
   {
     id: 'mitsubishi-evo-10',
@@ -441,6 +463,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'AYC/ACD Fluid', oemIntervalKm: 48000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 48000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['mitsubishi-evo-10'],
   },
   // Mazda
   {
@@ -460,6 +483,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Differential Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['mazda-mx5-nd'],
   },
   {
     id: 'mazda-rx7-fd',
@@ -479,6 +503,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['mazda-rx7-fd'],
   },
   // Honda
   {
@@ -498,6 +523,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['honda-s2000'],
   },
   {
     id: 'honda-civic-type-r-fk8',
@@ -515,6 +541,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 120, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['honda-civic-type-r-fk8'],
   },
   // BMW
   {
@@ -537,6 +564,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['bmw-m3-e46'],
   },
   {
     id: 'bmw-m2-f87',
@@ -555,6 +583,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Differential Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['bmw-m2-f87'],
   },
   // Ford (US)
   {
@@ -575,6 +604,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 48000, oemIntervalMonths: 36, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 160000, oemIntervalMonths: 72, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['ford-mustang-s550'],
   },
   // Nissan Z
   {
@@ -595,5 +625,6 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
     ],
+    fitment: FITMENT_DATA['nissan-350z'],
   },
 ];

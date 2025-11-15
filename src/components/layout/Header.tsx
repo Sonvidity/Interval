@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Car, Wrench, User } from "lucide-react";
+import { Car, Wrench, User, CircleDot } from "lucide-react";
 import { useUser } from "@/firebase/auth/use-user";
 import { Skeleton } from "../ui/skeleton";
 import {
@@ -45,6 +45,7 @@ export function Header() {
 
   const navLinks = [
     { href: "/", label: "My Garage" },
+    { href: "/fitment", label: "Fitment" },
     { href: "/database", label: "Vehicle Database" },
     { href: "/how-it-works", label: "How It Works" },
   ];

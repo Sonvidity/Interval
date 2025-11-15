@@ -1,10 +1,27 @@
 
+
 export type ServiceItem = {
   name: string;
   oemIntervalKm: number;
   oemIntervalMonths: number;
   type: 'Engine' | 'Chassis';
   transmission?: 'Automatic' | 'Manual'; // Can be specific to a transmission
+};
+
+export type WheelFitment = {
+  pcd: string;
+  studPattern: string;
+  oemSize: {
+    wheel: string;
+    tyre: string;
+    offset: string;
+  };
+  options: {
+    wheel: string;
+    minTyre: string;
+    maxTyre: string;
+    offset: string;
+  }[];
 };
 
 export type Vehicle = {
@@ -16,6 +33,7 @@ export type Vehicle = {
   imageId: string;
   serviceItems: ServiceItem[];
   specificVariants?: string[];
+  fitment?: WheelFitment;
 };
 
 export type ModStage = 'Stock' | 'Stage 1' | 'Stage 2' | 'Stage 3';
@@ -75,3 +93,4 @@ export type CalculatedService = {
   progress: number;
   status: 'ok' | 'due' | 'overdue';
 };
+
