@@ -154,6 +154,15 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '21x10', minTyre: '265/40R21', maxTyre: '295/35R21', offset: '+40 to +50' },
         ],
     },
+    'mercedes-ml500-w166': {
+        pcd: '5x112',
+        studPattern: 'M14 x 1.5',
+        oemSize: { wheel: '19x8.5', tyre: '255/50R19', offset: '+59' },
+        options: [
+            { wheel: '20x9', minTyre: '265/45R20', maxTyre: '275/45R20', offset: '+57' },
+            { wheel: '21x10', minTyre: '265/40R21', maxTyre: '295/35R21', offset: '+45 to +55' },
+        ],
+    },
     'ford-mondeo-mc': {
         pcd: '5x108',
         studPattern: 'M12 x 1.5',

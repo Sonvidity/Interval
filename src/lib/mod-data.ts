@@ -626,6 +626,37 @@ export const MOD_DATA: ModData = {
             }
         ]
     },
+    'k20c4-accord': {
+        summary: "The K20C4 in the 10th Gen Accord 2.0T is a detuned version of the Civic Type R engine. It's a fantastic, torque-rich engine that responds very well to tuning, turning the Accord into a serious sleeper.",
+        powerLimit: "400-450whp (approx. 300-335wkW)",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'An ECU tune is the single best modification for this platform, unlocking a huge amount of performance.',
+                common_mods: 'ECU (Hondata/K-Tuner).'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving breathing and cooling to support higher boost.',
+                common_mods: 'Stage 1 + Intercooler, High-flow downpipe, Cold air intake.'
+            },
+            {
+                name: 'Stage 3',
+                description: 'Upgrading the turbo for Type R-level power and beyond.',
+                common_mods: 'Stage 2 + Civic Type R (FK8) turbocharger upgrade, Upgraded fuel pump.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Heat Soak',
+                description: 'Like most modern turbo cars, the stock intercooler can struggle with heat, especially on tuned cars. An intercooler upgrade is highly recommended for consistent performance.'
+            },
+            {
+                name: '10-Speed Automatic',
+                description: 'The 10-speed auto is generally robust, but a TCU tune is recommended to go along with an ECU tune to improve shifting and torque management.'
+            }
+        ]
+    },
     's54': {
         summary: "The S54 is a high-strung, race-derived inline-six with individual throttle bodies and a 8000 RPM redline. It is one of BMW's most iconic engines, but requires diligent, preventative maintenance to be reliable.",
         powerLimit: "350-380whp (NA)",
@@ -873,6 +904,37 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Cooling System',
                 description: 'The stock radiator and viscous fan hub can become weak over time. An upgraded radiator or replacing the fan clutch is good preventative maintenance.'
+            }
+        ]
+    },
+    'mercedes-m278': {
+        summary: "The M278 is a 4.7L twin-turbo V8 from Mercedes-Benz, known for producing effortless torque and power. It's a robust engine that responds exceptionally well to ECU tuning, unlocking significant performance gains.",
+        powerLimit: "550-600whp (approx. 410-450wkW)",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'An ECU tune is the single most effective modification, providing massive gains in horsepower and torque.',
+                common_mods: 'ECU Tune (e.g., Renntech, Weistec, Eurocharged).'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving exhaust flow to help the turbos breathe and produce more power.',
+                common_mods: 'Stage 1 + High-flow downpipes (catless or sport cats).'
+            },
+            {
+                name: 'Stage 3',
+                description: 'Upgrading the turbochargers and fueling for maximum effort builds.',
+                common_mods: 'Stage 2 + Upgraded turbochargers, Upgraded cooling (intercooler pump, larger heat exchanger), Methanol injection.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Heat Soak',
+                description: 'The charge air cooling system can be overwhelmed on tuned cars, especially in hot climates. An upgraded heat exchanger and/or divorced cooling circuit is recommended to maintain consistent power.'
+            },
+            {
+                name: 'Ignition Coils & Spark Plugs',
+                description: 'Like many direct-injection turbo engines, the M278 is hard on spark plugs and coils, especially when tuned. It is recommended to use one step colder spark plugs and shorten the replacement interval.'
             }
         ]
     }

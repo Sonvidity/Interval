@@ -362,13 +362,14 @@ export const VEHICLE_DATABASE: Vehicle[] = [
   },
   // Other Cars
   {
-    id: 'mercedes-ml500',
+    id: 'mercedes-ml500-w164',
     make: 'Mercedes-Benz',
     model: 'ML 500',
     variant: 'W164 (M273 V8)',
     years: '2007-2011',
     imageId: 'placeholder-suv-black',
     specificVariants: ['ML 500'],
+    modGuideId: 'mercedes-m278', // No specific guide, but M278 is a closer relative
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
@@ -380,6 +381,27 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
     fitment: FITMENT_DATA['mercedes-ml500'],
+  },
+  {
+    id: 'mercedes-ml500-w166',
+    make: 'Mercedes-Benz',
+    model: 'ML 500',
+    variant: 'W166 (M278 Bi-Turbo V8)',
+    years: '2012-2015',
+    imageId: 'placeholder-suv-black',
+    specificVariants: ['ML 500', 'ML 550'],
+    modGuideId: 'mercedes-m278',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Engine Air Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Automatic Transmission Fluid (7G-Tronic)', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Transfer Case Fluid', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Chassis' },
+      { name: 'Front Differential Fluid', oemIntervalKm: 120000, oemIntervalMonths: 72, type: 'Chassis' },
+      { name: 'Rear Differential Fluid', oemIntervalKm: 120000, oemIntervalMonths: 72, type: 'Chassis' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['mercedes-ml500-w166'],
   },
   {
     id: 'ford-mondeo-mc',
@@ -772,7 +794,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2018-2022',
     imageId: 'placeholder-sedan-black',
     specificVariants: ['Sport 1.5T', 'Sport 2.0T', 'Touring 2.0T'],
-    modGuideId: 'ecoboost-2.0', // Closer match than K20C1
+    modGuideId: 'k20c4-accord',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Engine' },
