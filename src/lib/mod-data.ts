@@ -114,12 +114,12 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Improving sound and throttle response.',
-                common_mods: 'Cat-back exhaust, OTR (Over-The-Radiator) cold air intake, ECU Tune.'
+                common_mods: 'Cat-back exhaust, High-flow panel filter, ECU Tune.'
             },
             {
                 name: 'Stage 2',
                 description: 'Extracting more from the intake and exhaust side.',
-                common_mods: 'Stage 1 + High-flow catalytic converters, Ported intake manifold.'
+                common_mods: 'Stage 1 + High-flow catalytic converters, OTR (Over-The-Radiator) cold air intake, Ported intake manifold.'
             },
             {
                 name: 'Stage 3',
