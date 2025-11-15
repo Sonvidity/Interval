@@ -23,9 +23,9 @@ export const FITMENT_DATA: FitmentData = {
         oemSize: { wheel: '17x7', tyre: '215/45R17', offset: '+48' },
         options: [
             { wheel: '17x8', minTyre: '225/45R17', maxTyre: '235/45R17', offset: '+35 to +45' },
-            { wheel: '17x9', minTyre: '245/40R17', maxTyre: '255/40R17', offset: '+35 to +42' },
+            { wheel: '17x9', minTyre: '235/40R17', maxTyre: '245/40R17', offset: '+35 to +42' },
             { wheel: '18x8.5', minTyre: '225/40R18', maxTyre: '245/35R18', offset: '+35 to +45' },
-            { wheel: '18x9.5', minTyre: '245/35R18', maxTyre: '265/35R18', offset: '+38 to +45' },
+            { wheel: '18x9.5', minTyre: '245/35R18', maxTyre: '255/35R18', offset: '+38 to +45' },
         ],
     },
     'sv6-commodore': {
@@ -45,7 +45,7 @@ export const FITMENT_DATA: FitmentData = {
         options: [
             { wheel: '17x8', minTyre: '215/45R17', maxTyre: '235/40R17', offset: '+30 to +38' },
             { wheel: '17x9', minTyre: '235/40R17', maxTyre: '245/40R17', offset: '+30 to +35' },
-            { wheel: '18x9.5', minTyre: '235/40R18', maxTyre: '245/35R18', offset: '+20 to +30' },
+            { wheel: '18x9.5', minTyre: '225/40R18', maxTyre: '235/40R18', offset: '+20 to +30' },
         ],
     },
     'nissan-skyline-r32-gtr': {
@@ -180,7 +180,17 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '17x9', minTyre: '235/40R17', maxTyre: '245/40R17', offset: '+35 to +44' },
         ],
     },
-    'subaru-wrx-sti-gd': {
+    'subaru-wrx-sti-gd-5x100': {
+        pcd: '5x100',
+        studPattern: 'M12 x 1.25',
+        oemSize: { wheel: '17x7.5', tyre: '225/45R17', offset: '+53' },
+        options: [
+            { wheel: '17x8', minTyre: '225/45R17', maxTyre: '235/45R17', offset: '+45 to +53' },
+            { wheel: '18x8.5', minTyre: '225/40R18', maxTyre: '235/40R18', offset: '+44 to +48' },
+            { wheel: '18x9.5', minTyre: '245/35R18', maxTyre: '255/35R18', offset: '+38 to +44' },
+        ],
+    },
+    'subaru-wrx-sti-gd-5x114': {
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '17x8', tyre: '225/45R17', offset: '+53' },
