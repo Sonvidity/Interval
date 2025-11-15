@@ -6,8 +6,8 @@ type ModData = {
 };
 
 export const MOD_DATA: ModData = {
-    'zn6-zn8': {
-        summary: "The Toyota 86/Subaru BRZ platform is a fantastic, lightweight chassis that is often described as a 'momentum car'. Modifications typically focus on addressing the infamous mid-range torque dip (on the first gen) and enhancing the already great handling.",
+    'zn6': {
+        summary: "The first-generation Toyota 86/Subaru BRZ (ZN6/ZC6) is a fantastic, lightweight chassis that is often described as a 'momentum car'. Modifications typically focus on addressing the infamous mid-range torque dip and enhancing the already great handling.",
         powerLimit: "280-300whp (approx. 210-225wkW)",
         stages: [
             {
@@ -25,20 +25,58 @@ export const MOD_DATA: ModData = {
                 common_mods: 'Stage 1 + Unequal Length (UEL) or Equal Length (EL) headers, ECU Tune (required).'
             },
             {
-                name: 'Stage 3',
+                name: 'Stage 3 (Forced Induction)',
                 description: 'Forced induction for a major power increase, turning it into a completely different car.',
                 cost: '$8,000 - $15,000+ AUD',
+                power: '280-400whp+',
                 common_mods: 'Stage 2 + Supercharger or Turbocharger kit, Upgraded fuel pump & injectors, Oil cooler.'
             }
         ],
         common_issues: [
             {
                 name: 'Forced Induction Reliability',
-                description: 'The high-compression FA20/FA24 engine can be sensitive to boost. A very safe, conservative tune is critical for longevity. An oil cooler is considered a mandatory supporting mod.'
+                description: 'The high-compression FA20 engine can be sensitive to boost. A very safe, conservative tune is critical for longevity. An oil cooler is considered a mandatory supporting mod.'
             },
             {
                 name: 'Fueling',
                 description: "The stock fuel pump can struggle with E85 and forced induction. An upgraded fuel pump is often one of the first supporting mods."
+            },
+        ]
+    },
+    'zn8': {
+        summary: "The second-generation Toyota GR86/Subaru BRZ (ZN8/ZD8) builds on its predecessor with a larger 2.4L FA24 engine, which addresses the infamous torque dip. Modifications focus on enhancing power and refining the already excellent chassis.",
+        powerLimit: "350-400whp (approx. 260-300wkW)",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Focuses on improving engine breathing, sound, and throttle response.',
+                cost: '$1,000 - $3,000 AUD',
+                power: '210-220whp (155-165wkW)',
+                common_mods: 'Cat-back exhaust, High-flow air filter, ECU Tune (optional but unlocks potential).'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Unlocking more top-end power and sound.',
+                cost: '$2,000 - $4,500 AUD',
+                power: '225-235whp (168-175wkW)',
+                common_mods: 'Stage 1 + Upgraded headers and full exhaust system, ECU Tune (required).'
+            },
+            {
+                name: 'Stage 3 (Forced Induction)',
+                description: 'Forced induction for a major power increase. The stronger FA24 handles boost better than the FA20.',
+                cost: '$10,000 - $18,000+ AUD',
+                power: '300-450whp+',
+                common_mods: 'Stage 2 + Supercharger or Turbocharger kit, Upgraded fuel system, Oil cooler (highly recommended).'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Oil Pressure & Starvation',
+                description: 'On track, particularly in long, high-G right-hand turns, the FA24 can experience oil pressure drops. A baffled sump or Accusump is recommended for serious track use. Using a higher viscosity oil (e.g. 5W-30) can also help.'
+            },
+            {
+                name: 'Silicone (RTV) in Oil Pan',
+                description: "Excessive RTV sealant from the factory has been known to break off and clog the oil pickup tube. Some owners proactively drop the oil pan to clean it out."
             },
         ]
     },
@@ -64,6 +102,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Pushing past the limits of the stock turbo with a larger unit.',
                 cost: '$5,000 - $10,000+ AUD',
+                power: '450whp+',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g., Garrett GTX series), External wastegate, Valve springs (highly recommended).'
             }
         ],
@@ -104,6 +143,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Moving to a single turbo setup for simplicity and bigger power.',
                 cost: '$8,000 - $20,000+ AUD',
+                power: '450whp+',
                 common_mods: 'Stage 2 + Single turbo conversion kit (e.g., Garrett G-series), External wastegate, Upgraded MAF sensors or MAP sensor conversion.'
             }
         ],
@@ -141,9 +181,10 @@ export const MOD_DATA: ModData = {
                 common_mods: 'Stage 1 + High-flow catalytic converters, OTR (Over-The-Radiator) cold air intake.'
             },
             {
-                name: 'Stage 3',
+                name: 'Stage 3 (Forced Induction)',
                 description: 'Forced induction is the only real path to significant power gains.',
                 cost: '$10,000 - $18,000+ AUD',
+                power: '350whp+',
                 common_mods: 'Supercharger or Turbo kit. This is a custom and expensive route.'
             }
         ],
@@ -180,6 +221,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger for a significant power jump.',
                 cost: '$5,000 - $9,000+ AUD',
+                power: '300whp+',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g. Hypergear ATR28), Upgraded MAF sensor.'
             }
         ],
@@ -216,6 +258,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Moving beyond the stock turbo for serious power.',
                 cost: '$7,000 - $12,000+ AUD',
+                power: '400whp+',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g., Garrett GT3076r), External wastegate.'
             }
         ],
@@ -252,6 +295,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for significant power gains.',
                 cost: '$7,000 - $13,000+ AUD',
+                power: '420whp+',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g., Garrett GTX3071r), External wastegate.'
             }
         ],
@@ -285,9 +329,10 @@ export const MOD_DATA: ModData = {
                 common_mods: 'Stage 1 + High-flow catalytic converter, Ported intake or aftermarket intake manifold.'
             },
             {
-                name: 'Stage 3',
+                name: 'Stage 3 (Forced Induction)',
                 description: 'The expensive path to more power: adding boost.',
                 cost: '$12,000 - $20,000+ AUD',
+                power: '350whp+',
                 common_mods: 'Custom turbocharger or supercharger kit. This is a significant undertaking.'
             }
         ],
@@ -324,6 +369,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger for a massive performance increase.',
                 cost: '$7,000 - $12,000+ AUD',
+                power: '400whp+',
                 common_mods: 'Stage 2 + Big turbo kit (e.g., K04 hybrid or larger), Upgraded intercooler, Upgraded clutch.'
             }
         ],
@@ -364,6 +410,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Hybrid or full-frame turbo upgrades for very serious power.',
                 cost: '$8,000 - $15,000+ AUD',
+                power: '450whp+',
                 common_mods: 'Stage 2 + Hybrid turbo (e.g. TTE525) or big turbo kit, Upgraded fuel pumps, Upgraded clutch for manual cars.'
             }
         ],
@@ -397,9 +444,10 @@ export const MOD_DATA: ModData = {
                 common_mods: 'Stage 1 + High-flow headers/downpipes, Intake manifold spacer.'
             },
             {
-                name: 'Stage 3',
+                name: 'Stage 3 (Forced Induction)',
                 description: 'Forced induction is the only path to big power.',
                 cost: '$10,000 - $20,000+ AUD',
+                power: '350whp+',
                 common_mods: 'Turbocharger kit. This requires significant supporting mods and is a major investment.'
             }
         ],
@@ -419,23 +467,24 @@ export const MOD_DATA: ModData = {
         powerLimit: "250-280whp (NA) / 450-500whp (Turbo)",
         stages: [
             {
-                name: 'NA Stage 1',
+                name: 'Stage 1 (NA)',
                 description: 'Basic bolt-ons and a tune.',
                 cost: '$1,500 - $3,000 AUD',
                 power: '210-230whp (155-170wkW)',
                 common_mods: 'ECU (Hondata/K-Tuner), Cold air intake, Cat-back exhaust, Rear sway bar upgrade.'
             },
             {
-                name: 'NA Stage 2',
+                name: 'Stage 2 (NA)',
                 description: 'Improving airflow for more top-end power.',
                 cost: '$3,000 - $6,000 AUD',
                 power: '240-260whp (180-195wkW)',
                 common_mods: 'Stage 1 + Race header, Intake manifold (e.g. RBC/RRC), Upgraded cams.'
             },
             {
-                name: 'Forced Induction',
+                name: 'Stage 3 (Forced Induction)',
                 description: 'The path to significant power.',
                 cost: '$8,000 - $15,000+ AUD',
+                power: '350whp+',
                 common_mods: 'Turbo kit or Supercharger kit, Upgraded fuel system, Upgraded clutch.'
             }
         ],
@@ -472,6 +521,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for a significant power increase.',
                 cost: '$5,000 - $10,000+ AUD',
+                power: '320whp+',
                 common_mods: 'Stage 2 + Upgraded turbo (e.g., VF-series or Blouch), Upgraded injectors, Intercooler.'
             }
         ],
@@ -512,6 +562,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Moving to a larger turbo and addressing fueling.',
                 cost: '$7,000 - $15,000+ AUD',
+                power: '380whp+',
                 common_mods: 'Stage 2 + Upgraded turbo (e.g., Blouch Dominator series), Upgraded injectors, Intercooler, Equal Length (EL) headers for better performance.'
             }
         ],
@@ -552,6 +603,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for a huge jump in power.',
                 cost: '$8,000 - $15,000+ AUD',
+                power: '420whp+',
                 common_mods: 'Stage 2 + Upgraded turbo kit (e.g., FP Green/Red/Black), Upgraded clutch.'
             }
         ],
@@ -592,6 +644,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Moving to an upgraded turbo.',
                 cost: '$7,000 - $14,000+ AUD',
+                power: '430whp+',
                 common_mods: 'Stage 2 + Upgraded turbo kit (e.g., FP Green/Red), Upgraded clutch (for manual) or clutch packs (for SST).'
             }
         ],
@@ -615,23 +668,24 @@ export const MOD_DATA: ModData = {
         powerLimit: "350-400whp (approx. 260-300wkW)",
         stages: [
             {
-                name: 'Reliability Mods (Stage 0)',
+                name: 'Stage 1 (Reliability)',
                 description: 'Before adding power, ensure the car is healthy.',
                 cost: '$2,000 - $5,000 AUD',
                 power: '260-280whp (195-210wkW)',
                 common_mods: 'Upgraded radiator, Downpipe (to reduce heat), ECU (PowerFC is common), Fuel pump.'
             },
             {
-                name: 'Stage 1',
+                name: 'Stage 2',
                 description: 'Maximizing the stock sequential twin-turbo system.',
                 cost: '$4,000 - $8,000 AUD',
                 power: '300-350whp (225-260wkW)',
                 common_mods: 'Reliability Mods + Full exhaust, Intercooler, Cold air intake.'
             },
             {
-                name: 'Stage 2',
+                name: 'Stage 3',
                 description: 'Simplifying with a non-sequential turbo setup or single turbo.',
                 cost: '$10,000 - $20,000+ AUD',
+                power: '380whp+',
                 common_mods: 'Stage 1 + Non-sequential turbo conversion OR Single turbo kit, Upgraded injectors, V-mount intercooler/radiator setup.'
             }
         ],
@@ -662,9 +716,10 @@ export const MOD_DATA: ModData = {
                 common_mods: 'ECU (Hondata/K-Tuner), Cold air intake, Cat-back exhaust, Test pipe/HFC.'
             },
             {
-                name: 'Stage 2',
+                name: 'Stage 2 (Forced Induction)',
                 description: 'Forced induction is the most common path to significant power.',
                 cost: '$9,000 - $16,000+ AUD',
+                power: '350whp+',
                 common_mods: 'Stage 1 + Supercharger kit (common) or Turbo kit.'
             }
         ],
@@ -705,6 +760,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger.',
                 cost: '$7,000 - $12,000+ AUD',
+                power: '430whp+',
                 common_mods: 'Stage 2 + Upgraded turbocharger, Upgraded fuel system.'
             }
         ],
@@ -741,6 +797,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for Type R-level power and beyond.',
                 cost: '$6,000 - $10,000+ AUD',
+                power: '380whp+',
                 common_mods: 'Stage 2 + Civic Type R (FK8) turbocharger upgrade, Upgraded fuel pump.'
             }
         ],
@@ -811,6 +868,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading fueling and turbo(s) for maximum power.',
                 cost: '$8,000 - $20,000+ AUD',
+                power: '500whp+ (N55) / 600whp+ (S55)',
                 common_mods: 'Stage 2 + Upgraded high-pressure fuel pump, Upgraded turbo(s).'
             }
         ],
@@ -844,9 +902,10 @@ export const MOD_DATA: ModData = {
                 common_mods: 'Stage 1 + Intake manifold (e.g. from GT350), Long tube headers.'
             },
             {
-                name: 'Stage 3',
+                name: 'Stage 3 (Forced Induction)',
                 description: 'Forced induction for massive power gains.',
                 cost: '$12,000 - $25,000+ AUD',
+                power: '650whp+',
                 common_mods: 'Supercharger kit (e.g., Whipple, Roush) or Turbocharger kit.'
             }
         ],
@@ -873,9 +932,10 @@ export const MOD_DATA: ModData = {
                 common_mods: 'Cold air intake/plenum spacer, Cat-back exhaust, High-flow cats or test pipes, ECU Tune.'
             },
             {
-                name: 'Stage 2',
+                name: 'Stage 2 (Forced Induction)',
                 description: 'Forced induction is the only way to get significant power.',
                 cost: '$10,000 - $18,000+ AUD',
+                power: '380whp+',
                 common_mods: 'Stage 1 + Supercharger or Turbocharger kit.'
             }
         ],
@@ -912,6 +972,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Pushing beyond the stock turbos.',
                 cost: '$8,000 - $15,000+ AUD',
+                power: '500whp+',
                 common_mods: 'Stage 2 + Upgraded turbochargers, Upgraded fuel pump.'
             }
         ],
@@ -949,9 +1010,10 @@ export const MOD_DATA: ModData = {
                 common_mods: 'Stage 1 + Aftermarket cylinder heads (e.g. AFR, Trick Flow), Camshaft, Intake manifold (e.g. Holley Systemax, Edelbrock Performer).'
             },
             {
-                name: 'Stage 3',
+                name: 'Stage 3 (Forced Induction)',
                 description: 'Adding boost for a huge jump in power.',
                 cost: '$8,000 - $15,000+ AUD',
+                power: '400whp+',
                 common_mods: 'Supercharger kit (e.g. Vortech, Paxton) or Turbocharger kit.'
             }
         ],
@@ -992,6 +1054,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger for a significant power bump.',
                 cost: '$5,000 - $9,000+ AUD',
+                power: '320whp+',
                 common_mods: 'Stage 2 + Upgraded turbocharger, Upgraded fuel system.'
             }
         ],
@@ -1028,6 +1091,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3 (Advanced)',
                 description: 'More involved modifications for dedicated builds. This path offers minimal gains for high cost.',
                 cost: '$5,000 - $10,000+ AUD',
+                power: '220whp+',
                 common_mods: 'Stage 2 + Individual throttle bodies (ITBs), Upgraded camshafts, ECU Tune.'
             }
         ],
@@ -1064,6 +1128,7 @@ export const MOD_DATA: ModData = {
                 name: 'Stage 3',
                 description: 'Upgrading the turbochargers and fueling for maximum effort builds.',
                 cost: '$15,000 - $25,000+ AUD',
+                power: '600whp+',
                 common_mods: 'Stage 2 + Upgraded turbochargers, Upgraded cooling (intercooler pump, larger heat exchanger), Methanol injection.'
             }
         ],
