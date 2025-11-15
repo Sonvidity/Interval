@@ -814,4 +814,68 @@ export const MOD_DATA: ModData = {
             }
         ]
     },
+    'ecoboost-2.0': {
+        summary: "The 2.0L EcoBoost is a versatile turbocharged four-cylinder found in many Ford products. It responds well to basic modifications.",
+        powerLimit: "300-330whp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'An ECU tune and better breathing.',
+                common_mods: 'ECU Tune, Upgraded intercooler, High-flow air filter.'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving exhaust flow.',
+                common_mods: 'Stage 1 + Cat-back exhaust, High-flow downpipe.'
+            },
+            {
+                name: 'Stage 3',
+                description: 'Upgrading the turbocharger for a significant power bump.',
+                common_mods: 'Stage 2 + Upgraded turbocharger, Upgraded fuel system.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Low-Speed Pre-Ignition (LSPI)',
+                description: 'Especially on early models, LSPI can be an issue. Using high-quality gasoline and the correct specification oil is critical to prevent engine damage.'
+            },
+            {
+                name: 'Heat Soak',
+                description: 'The stock intercooler is often undersized. An upgraded intercooler is one of the most important modifications for maintaining consistent power.'
+            }
+        ]
+    },
+     'rb25de-na': {
+        summary: "The naturally-aspirated RB25DE is a smooth and reliable inline-six. While it lacks the punch of its turbocharged siblings, modifications can improve its sound and responsiveness, making it a more engaging engine.",
+        powerLimit: "200-220whp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Focus on improving sound and engine breathing.',
+                common_mods: 'Cat-back exhaust, High-flow panel filter.'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving intake and exhaust flow further for better throttle response.',
+                common_mods: 'Stage 1 + High-flow catalytic converter or de-cat pipe, Aftermarket headers (extractors).'
+            },
+            {
+                name: 'Stage 3 (Advanced)',
+                description: 'More involved modifications for dedicated builds. This path offers minimal gains for high cost.',
+                common_mods: 'Stage 2 + Individual throttle bodies (ITBs), Upgraded camshafts, ECU Tune.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Ignition Coils',
+                description: 'Like all RBs, the coil packs are a common failure point with age, leading to misfires. They are relatively simple to replace.'
+            },
+            {
+                name: 'Cooling System',
+                description: 'The stock radiator and viscous fan hub can become weak over time. An upgraded radiator or replacing the fan clutch is good preventative maintenance.'
+            }
+        ]
+    }
 };
+
+    

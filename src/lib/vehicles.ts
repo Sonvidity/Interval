@@ -123,7 +123,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1993-1998',
     imageId: 'placeholder-coupe-blue',
     specificVariants: ['GTS', 'GTS Type G'],
-    // No specific mod guide for NA RB25 yet
+    modGuideId: 'rb25de-na',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs (Platinum)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -169,7 +169,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1998-2002',
     imageId: 'placeholder-coupe-silver',
     specificVariants: ['GT', '25GT-V'],
-    // No specific mod guide for NA RB25 yet
+    modGuideId: 'rb25de-na',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Platinum)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -240,6 +240,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1998-2002',
     imageId: 'placeholder-sedan-gold',
     specificVariants: ['Forte', 'Futura', 'XR6'],
+    modGuideId: 'barra-na', // Principles are very similar
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 45000, oemIntervalMonths: 36, type: 'Engine' },
@@ -388,6 +389,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2015-2022',
     imageId: 'placeholder-wagon-gray',
     specificVariants: ['Ambiente', 'Trend', 'Titanium'],
+    modGuideId: 'ecoboost-2.0',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
@@ -898,3 +900,5 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     fitment: FITMENT_DATA['mustang-s650'],
   },
 ];
+
+    
