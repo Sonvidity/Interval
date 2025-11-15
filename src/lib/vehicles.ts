@@ -1,3 +1,4 @@
+
 import type { Vehicle } from './types';
 import { FITMENT_DATA } from './fitment-data';
 
@@ -677,3 +678,5 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     fitment: FITMENT_DATA['nissan-350z'],
   },
 ];
+
+    
