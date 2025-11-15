@@ -6,7 +6,7 @@ import type { Vehicle } from '@/lib/types';
 import { VehicleSelector } from '@/components/fitment/VehicleSelector';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Flame, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { Flame, AlertTriangle, ShieldCheck, DollarSign } from 'lucide-react';
 import { VEHICLE_DATABASE } from '@/lib/vehicles';
 import { MOD_DATA } from '@/lib/mod-data';
 
@@ -56,9 +56,16 @@ export default function ModGuidePage() {
                       {modGuide.stages.map((stage, index) => (
                         <AccordionItem value={`item-${index}`} key={stage.name}>
                           <AccordionTrigger className="font-semibold text-lg">{stage.name}</AccordionTrigger>
-                          <AccordionContent className="space-y-2">
+                          <AccordionContent className="space-y-4">
                              <p className="text-muted-foreground">{stage.description}</p>
                              <p><strong className="font-medium">Common Mods:</strong> {stage.common_mods}</p>
+                             {stage.cost && (
+                                <div className="flex items-center gap-2 text-sm text-muted-foreground border-t pt-4 mt-4">
+                                  <DollarSign size={16} className="text-accent" />
+                                  <strong className="font-medium text-foreground/80">Est. Cost:</strong> 
+                                  <span>{stage.cost}</span>
+                                </div>
+                              )}
                           </AccordionContent>
                         </AccordionItem>
                       ))}

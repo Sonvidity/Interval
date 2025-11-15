@@ -31,6 +31,7 @@ export type ModGuide = {
     name: string;
     description: string;
     common_mods: string;
+    cost?: string;
   }[];
   common_issues: {
     name: string;
@@ -108,4 +109,3 @@ export type CalculatedService = {
   progress: number;
   status: 'ok' | 'due' | 'overdue';
 };
-

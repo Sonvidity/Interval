@@ -13,16 +13,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Focuses on improving engine breathing and sound.',
+                cost: '$1,000 - $2,500 AUD',
                 common_mods: 'Cat-back exhaust, High-flow air filter, ECU Tune (optional but recommended).'
             },
             {
                 name: 'Stage 2',
                 description: 'Aims to eliminate the torque dip and significantly wake the car up.',
+                cost: '$1,500 - $3,500 AUD',
                 common_mods: 'Stage 1 + Unequal Length (UEL) or Equal Length (EL) headers, ECU Tune (required).'
             },
             {
                 name: 'Stage 3',
                 description: 'Forced induction for a major power increase, turning it into a completely different car.',
+                cost: '$8,000 - $15,000+ AUD',
                 common_mods: 'Stage 2 + Supercharger or Turbocharger kit, Upgraded fuel pump & injectors, Oil cooler.'
             }
         ],
@@ -44,16 +47,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Simple bolt-ons and a tune for a significant and safe power increase.',
+                cost: '$1,500 - $3,000 AUD',
                 common_mods: 'ECU Tune, Upgraded fuel pump, High-flow cat, Cat-back exhaust.'
             },
             {
                 name: 'Stage 2',
                 description: 'Maximizing the efficiency of the stock turbocharger.',
+                cost: '$2,500 - $5,000 AUD',
                 common_mods: 'Stage 1 + Intercooler upgrade, Upgraded injectors, Boost controller.'
             },
             {
                 name: 'Stage 3',
                 description: 'Pushing past the limits of the stock turbo with a larger unit.',
+                cost: '$5,000 - $10,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g., Garrett GTX series), External wastegate, Valve springs (highly recommended).'
             }
         ],
@@ -79,16 +85,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Unlocking the potential of the stock twin-turbos.',
+                cost: '$2,000 - $4,000 AUD',
                 common_mods: 'ECU (e.g., Nistune, Haltech), Boost controller, Cat-back exhaust, Fuel pump.'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving flow and pushing the stock turbos to their safe limit.',
+                cost: '$4,000 - $7,000 AUD',
                 common_mods: 'Stage 1 + Full exhaust with downpipes, Upgraded intercooler, Higher-flow injectors.'
             },
             {
                 name: 'Stage 3',
                 description: 'Moving to a single turbo setup for simplicity and bigger power.',
+                cost: '$8,000 - $20,000+ AUD',
                 common_mods: 'Stage 2 + Single turbo conversion kit (e.g., Garrett G-series), External wastegate, Upgraded MAF sensors or MAP sensor conversion.'
             }
         ],
@@ -114,16 +123,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Improving sound and throttle response.',
+                cost: '$800 - $2,000 AUD',
                 common_mods: 'Cat-back exhaust, High-flow panel filter, ECU Tune.'
             },
             {
                 name: 'Stage 2',
                 description: 'Extracting more from the intake and exhaust side.',
-                common_mods: 'Stage 1 + High-flow catalytic converters, OTR (Over-The-Radiator) cold air intake, Ported intake manifold.'
+                cost: '$2,500 - $4,500 AUD',
+                common_mods: 'Stage 1 + High-flow catalytic converters, OTR (Over-The-Radiator) cold air intake.'
             },
             {
                 name: 'Stage 3',
                 description: 'Forced induction is the only real path to significant power gains.',
+                cost: '$10,000 - $18,000+ AUD',
                 common_mods: 'Supercharger or Turbo kit. This is a custom and expensive route.'
             }
         ],
@@ -145,16 +157,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Basic bolt-ons to improve breathing and sound.',
+                cost: '$2,000 - $4,000 AUD',
                 common_mods: 'ECU (e.g. Nistune), Boost controller, Cat-back exhaust, Fuel pump, Front-mount intercooler.'
             },
             {
                 name: 'Stage 2',
                 description: 'Maximizing the stock turbo and supporting fuel system.',
+                cost: '$3,500 - $6,000 AUD',
                 common_mods: 'Stage 1 + Full exhaust, Upgraded injectors, High-flow turbo elbow.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger for a significant power jump.',
+                cost: '$5,000 - $9,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g. Hypergear ATR28), Upgraded MAF sensor.'
             }
         ],
@@ -176,16 +191,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Simple bolt-ons for a quick and effective power gain.',
+                cost: '$2,500 - $4,500 AUD',
                 common_mods: 'ECU (e.g. Nistune, Haltech), Boost controller, Fuel pump, Intercooler, Cat-back exhaust.'
             },
             {
                 name: 'Stage 2',
                 description: 'Pushing the stock turbo to its limit.',
+                cost: '$4,000 - $7,000 AUD',
                 common_mods: 'Stage 1 + Full exhaust, Upgraded injectors, High-flow turbo elbow, Upgraded MAF.'
             },
             {
                 name: 'Stage 3',
                 description: 'Moving beyond the stock turbo for serious power.',
+                cost: '$7,000 - $12,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g., Garrett GT3076r), External wastegate.'
             }
         ],
@@ -207,16 +225,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Basic bolt-ons to unleash the NEOs potential.',
+                cost: '$2,500 - $4,500 AUD',
                 common_mods: 'ECU (e.g. Nistune, Haltech), Boost controller, Fuel pump, Intercooler, Cat-back exhaust.'
             },
             {
                 name: 'Stage 2',
                 description: 'Maximizing the stock turbo and fueling.',
+                cost: '$4,500 - $7,500 AUD',
                 common_mods: 'Stage 1 + Full exhaust, Upgraded injectors, High-flow turbo elbow, Upgraded MAF.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for significant power gains.',
+                cost: '$7,000 - $13,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbocharger (e.g., Garrett GTX3071r), External wastegate.'
             }
         ],
@@ -238,16 +259,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Improving breathing and sound for a better driving experience.',
+                cost: '$1,000 - $2,500 AUD',
                 common_mods: 'ECU Tune, Cat-back exhaust, High-flow panel filter.'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving intake and exhaust flow further.',
+                cost: '$2,500 - $4,500 AUD',
                 common_mods: 'Stage 1 + High-flow catalytic converter, Ported intake or aftermarket intake manifold.'
             },
             {
                 name: 'Stage 3',
                 description: 'The expensive path to more power: adding boost.',
+                cost: '$12,000 - $20,000+ AUD',
                 common_mods: 'Custom turbocharger or supercharger kit. This is a significant undertaking.'
             }
         ],
@@ -269,16 +293,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU tune provides the single biggest power gain.',
+                cost: '$800 - $1,500 AUD',
                 common_mods: 'ECU Tune (Stage 1).'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving airflow to support more power.',
+                cost: '$2,500 - $5,000 AUD',
                 common_mods: 'ECU Tune (Stage 2), Cold air intake, High-pressure fuel pump (HPFP) upgrade, Turbo-back exhaust.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger for a massive performance increase.',
+                cost: '$7,000 - $12,000+ AUD',
                 common_mods: 'Stage 2 + Big turbo kit (e.g., K04 hybrid or larger), Upgraded intercooler, Upgraded clutch.'
             }
         ],
@@ -304,16 +331,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU and TCU (for DSG models) tune transforms the car.',
+                cost: '$1,500 - $2,500 AUD',
                 common_mods: 'ECU Tune, TCU Tune (DSG).'
             },
             {
                 name: 'Stage 2',
                 description: 'Maximizing the efficiency of the stock IS38 turbo.',
+                cost: '$3,000 - $6,000 AUD',
                 common_mods: 'Stage 1 + Downpipe, Intercooler, Cold air intake.'
             },
             {
                 name: 'Stage 3',
                 description: 'Hybrid or full-frame turbo upgrades for very serious power.',
+                cost: '$8,000 - $15,000+ AUD',
                 common_mods: 'Stage 2 + Hybrid turbo (e.g. TTE525) or big turbo kit, Upgraded fuel pumps, Upgraded clutch for manual cars.'
             }
         ],
@@ -335,16 +365,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Focuses on sound and slight performance gains.',
+                cost: '$1,500 - $3,000 AUD',
                 common_mods: 'ECU Tune, Cat-back exhaust, Cold air intake.'
             },
             {
                 name: 'Stage 2',
                 description: 'More extensive bolt-ons for better breathing.',
+                cost: '$3,000 - $5,000 AUD',
                 common_mods: 'Stage 1 + High-flow headers/downpipes, Intake manifold spacer.'
             },
             {
                 name: 'Stage 3',
                 description: 'Forced induction is the only path to big power.',
+                cost: '$10,000 - $20,000+ AUD',
                 common_mods: 'Turbocharger kit. This requires significant supporting mods and is a major investment.'
             }
         ],
@@ -366,16 +399,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'NA Stage 1',
                 description: 'Basic bolt-ons and a tune.',
+                cost: '$1,500 - $3,000 AUD',
                 common_mods: 'ECU (Hondata/K-Tuner), Cold air intake, Cat-back exhaust, Rear sway bar upgrade.'
             },
             {
                 name: 'NA Stage 2',
                 description: 'Improving airflow for more top-end power.',
+                cost: '$3,000 - $6,000 AUD',
                 common_mods: 'Stage 1 + Race header, Intake manifold (e.g. RBC/RRC), Upgraded cams.'
             },
             {
                 name: 'Forced Induction',
                 description: 'The path to significant power.',
+                cost: '$8,000 - $15,000+ AUD',
                 common_mods: 'Turbo kit or Supercharger kit, Upgraded fuel system, Upgraded clutch.'
             }
         ],
@@ -397,16 +433,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Basic tune and exhaust for sound and a modest power bump.',
+                cost: '$1,000 - $2,500 AUD',
                 common_mods: 'ECU Tune, Cat-back exhaust.'
             },
             {
                 name: 'Stage 2',
                 description: 'Full exhaust and intake to maximize the stock turbo.',
+                cost: '$2,500 - $5,000 AUD',
                 common_mods: 'Stage 1 + Turbo-back exhaust, Cold air intake, Upgraded fuel pump.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for a significant power increase.',
+                cost: '$5,000 - $10,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbo (e.g., VF-series or Blouch), Upgraded injectors, Intercooler.'
             }
         ],
@@ -432,16 +471,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'ECU tune and exhaust for a quick power gain and enhanced sound.',
+                cost: '$1,200 - $2,800 AUD',
                 common_mods: 'ECU Tune, Cat-back exhaust.'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving breathing to get the most from the stock turbo.',
+                cost: '$3,000 - $6,000 AUD',
                 common_mods: 'Stage 1 + Turbo-back exhaust, Cold air intake, Upgraded fuel pump.'
             },
             {
                 name: 'Stage 3',
                 description: 'Moving to a larger turbo and addressing fueling.',
+                cost: '$7,000 - $15,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbo (e.g., Blouch Dominator series), Upgraded injectors, Intercooler, Equal Length (EL) headers for better performance.'
             }
         ],
@@ -467,16 +509,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Basic bolt-ons and a tune.',
+                cost: '$2,000 - $4,000 AUD',
                 common_mods: 'ECU Tune, Turbo-back exhaust, Boost controller, Walbro 255 fuel pump.'
             },
             {
                 name: 'Stage 2',
                 description: 'Pushing the stock turbo further with upgraded cams.',
+                cost: '$4,000 - $7,000 AUD',
                 common_mods: 'Stage 1 + Upgraded camshafts (e.g., GSC S2), Intercooler piping, Upgraded injectors.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for a huge jump in power.',
+                cost: '$8,000 - $15,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbo kit (e.g., FP Green/Red/Black), Upgraded clutch.'
             }
         ],
@@ -502,16 +547,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'ECU tune and basic bolt-ons.',
+                cost: '$1,500 - $3,000 AUD',
                 common_mods: 'ECU Tune, Turbo-back exhaust, Boost controller, High-flow fuel pump.'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving airflow and fueling to maximize the stock turbo.',
+                cost: '$3,500 - $6,000 AUD',
                 common_mods: 'Stage 1 + Upgraded intercooler & piping, Upgraded injectors, Cold air intake.'
             },
             {
                 name: 'Stage 3',
                 description: 'Moving to an upgraded turbo.',
+                cost: '$7,000 - $14,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbo kit (e.g., FP Green/Red), Upgraded clutch (for manual) or clutch packs (for SST).'
             }
         ],
@@ -537,16 +585,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Reliability Mods (Stage 0)',
                 description: 'Before adding power, ensure the car is healthy.',
+                cost: '$2,000 - $5,000 AUD',
                 common_mods: 'Upgraded radiator, Downpipe (to reduce heat), ECU (PowerFC is common), Fuel pump.'
             },
             {
                 name: 'Stage 1',
                 description: 'Maximizing the stock sequential twin-turbo system.',
+                cost: '$4,000 - $8,000 AUD',
                 common_mods: 'Reliability Mods + Full exhaust, Intercooler, Cold air intake.'
             },
             {
                 name: 'Stage 2',
                 description: 'Simplifying with a non-sequential turbo setup or single turbo.',
+                cost: '$10,000 - $20,000+ AUD',
                 common_mods: 'Stage 1 + Non-sequential turbo conversion OR Single turbo kit, Upgraded injectors, V-mount intercooler/radiator setup.'
             }
         ],
@@ -572,11 +623,13 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Basic intake/exhaust mods and a tune to lower VTEC engagement.',
+                cost: '$1,500 - $3,500 AUD',
                 common_mods: 'ECU (Hondata/K-Tuner), Cold air intake, Cat-back exhaust, Test pipe/HFC.'
             },
             {
                 name: 'Stage 2',
                 description: 'Forced induction is the most common path to significant power.',
+                cost: '$9,000 - $16,000+ AUD',
                 common_mods: 'Stage 1 + Supercharger kit (common) or Turbo kit.'
             }
         ],
@@ -602,16 +655,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU tune is all that is needed for a massive gain in power and torque.',
+                cost: '$1,000 - $1,800 AUD',
                 common_mods: 'ECU (Hondata/K-Tuner).'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving breathing and cooling to support the tune.',
+                cost: '$3,000 - $6,000 AUD',
                 common_mods: 'Stage 1 + Intercooler, Downpipe, Front pipe, Cold air intake.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger.',
+                cost: '$7,000 - $12,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbocharger, Upgraded fuel system.'
             }
         ],
@@ -633,16 +689,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU tune is the single best modification for this platform, unlocking a huge amount of performance.',
+                cost: '$1,000 - $1,800 AUD',
                 common_mods: 'ECU (Hondata/K-Tuner).'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving breathing and cooling to support higher boost.',
+                cost: '$2,500 - $5,000 AUD',
                 common_mods: 'Stage 1 + Intercooler, High-flow downpipe, Cold air intake.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbo for Type R-level power and beyond.',
+                cost: '$6,000 - $10,000+ AUD',
                 common_mods: 'Stage 2 + Civic Type R (FK8) turbocharger upgrade, Upgraded fuel pump.'
             }
         ],
@@ -664,11 +723,13 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1 (Reliability)',
                 description: 'Addressing the key failure points before adding power is non-negotiable.',
+                cost: '$4,000 - $8,000 AUD',
                 common_mods: 'Rod bearing replacement, VANOS rebuild/bulletproofing, Rear subframe reinforcement.'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving sound and breathing.',
+                cost: '$8,000 - $15,000+ AUD',
                 common_mods: 'Stage 1 + CSL-style airbox, Headers, Full exhaust, ECU Tune.'
             }
         ],
@@ -694,16 +755,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU tune provides a significant power and torque increase.',
+                cost: '$1,000 - $2,000 AUD',
                 common_mods: 'ECU Tune (e.g. Bootmod3, MHD).'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving exhaust flow to reduce backpressure.',
+                cost: '$2,500 - $5,000 AUD',
                 common_mods: 'Stage 1 + High-flow downpipes.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading fueling and turbo(s) for maximum power.',
+                cost: '$8,000 - $20,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded high-pressure fuel pump, Upgraded turbo(s).'
             }
         ],
@@ -725,16 +789,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Improving sound and breathing.',
+                cost: '$1,500 - $3,500 AUD',
                 common_mods: 'Cold air intake, Cat-back exhaust, ECU Tune.'
             },
             {
                 name: 'Stage 2',
                 description: 'Further improving airflow.',
+                cost: '$3,500 - $6,000 AUD',
                 common_mods: 'Stage 1 + Intake manifold (e.g. from GT350), Long tube headers.'
             },
             {
                 name: 'Stage 3',
                 description: 'Forced induction for massive power gains.',
+                cost: '$12,000 - $25,000+ AUD',
                 common_mods: 'Supercharger kit (e.g., Whipple, Roush) or Turbocharger kit.'
             }
         ],
@@ -756,11 +823,13 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Basic bolt-ons for sound and some power.',
+                cost: '$1,500 - $3,500 AUD',
                 common_mods: 'Cold air intake/plenum spacer, Cat-back exhaust, High-flow cats or test pipes, ECU Tune.'
             },
             {
                 name: 'Stage 2',
                 description: 'Forced induction is the only way to get significant power.',
+                cost: '$10,000 - $18,000+ AUD',
                 common_mods: 'Stage 1 + Supercharger or Turbocharger kit.'
             }
         ],
@@ -782,16 +851,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU tune is all that is required for a massive power and torque gain.',
+                cost: '$1,200 - $2,500 AUD',
                 common_mods: 'ECU Tune (e.g. EcuTek).'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving breathing to help the stock turbos.',
+                cost: '$3,000 - $6,000 AUD',
                 common_mods: 'Stage 1 + Upgraded heat exchanger, High-flow downpipes, Cat-back exhaust.'
             },
             {
                 name: 'Stage 3',
                 description: 'Pushing beyond the stock turbos.',
+                cost: '$8,000 - $15,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbochargers, Upgraded fuel pump.'
             }
         ],
@@ -817,16 +889,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Classic bolt-ons to wake up the 5.0L.',
+                cost: '$1,000 - $2,500 AUD',
                 common_mods: 'Cold air intake, Cat-back exhaust, Underdrive pulleys, Timing adjustment.'
             },
             {
                 name: 'Stage 2',
                 description: 'The "Heads, Cam, Intake" combo is the traditional path to naturally aspirated power.',
+                cost: '$4,000 - $8,000 AUD',
                 common_mods: 'Stage 1 + Aftermarket cylinder heads (e.g. AFR, Trick Flow), Camshaft, Intake manifold (e.g. Holley Systemax, Edelbrock Performer).'
             },
             {
                 name: 'Stage 3',
                 description: 'Adding boost for a huge jump in power.',
+                cost: '$8,000 - $15,000+ AUD',
                 common_mods: 'Supercharger kit (e.g. Vortech, Paxton) or Turbocharger kit.'
             }
         ],
@@ -852,16 +927,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU tune and better breathing.',
+                cost: '$1,200 - $2,500 AUD',
                 common_mods: 'ECU Tune, Upgraded intercooler, High-flow air filter.'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving exhaust flow.',
+                cost: '$2,500 - $4,500 AUD',
                 common_mods: 'Stage 1 + Cat-back exhaust, High-flow downpipe.'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbocharger for a significant power bump.',
+                cost: '$5,000 - $9,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbocharger, Upgraded fuel system.'
             }
         ],
@@ -883,16 +961,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Focus on improving sound and engine breathing.',
+                cost: '$800 - $1,800 AUD',
                 common_mods: 'Cat-back exhaust, High-flow panel filter.'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving intake and exhaust flow further for better throttle response.',
+                cost: '$1,800 - $3,500 AUD',
                 common_mods: 'Stage 1 + High-flow catalytic converter or de-cat pipe, Aftermarket headers (extractors).'
             },
             {
                 name: 'Stage 3 (Advanced)',
                 description: 'More involved modifications for dedicated builds. This path offers minimal gains for high cost.',
+                cost: '$5,000 - $10,000+ AUD',
                 common_mods: 'Stage 2 + Individual throttle bodies (ITBs), Upgraded camshafts, ECU Tune.'
             }
         ],
@@ -914,16 +995,19 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'An ECU tune is the single most effective modification, providing massive gains in horsepower and torque.',
+                cost: '$2,000 - $4,000 AUD',
                 common_mods: 'ECU Tune (e.g., Renntech, Weistec, Eurocharged).'
             },
             {
                 name: 'Stage 2',
                 description: 'Improving exhaust flow to help the turbos breathe and produce more power.',
+                cost: '$4,000 - $7,000 AUD',
                 common_mods: 'Stage 1 + High-flow downpipes (catless or sport cats).'
             },
             {
                 name: 'Stage 3',
                 description: 'Upgrading the turbochargers and fueling for maximum effort builds.',
+                cost: '$15,000 - $25,000+ AUD',
                 common_mods: 'Stage 2 + Upgraded turbochargers, Upgraded cooling (intercooler pump, larger heat exchanger), Methanol injection.'
             }
         ],
