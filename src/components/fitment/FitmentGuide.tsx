@@ -68,13 +68,28 @@ export function FitmentGuide() {
                         </AccordionContent>
                     </AccordionItem>
                      <AccordionItem value="item-6">
-                        <AccordionTrigger className="font-bold"><Droplets className="mr-2 h-4 w-4" />Tire Types</AccordionTrigger>
-                        <AccordionContent>
-                            <ul className="list-disc list-inside mt-2 space-y-2">
-                                <li>**Summer/Performance Tires:** Offer the best grip in dry and warm wet conditions but perform poorly in cold or snowy weather. They have soft rubber compounds that wear faster.</li>
-                                <li>**All-Season Tires:** A compromise between summer and winter tires. They provide adequate performance in most conditions but don't excel in any single one. A good choice for daily drivers in moderate climates.</li>
-                                <li>**Track/Semi-Slick Tires:** Designed for maximum grip on a racetrack. Often street-legal but have very little tread, making them dangerous in wet conditions. They wear out very quickly.</li>
-                            </ul>
+                        <AccordionTrigger className="font-bold"><Droplets className="mr-2 h-4 w-4" />Tire Recommendations by Use Case</AccordionTrigger>
+                        <AccordionContent className="space-y-4">
+                            <div>
+                                <h4 className="font-semibold text-base">Daily / All-Round Performance</h4>
+                                <p className="text-sm text-muted-foreground mt-1">These are typically 'Ultra High Performance' (UHP) Summer tires. They offer the best balance of excellent dry and wet grip, reasonable comfort, and decent tread life. Not suitable for snow or ice.</p>
+                                <p className="text-sm mt-2"><strong>Popular Examples:</strong> Michelin Pilot Sport 4S/5, Continental ExtremeContact Sport 02, Goodyear Eagle F1 SuperSport.</p>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-base">Spirited / Occasional Track Day</h4>
+                                <p className="text-sm text-muted-foreground mt-1">These are 'Max Performance' or '200tw' tires. They offer a significant step up in dry grip from UHP tires, with stiffer sidewalls for better response, but sacrifice tread life and wet performance.</p>
+                                <p className="text-sm mt-2"><strong>Popular Examples:</strong> Yokohama Advan Neova AD09, Bridgestone Potenza RE-71RS, Falken Azenis RT660.</p>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-base">Dedicated Track / Competition</h4>
+                                <p className="text-sm text-muted-foreground mt-1">These are '100tw' or lower R-Compound / Semi-Slick tires. They provide the ultimate in dry grip but have very little tread, making them dangerous in wet conditions. They wear out extremely quickly and are generally not recommended for street driving.</p>
+                                <p className="text-sm mt-2"><strong>Popular Examples:</strong> Nankang AR-1, Yokohama Advan A052, Goodyear Eagle F1 Supercar 3R.</p>
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-base">All-Season / Daily Commuter</h4>
+                                <p className="text-sm text-muted-foreground mt-1">For drivers in climates with varied weather, All-Season tires offer a safe compromise. They trade ultimate performance for longevity and the ability to handle light snow and colder temperatures.</p>
+                                <p className="text-sm mt-2"><strong>Popular Examples:</strong> Michelin Pilot Sport All-Season 4, Continental ExtremeContact DWS06 Plus.</p>
+                            </div>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
