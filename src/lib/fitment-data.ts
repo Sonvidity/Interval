@@ -306,4 +306,88 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x10.5 (R)', minTyre: '275/35R19', maxTyre: '285/35R19', offset: '+22' },
         ],
     },
+    'honda-accord-2000': {
+        pcd: '4x114.3',
+        studPattern: 'M12 x 1.5',
+        oemSize: { wheel: '15x6', tyre: '195/65R15', offset: '+55' },
+        options: [
+            { wheel: '16x7', minTyre: '205/55R16', maxTyre: '215/50R16', offset: '+42 to +50' },
+            { wheel: '17x7.5', minTyre: '215/45R17', maxTyre: '225/45R17', offset: '+40 to +48' },
+        ],
+    },
+    'honda-accord-2008': {
+        pcd: '5x114.3',
+        studPattern: 'M12 x 1.5',
+        oemSize: { wheel: '17x7.5', tyre: '225/50R17', offset: '+55' },
+        options: [
+            { wheel: '18x8', minTyre: '235/45R18', maxTyre: '245/40R18', offset: '+45 to +55' },
+            { wheel: '19x8.5', minTyre: '245/40R19', maxTyre: '255/35R19', offset: '+40 to +48' },
+        ],
+    },
+    'honda-accord-2018': {
+        pcd: '5x114.3',
+        studPattern: 'M12 x 1.5',
+        oemSize: { wheel: '19x8.5', tyre: '235/40R19', offset: '+50' },
+        options: [
+            { wheel: '19x8.5', minTyre: '235/40R19', maxTyre: '245/40R19', offset: '+40 to +50' },
+            { wheel: '20x9', minTyre: '245/35R20', maxTyre: '255/35R20', offset: '+38 to +45' },
+        ],
+    },
+    'nissan-skyline-v35': {
+        pcd: '5x114.3',
+        studPattern: 'M12 x 1.25',
+        oemSize: { wheel: '17x7.5', tyre: '215/55R17', offset: '+45' },
+        options: [
+            { wheel: '18x8.5', minTyre: '235/45R18', maxTyre: '245/45R18', offset: '+30 to +40' },
+            { wheel: '19x9.5', minTyre: '255/35R19', maxTyre: '265/35R19', offset: '+22 to +35' },
+        ],
+    },
+    'infiniti-q50-q60': {
+        pcd: '5x114.3',
+        studPattern: 'M12 x 1.25',
+        oemSize: { wheel: '19x8.5', tyre: '245/40R19', offset: '+50' },
+        options: [
+            { wheel: '19x9.5', minTyre: '255/35R19', maxTyre: '265/35R19', offset: '+35 to +45' },
+            { wheel: '20x9 (F)', minTyre: '245/35R20', maxTyre: '255/35R20', offset: '+35 to +40' },
+            { wheel: '20x10 (R)', minTyre: '275/30R20', maxTyre: '285/30R20', offset: '+40 to +50' },
+        ],
+    },
+    'mustang-foxbody': {
+        pcd: '4x108',
+        studPattern: '1/2" - 20',
+        oemSize: { wheel: '15x7', tyre: '225/60R15', offset: '+22' },
+        options: [
+            { wheel: '17x8', minTyre: '235/45R17', maxTyre: '245/45R17', offset: '+15 to +25' },
+            { wheel: '17x9', minTyre: '255/40R17', maxTyre: '275/40R17', offset: '+20 to +26' },
+        ],
+    },
+    'mustang-sn95': {
+        pcd: '5x114.3',
+        studPattern: '1/2" - 20',
+        oemSize: { wheel: '17x8', tyre: '245/45R17', offset: '+30' },
+        options: [
+            { wheel: '17x9', minTyre: '255/40R17', maxTyre: '275/40R17', offset: '+24 to +30' },
+            { wheel: '18x9', minTyre: '255/40R18', maxTyre: '275/35R18', offset: '+24 to +30' },
+            { wheel: '18x10', minTyre: '285/35R18', maxTyre: '295/35R18', offset: '+20 to +25' },
+        ],
+    },
+    'mustang-s197': {
+        pcd: '5x114.3',
+        studPattern: '1/2" - 20',
+        oemSize: { wheel: '18x8', tyre: '235/50R18', offset: '+44' },
+        options: [
+            { wheel: '19x9', minTyre: '255/40R19', maxTyre: '275/40R19', offset: '+35 to +45' },
+            { wheel: '19x10', minTyre: '275/40R19', maxTyre: '285/35R19', offset: '+40 to +50' },
+            { wheel: '20x9.5', minTyre: '275/35R20', maxTyre: '285/35R20', offset: '+35 to +45' },
+        ],
+    },
+    'mustang-s650': {
+        pcd: '5x114.3',
+        studPattern: 'M14 x 1.5',
+        oemSize: { wheel: '19x8.5', tyre: '255/40R19', offset: '+42.5' },
+        options: [
+            { wheel: '19x10.5 (F)', minTyre: '295/35R19', maxTyre: '305/30R19', offset: '+25 to +35' },
+            { wheel: '19x11 (R)', minTyre: '305/30R19', maxTyre: '315/30R19', offset: '+45 to +55' },
+        ],
+    },
 };

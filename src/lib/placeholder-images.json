@@ -101,6 +101,48 @@
       "description": "A black sedan.",
       "imageUrl": "https://images.unsplash.com/photo-1734299388217-2ebc605ef43f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxibGFjayUyMHNlZGFufGVufDB8fHx8MTc2MzA3MDIxNnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "black sedan"
+    },
+    {
+      "id": "placeholder-coupe-white-80s",
+      "description": "An 80s white coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1604941639343-731393aa8229?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHw4MHN8ZW58MHx8fHwxNzYzMTI5ODgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "80s coupe"
+    },
+    {
+      "id": "placeholder-coupe-red-90s",
+      "description": "A 90s red coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1616839591410-093557e0339d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHw5MHN8ZW58MHx8fHwxNzYzMTI5ODgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "90s coupe"
+    },
+    {
+      "id": "placeholder-coupe-blue-muscle",
+      "description": "A blue muscle car.",
+      "imageUrl": "https://images.unsplash.com/photo-1617066910644-f187a20c4363?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtdXNjbGV8ZW58MHx8fHwxNzYzMTI5ODgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue muscle"
+    },
+    {
+      "id": "placeholder-coupe-black-muscle",
+      "description": "A black muscle car.",
+      "imageUrl": "https://images.unsplash.com/photo-1606623545939-1b55e8d89a9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtdXNjbGV8ZW58MHx8fHwxNzYzMTI5ODgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black muscle"
+    },
+    {
+      "id": "placeholder-coupe-gray-modern",
+      "description": "A modern gray coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1626021579566-0a8677025805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxncmF5JTIwY291cGV8ZW58MHx8fHwxNzYzMDg2Njc0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray coupe"
+    },
+    {
+      "id": "placeholder-sedan-white",
+      "description": "A white sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1616422285854-b152349787a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3aGl0ZSUyMHNlZGFufGVufDB8fHx8MTc2MzA2MjE2NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white sedan"
+    },
+    {
+      "id": "placeholder-sedan-gray",
+      "description": "A gray sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1604941639343-731393aa8229?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxncmF5JTIwc2VkYW58ZW58MHx8fHwxNzYzMTI5ODgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray sedan"
     }
   ]
 }

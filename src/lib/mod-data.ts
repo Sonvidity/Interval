@@ -744,4 +744,74 @@ export const MOD_DATA: ModData = {
             }
         ]
     },
+    'vr30ddtt': {
+        summary: "The VR30DDTT is a modern twin-turbo V6 found in the Infiniti Q50 and Q60. It makes great power from the factory and has huge tuning potential, but has some significant reliability concerns that must be addressed.",
+        powerLimit: "500-550whp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'An ECU tune is all that is required for a massive power and torque gain.',
+                common_mods: 'ECU Tune (e.g. EcuTek).'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving breathing to help the stock turbos.',
+                common_mods: 'Stage 1 + Upgraded heat exchanger, High-flow downpipes, Cat-back exhaust.'
+            },
+            {
+                name: 'Stage 3',
+                description: 'Pushing beyond the stock turbos.',
+                common_mods: 'Stage 2 + Upgraded turbochargers, Upgraded fuel pump.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Turbocharger Failure',
+                description: 'The stock turbochargers are a well-known, significant failure point, especially on earlier models. The seals can fail, leading to smoke and oil consumption. Later revisions are better, but it remains a risk on tuned cars.'
+            },
+            {
+                name: 'Serpentine Belt',
+                description: 'The stock belt is known to slip and even shred, which can be ingested by the main crank seal, causing catastrophic engine failure. An anti-slip belt kit is a mandatory reliability mod.'
+            },
+            {
+                name: 'Heat Exchanger',
+                description: 'The stock heat exchanger for the water-to-air intercoolers is undersized. An upgraded unit is critical for tuned cars to prevent heat soak and power loss.'
+            }
+        ]
+    },
+    'foxbody-5.0': {
+        summary: "The 5.0L V8 in the Fox Body Mustang is a legend of American performance. It's a simple pushrod V8 with a massive aftermarket, making it easy and relatively cheap to modify.",
+        powerLimit: "300-350whp (NA) / 400-450whp (Boosted)",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Classic bolt-ons to wake up the 5.0L.',
+                common_mods: 'Cold air intake, Cat-back exhaust, Underdrive pulleys, Timing adjustment.'
+            },
+            {
+                name: 'Stage 2',
+                description: 'The "Heads, Cam, Intake" combo is the traditional path to naturally aspirated power.',
+                common_mods: 'Stage 1 + Aftermarket cylinder heads (e.g. AFR, Trick Flow), Camshaft, Intake manifold (e.g. Holley Systemax, Edelbrock Performer).'
+            },
+            {
+                name: 'Stage 3',
+                description: 'Adding boost for a huge jump in power.',
+                common_mods: 'Supercharger kit (e.g. Vortech, Paxton) or Turbocharger kit.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Stock Block Strength',
+                description: 'The stock 5.0 block is known to be weak and can split in half above 450-500 horsepower. Forged internals and an aftermarket block are needed for serious power.'
+            },
+            {
+                name: 'T5 Transmission',
+                description: 'The stock 5-speed T5 manual transmission is notoriously weak and is not rated for much more than 300 lb-ft of torque. It is a very common failure point on modified cars.'
+            },
+            {
+                name: 'Chassis Flex',
+                description: 'The Fox Body chassis is very flexible. Subframe connectors are considered an absolutely essential modification to tie the front and rear of the car together and improve handling.'
+            }
+        ]
+    },
 };
