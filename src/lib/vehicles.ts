@@ -772,7 +772,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2018-2022',
     imageId: 'placeholder-sedan-black',
     specificVariants: ['Sport 1.5T', 'Sport 2.0T', 'Touring 2.0T'],
-    modGuideId: 'k20c1', // 2.0T is related
+    modGuideId: 'ecoboost-2.0', // Closer match than K20C1
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Engine' },
