@@ -40,12 +40,12 @@ export default function ModGuidePage() {
                 <>
                   <p className="text-muted-foreground">{modGuide.summary}</p>
                   
-                  <Card className="bg-destructive/10 border-destructive/50">
+                  <Card className="bg-stone-200">
                     <CardHeader className="flex-row items-center gap-4 space-y-0">
                        <AlertTriangle className="w-8 h-8 text-destructive" />
-                       <div>
+                       <div className="text-stone-800">
                          <CardTitle className="text-destructive">Stock Engine Power Limit</CardTitle>
-                         <p className="text-lg font-bold text-destructive">{modGuide.powerLimit}</p>
+                         <p className="text-lg font-bold">{modGuide.powerLimit}</p>
                        </div>
                     </CardHeader>
                   </Card>
