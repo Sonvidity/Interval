@@ -24,6 +24,20 @@ export type WheelFitment = {
   }[];
 };
 
+export type ModGuide = {
+  summary: string;
+  powerLimit: string;
+  stages: {
+    name: string;
+    description: string;
+    common_mods: string;
+  }[];
+  common_issues: {
+    name: string;
+    description: string;
+  }[];
+};
+
 export type Vehicle = {
   id: string;
   make: string;
@@ -31,6 +45,7 @@ export type Vehicle = {
   variant: string;
   years: string;
   imageId: string;
+  modGuideId?: string;
   serviceItems: ServiceItem[];
   specificVariants?: string[];
   fitment?: WheelFitment;

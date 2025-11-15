@@ -11,6 +11,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2008-2016',
     imageId: 'ford-falcon-fg-turbo',
     specificVariants: ['XR6 Turbo', 'G6E Turbo'],
+    modGuideId: 'barra-turbo',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -32,6 +33,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2012-Present',
     imageId: 'toyota-86',
     specificVariants: ['GT', 'GTS', 'GR86'],
+    modGuideId: 'zn6-zn8',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
@@ -52,6 +54,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2006-2017',
     imageId: 'sv6-commodore',
     specificVariants: ['SV6', 'Calais', 'Omega'],
+    modGuideId: 'alloytec-v6',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 9, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 84, type: 'Engine' },
@@ -73,6 +76,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1989-1994',
     imageId: 'placeholder-coupe-gray',
     specificVariants: ['GTS-t Type M', 'GTS-4'],
+    modGuideId: 'rb20det',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 20000, oemIntervalMonths: 24, type: 'Engine' },
@@ -94,6 +98,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1989-1994',
     imageId: 'placeholder-coupe-dark',
     specificVariants: ['Standard', 'V-Spec', 'V-Spec II', 'N1'],
+    modGuideId: 'rb26dett',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Platinum)', oemIntervalKm: 20000, oemIntervalMonths: 24, type: 'Engine' },
@@ -117,6 +122,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1993-1998',
     imageId: 'placeholder-coupe-blue',
     specificVariants: ['Spec 1', 'Spec 2'],
+    modGuideId: 'rb25det',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Platinum)', oemIntervalKm: 40000, oemIntervalMonths: 36, type: 'Engine' },
@@ -139,6 +145,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1998-2002',
     imageId: 'placeholder-coupe-silver',
     specificVariants: ['GTT'],
+    modGuideId: 'rb25det-neo',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Platinum)', oemIntervalKm: 40000, oemIntervalMonths: 36, type: 'Engine' },
@@ -161,6 +168,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1999-2002',
     imageId: 'placeholder-coupe-blue-fast',
     specificVariants: ['Standard', 'V-Spec', 'V-Spec II', 'M-Spec', 'Nür'],
+    modGuideId: 'rb26dett',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Engine' },
@@ -205,6 +213,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2002-2008',
     imageId: 'placeholder-sedan-silver',
     specificVariants: ['XT', 'Futura', 'Fairmont', 'XR6'],
+    modGuideId: 'barra-na',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 90000, oemIntervalMonths: 72, type: 'Engine' },
@@ -227,6 +236,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2005-2008',
     imageId: 'placeholder-hatch-blue',
     specificVariants: ['R32'],
+    modGuideId: 'vr6-3-2',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -248,6 +258,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2009-2013',
     imageId: 'placeholder-hatch-black',
     specificVariants: ['Golf R'],
+    modGuideId: 'ea113',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -270,6 +281,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2013-2020',
     imageId: 'placeholder-hatch-lapiz',
     specificVariants: ['R', 'R Performance Pack'],
+    modGuideId: 'ea888-gen3',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -289,6 +301,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2021-Present',
     imageId: 'placeholder-hatch-white-modern',
     specificVariants: ['R', 'R Performance'],
+    modGuideId: 'ea888-gen4',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
@@ -346,6 +359,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2003-2007',
     imageId: 'placeholder-sedan-black',
     specificVariants: ['Standard', 'Luxury'],
+    modGuideId: 'k24a',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Engine' },
@@ -367,6 +381,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1992-2000',
     imageId: 'placeholder-coupe-blue',
     specificVariants: ['WRX', 'STI', 'Type R', '22B'],
+    modGuideId: 'ej20',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Engine' },
@@ -388,6 +403,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2001-2004',
     imageId: 'placeholder-coupe-blue-fast',
     specificVariants: ['WRX', 'STI'],
+    modGuideId: 'ej20-ej25',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Engine' },
@@ -409,6 +425,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2005-2007',
     imageId: 'placeholder-coupe-blue-fast',
     specificVariants: ['STI', 'S203', 'S204'],
+    modGuideId: 'ej25',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Engine' },
@@ -430,6 +447,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2015-2021',
     imageId: 'placeholder-sedan-silver',
     specificVariants: ['WRX', 'WRX Premium', 'STI', 'STI Premium', 'S209'],
+    modGuideId: 'fa20-ej25',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 96000, oemIntervalMonths: 60, type: 'Engine' },
@@ -451,6 +469,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2003-2007',
     imageId: 'placeholder-sedan-silver',
     specificVariants: ['VIII GSR', 'VIII MR', 'IX GSR', 'IX MR'],
+    modGuideId: '4g63',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 48000, oemIntervalMonths: 36, type: 'Engine' },
@@ -472,6 +491,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2008-2016',
     imageId: 'placeholder-sedan-black',
     specificVariants: ['GSR', 'MR', 'Final Edition'],
+    modGuideId: '4b11',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 96000, oemIntervalMonths: 60, type: 'Engine' },
@@ -495,6 +515,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2015-Present',
     imageId: 'toyota-86', // Visually similar
     specificVariants: ['Roadster', 'RF', 'Club', 'Grand Touring'],
+    modGuideId: 'mx5-nd',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 120000, oemIntervalMonths: 96, type: 'Engine' },
@@ -514,6 +535,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1992-2002',
     imageId: 'placeholder-coupe-dark',
     specificVariants: ['Type R', 'Type RS', 'Type RZ', 'Spirit R'],
+    modGuideId: '13b-rew',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Rotary)', oemIntervalKm: 20000, oemIntervalMonths: 12, type: 'Engine' },
@@ -535,6 +557,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1999-2009',
     imageId: 'placeholder-coupe-silver',
     specificVariants: ['AP1', 'AP2', 'CR'],
+    modGuideId: 'f20c-f22c',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs (Iridium)', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Engine' },
@@ -554,6 +577,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2017-2021',
     imageId: 'placeholder-hatch-white-modern',
     specificVariants: ['Type R', 'Type R GT'],
+    modGuideId: 'k20c1',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Engine' },
@@ -573,6 +597,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2000-2006',
     imageId: 'placeholder-coupe-gray',
     specificVariants: ['M3 Coupe', 'M3 Convertible', 'CSL'],
+    modGuideId: 's54',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Valve Adjustment', oemIntervalKm: 50000, oemIntervalMonths: 36, type: 'Engine' },
@@ -595,6 +620,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2016-2021',
     imageId: 'placeholder-coupe-blue',
     specificVariants: ['M2', 'M2 Competition', 'M2 CS'],
+    modGuideId: 'n55-s55',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Engine' },
@@ -615,6 +641,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2015-2023',
     imageId: 'placeholder-coupe-dark',
     specificVariants: ['GT', 'GT Premium', 'Bullitt', 'Mach 1'],
+    modGuideId: 'coyote-s550',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 120000, oemIntervalMonths: 96, type: 'Engine' },
@@ -636,6 +663,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2003-2008',
     imageId: 'placeholder-coupe-silver',
     specificVariants: ['Track', 'Touring', 'Grand Touring', 'Nismo'],
+    modGuideId: 'vq35',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 72, type: 'Engine' },
