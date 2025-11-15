@@ -13,7 +13,7 @@ import { Car } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 
 interface VehicleSelectorProps {
-  onVehicleSelect: (vehicle: Vehicle) => void;
+  onVehicleSelect: (vehicle: Vehicle, carId?: string) => void;
 }
 
 export function VehicleSelector({ onVehicleSelect }: VehicleSelectorProps) {
@@ -25,10 +25,13 @@ export function VehicleSelector({ onVehicleSelect }: VehicleSelectorProps) {
     `${vehicle.make} ${vehicle.model} ${vehicle.variant} ${vehicle.years}`.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleSelectFromGarage = (vehicleId: string) => {
-    const vehicle = VEHICLE_DATABASE.find(v => v.id === vehicleId);
+  const handleSelectFromGarage = (carId: string) => {
+    const userCar = userCars.find(c => c.id === carId);
+    if (!userCar) return;
+    
+    const vehicle = VEHICLE_DATABASE.find(v => v.id === userCar.vehicleId);
     if (vehicle) {
-      onVehicleSelect(vehicle);
+      onVehicleSelect(vehicle, userCar.id);
     }
   };
 
@@ -52,7 +55,7 @@ export function VehicleSelector({ onVehicleSelect }: VehicleSelectorProps) {
                                 key={car.id}
                                 variant="outline"
                                 className="w-full justify-start h-auto py-2 text-left"
-                                onClick={() => handleSelectFromGarage(car.vehicleId)}
+                                onClick={() => handleSelectFromGarage(car.id)}
                                 >
                                 <Car className="mr-4 text-accent" />
                                 <div>
