@@ -40,6 +40,21 @@ export type ModGuide = {
   }[];
 };
 
+export type FluidsGuide = {
+  engineOil: {
+    daily: { viscosity: string; description: string };
+    spirited: { viscosity: string; description: string };
+    track: { viscosity: string; description: string };
+  };
+  oilFilter: {
+    oem: string;
+    ryco?: string;
+    kn?: string;
+    other?: { brand: string; partNumber: string }[];
+  };
+  notes?: string;
+};
+
 export type Vehicle = {
   id: string;
   make: string;
@@ -48,6 +63,7 @@ export type Vehicle = {
   years: string;
   imageId: string;
   modGuideId?: string;
+  fluidsGuideId?: string;
   serviceItems: ServiceItem[];
   specificVariants?: string[];
   fitment?: WheelFitment;
