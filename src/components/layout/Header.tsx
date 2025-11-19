@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Car, Wrench, User, CircleDot, Menu, Database, HelpCircle, Flame, Droplets } from "lucide-react";
+import { Car, Wrench, User, CircleDot, Menu, Database, HelpCircle, Flame, Droplets, Palette } from "lucide-react";
 import { useUser } from "@/firebase/auth/use-user";
 import { Skeleton } from "../ui/skeleton";
 import {
@@ -15,12 +15,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { useAuth } from "@/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 
 export function Header() {
@@ -28,6 +34,7 @@ export function Header() {
   const { user, loading } = useUser();
   const auth = useAuth();
   const { toast } = useToast();
+  const { theme, setTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleSignOut = async () => {
@@ -54,6 +61,17 @@ export function Header() {
     { href: "/fluids-guide", label: "Fluids Guide", icon: Droplets },
     { href: "/database", label: "Vehicle Database", icon: Database },
     { href: "/how-it-works", label: "How It Works", icon: HelpCircle },
+  ];
+
+  const themes = [
+    { name: "Default", value: "dark" },
+    { name: "Subaru", value: "theme-subaru" },
+    { name: "Mercedes", value: "theme-mercedes" },
+    { name: "Holden", value: "theme-holden" },
+    { name: "Ford", value: "theme-ford" },
+    { name: "BMW", value: "theme-bmw" },
+    { name: "Lotus", value: "theme-lotus" },
+    { name: "Lamborghini", value: "theme-lamborghini" },
   ];
 
   return (
@@ -138,6 +156,23 @@ export function Header() {
                 <DropdownMenuLabel>
                   {user.isAnonymous ? "Anonymous User" : user.email}
                 </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <Palette className="mr-2 h-4 w-4" />
+                    Change Theme
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+                      {themes.map((t) => (
+                        <DropdownMenuRadioItem key={t.value} value={t.value}>
+                          {t.name}
+                        </DropdownMenuRadioItem>
+                      ))}
+                    </DropdownMenuRadioGroup>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+
                 <DropdownMenuSeparator />
                 {user.isAnonymous && (
                   <Link href="/login" passHref>
