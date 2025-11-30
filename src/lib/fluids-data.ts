@@ -429,6 +429,18 @@ export const FLUIDS_DATA: FluidsData = {
       ryco: 'Z411',
     },
   },
+    'h22a': {
+    engineOil: {
+      daily: { viscosity: '5W-30 or 10W-30', description: 'A quality synthetic blend or full synthetic is ideal.' },
+      spirited: { viscosity: '10W-40', description: 'A robust 10W-40 provides better protection for high-RPM VTEC usage.' },
+      track: { viscosity: '10W-40 or 5W-50', description: 'A high-performance ester or PAO synthetic is recommended for track use.' },
+    },
+    oilFilter: {
+      oem: '15400-PR3-004',
+      ryco: 'Z411',
+      kn: 'HP-1004',
+    },
+  },
   'vr30ddtt': {
     engineOil: {
       daily: { viscosity: '5W-30', description: 'A quality 5W-30 full synthetic. Shorter intervals are wise due to turbo reliability concerns.' },

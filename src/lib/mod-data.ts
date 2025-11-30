@@ -1304,7 +1304,48 @@ export const MOD_DATA: ModData = {
                 description: 'Like many direct-injection turbo engines, the M278 is hard on spark plugs and coils, especially when tuned. It is recommended to use one step colder spark plugs and shorten the replacement interval.'
             }
         ]
-    }
+    },
+     'h22a': {
+        summary: "The H22A is a legendary DOHC VTEC engine from Honda, known for its high-revving nature and complex (for its time) design. It's a fantastic engine but requires careful maintenance, especially of its timing belt and auto-tensioner.",
+        powerLimit: "220-240whp (NA)",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Basic bolt-ons to improve breathing and sound.',
+                cost: '$1,500 - $3,000 AUD',
+                power: '200-215whp',
+                common_mods: 'Cold Air Intake, Cat-back exhaust, ECU (Hondata S300 for older models).'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving airflow for more VTEC power.',
+                cost: '$3,000 - $5,500 AUD',
+                power: '220-240whp',
+                common_mods: 'Stage 1 + Upgraded headers, High-flow cat, Intake manifold (e.g. Skunk2).'
+            },
+            {
+                name: 'Stage 3',
+                description: 'More aggressive cams to raise the power band.',
+                cost: '$5,000 - $9,000 AUD',
+                power: '240whp+',
+                common_mods: 'Stage 2 + Upgraded camshafts, Valve springs, retainers.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Auto-Tensioner Failure',
+                description: 'The automatic timing belt tensioner is a known weak point. Failure leads to catastrophic engine damage. Many owners convert to a manual H23 tensioner for reliability.'
+            },
+            {
+                name: 'FRM Cylinder Liners',
+                description: 'The Fiber-Reinforced Metal cylinder liners are very durable but make the engine sensitive to piston ring choice. They cannot be re-honed easily, making rebuilds more complex.'
+            },
+            {
+                name: 'Oil Consumption',
+                description: 'Like many high-revving Honda engines, the H22A can consume oil. Regular checks are essential.'
+            }
+        ]
+    },
 };
 
     
