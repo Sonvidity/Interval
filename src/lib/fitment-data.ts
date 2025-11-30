@@ -1,4 +1,3 @@
-
 import type { WheelFitment } from './types';
 
 type FitmentData = {
@@ -6,6 +5,45 @@ type FitmentData = {
 };
 
 export const FITMENT_DATA: FitmentData = {
+    'holden-commodore-early': {
+        pcd: '5x120',
+        studPattern: 'M12 x 1.5',
+        oemSize: { wheel: '15x6', tyre: '205/65R15', offset: '+43' },
+        options: [
+            { wheel: '17x8', minTyre: '235/45R17', maxTyre: '245/45R17', offset: '+38 to +48' },
+            { wheel: '18x8', minTyre: '235/40R18', maxTyre: '245/40R18', offset: '+40 to +48' },
+        ],
+    },
+    'holden-commodore-vt-vz': {
+        pcd: '5x120',
+        studPattern: 'M12 x 1.5',
+        oemSize: { wheel: '17x8', tyre: '235/45R17', offset: '+48' },
+        options: [
+            { wheel: '18x8.5', minTyre: '235/40R18', maxTyre: '245/40R18', offset: '+40 to +48' },
+            { wheel: '19x8.5', minTyre: '245/35R19', maxTyre: '255/35R19', offset: '+40 to +48' },
+            { wheel: '20x8.5', minTyre: '245/30R20', maxTyre: '255/30R20', offset: '+40 to +45' },
+            { wheel: '20x9.5 (R)', minTyre: '275/30R20', maxTyre: '285/25R20', offset: '+45 to +55' },
+        ],
+    },
+    'holden-commodore-ve-vf': {
+        pcd: '5x120',
+        studPattern: 'M14 x 1.5',
+        oemSize: { wheel: '18x8', tyre: '245/45R18', offset: '+48' },
+        options: [
+            { wheel: '19x8.5', minTyre: '245/40R19', maxTyre: '255/40R19', offset: '+40 to +48' },
+            { wheel: '20x9', minTyre: '245/35R20', maxTyre: '255/35R20', offset: '+40 to +45' },
+            { wheel: '20x10 (R)', minTyre: '275/30R20', maxTyre: '285/30R20', offset: '+40 to +50' },
+        ],
+    },
+    'ford-territory': {
+        pcd: '5x114.3',
+        studPattern: 'M12 x 1.5',
+        oemSize: { wheel: '17x7.5', tyre: '235/60R17', offset: '+36.5' },
+        options: [
+            { wheel: '18x8', minTyre: '235/55R18', maxTyre: '245/55R18', offset: '+30 to +40' },
+            { wheel: '20x8.5', minTyre: '245/45R20', maxTyre: '255/45R20', offset: '+30 to +38' },
+        ],
+    },
     'ford-falcon-fg-turbo': {
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
@@ -27,16 +65,6 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '17x9', minTyre: '235/40R17', maxTyre: '245/40R17', offset: '+35 to +42' },
             { wheel: '18x8.5', minTyre: '225/40R18', maxTyre: '245/35R18', offset: '+35 to +45' },
             { wheel: '18x9.5', minTyre: '245/35R18', maxTyre: '255/35R18', offset: '+38 to +45' },
-        ],
-    },
-    'sv6-commodore': {
-        pcd: '5x120',
-        studPattern: 'M14 x 1.5',
-        oemSize: { wheel: '18x8', tyre: '245/45R18', offset: '+48' },
-        options: [
-            { wheel: '19x8.5', minTyre: '245/40R19', maxTyre: '255/40R19', offset: '+40 to +48' },
-            { wheel: '20x9', minTyre: '245/35R20', maxTyre: '255/35R20', offset: '+40 to +45' },
-            { wheel: '20x10', minTyre: '275/30R20', maxTyre: '285/30R20', offset: '+40 to +50 (Rear)' },
         ],
     },
     'nissan-skyline-r32-gtst': {

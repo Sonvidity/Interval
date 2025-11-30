@@ -1,4 +1,3 @@
-
 import type { FluidsGuide } from './types';
 
 type FluidsData = {
@@ -6,6 +5,52 @@ type FluidsData = {
 };
 
 export const FLUIDS_DATA: FluidsData = {
+  'holden-v8-early': {
+    engineOil: {
+      daily: { viscosity: '20W-50', description: 'A high-zinc mineral oil is essential for flat-tappet camshafts found in these engines.' },
+      spirited: { viscosity: '20W-50', description: 'A quality high-zinc 20W-50 provides the best protection.' },
+      track: { viscosity: '25W-60', description: 'For track use, a very thick, high-zinc racing oil is recommended.' },
+    },
+    oilFilter: {
+      oem: 'ACDelco PF10',
+      ryco: 'Z30',
+    },
+  },
+  'holden-v8-5l': {
+    engineOil: {
+      daily: { viscosity: '10W-40', description: 'A good quality semi-synthetic or full synthetic 10W-40 works well.' },
+      spirited: { viscosity: '15W-50', description: 'For spirited driving, a thicker 15W-50 offers better protection.' },
+      track: { viscosity: '15W-50', description: 'A high-performance 15W-50 is a good choice for track use.' },
+    },
+    oilFilter: {
+      oem: 'ACDelco PF2',
+      ryco: 'Z160',
+    },
+  },
+  'gm-ls1': {
+    engineOil: {
+      daily: { viscosity: '5W-30 or 10W-40', description: 'A quality 5W-30 or 10W-40 full synthetic is recommended.' },
+      spirited: { viscosity: '10W-40', description: 'A robust 10W-40 provides good protection for spirited driving.' },
+      track: { viscosity: '10W-50 or 15W-50', description: 'For track use, a high-performance 10W-50 or 15W-50 is ideal.' },
+    },
+    oilFilter: {
+      oem: 'ACDelco PF48E',
+      ryco: 'Z154',
+      kn: 'HP-1007',
+    },
+  },
+    'gm-ls3': {
+    engineOil: {
+      daily: { viscosity: '5W-30', description: 'A full synthetic 5W-30 meeting Dexos1 Gen 2 spec is recommended.' },
+      spirited: { viscosity: '5W-40 or 10W-40', description: 'A slightly thicker 5W-40 or 10W-40 can provide extra protection for hard driving.' },
+      track: { viscosity: '10W-50', description: 'For dedicated track use, a high-performance 10W-50 is recommended for thermal stability.' },
+    },
+    oilFilter: {
+      oem: 'ACDelco PF48E',
+      ryco: 'Z154',
+      kn: 'HP-1007',
+    },
+  },
   'barra-turbo': {
     engineOil: {
       daily: { viscosity: '5W-40', description: 'A good quality full synthetic 5W-40 provides excellent protection for daily driving.' },
@@ -298,9 +343,20 @@ export const FLUIDS_DATA: FluidsData = {
   },
   'k20c1': {
     engineOil: {
-      daily: { viscosity: '0W-20', description: 'OEM-spec 0W-20 is designed for efficiency.' },
+      daily: { viscosity: '0W-20', description: 'OEM spec is 0W-20 for efficiency.' },
       spirited: { viscosity: '5W-30', description: 'Many owners move to a high-quality 5W-30 for better protection, especially on tuned cars.' },
       track: { viscosity: '5W-40', description: 'For track use, a robust 5W-40 is required to protect the turbo and engine internals.' },
+    },
+    oilFilter: {
+      oem: '15400-RTA-003',
+      kn: 'HP-1010',
+    },
+  },
+  'k20c4': {
+    engineOil: {
+      daily: { viscosity: '0W-20', description: 'OEM spec is 0W-20 full synthetic for efficiency.' },
+      spirited: { viscosity: '5W-30', description: 'Moving to a high-quality 5W-30 is a popular choice for better protection on tuned cars.' },
+      track: { viscosity: '5W-40', description: 'For any track use, a robust 5W-40 is recommended to protect the turbo.' },
     },
     oilFilter: {
       oem: '15400-RTA-003',
@@ -362,17 +418,6 @@ export const FLUIDS_DATA: FluidsData = {
       ryco: 'Z411',
     },
   },
-  'k20c4': {
-    engineOil: {
-      daily: { viscosity: '0W-20', description: 'OEM spec is 0W-20 full synthetic for efficiency.' },
-      spirited: { viscosity: '5W-30', description: 'Moving to a high-quality 5W-30 is a popular choice for better protection on tuned cars.' },
-      track: { viscosity: '5W-40', description: 'For any track use, a robust 5W-40 is recommended to protect the turbo.' },
-    },
-    oilFilter: {
-      oem: '15400-RTA-003',
-      kn: 'HP-1010',
-    },
-  },
   'vr30ddtt': {
     engineOil: {
       daily: { viscosity: '5W-30', description: 'A quality 5W-30 full synthetic. Shorter intervals are wise due to turbo reliability concerns.' },
@@ -431,3 +476,5 @@ export const FLUIDS_DATA: FluidsData = {
     },
   },
 };
+
+    

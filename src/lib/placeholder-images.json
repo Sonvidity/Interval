@@ -143,6 +143,114 @@
       "description": "A gray sedan.",
       "imageUrl": "https://images.unsplash.com/photo-1604941639343-731393aa8229?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxncmF5JTIwc2VkYW58ZW58MHx8fHwxNzYzMTI5ODgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "gray sedan"
+    },
+    {
+      "id": "placeholder-sedan-red",
+      "description": "A red sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1612999214631-a0e28705f42c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWQlMjBzZWRhbnxlbnwwfHx8fDE3NjMyMDc1OTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red sedan"
+    },
+    {
+      "id": "placeholder-sedan-blue",
+      "description": "A blue sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1611059929831-2972d3a3a486?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibHVlJTIwc2VkYW58ZW58MHx8fHwxNzYzMjA3NTk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue sedan"
+    },
+    {
+      "id": "placeholder-sedan-maroon",
+      "description": "A maroon sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1603584844043-c96767ebc97a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYXJvb24lMjBzZWRhbnxlbnwwfHx8fDE3NjMyMDc5MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "maroon sedan"
+    },
+    {
+      "id": "placeholder-sedan-brown",
+      "description": "A brown sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1621287693991-294b2384a6b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicm93biUyMHNlZGFufGVufDB8fHx8MTc2MzIwNzkyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "brown sedan"
+    },
+    {
+      "id": "placeholder-suv-white",
+      "description": "A white SUV.",
+      "imageUrl": "https://images.unsplash.com/photo-1621992429444-a0833912a762?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMHN1dnxlbnwwfHx8fDE3NjMyMDkyMTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white suv"
+    },
+    {
+      "id": "placeholder-suv-blue",
+      "description": "A blue SUV.",
+      "imageUrl": "https://images.unsplash.com/photo-1603584844043-c96767ebc97a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxibHVlJTIwc3V2fGVufDB8fHx8MTc2MzIwOTIxM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue suv"
+    },
+    {
+      "id": "placeholder-suv-gray",
+      "description": "A gray SUV.",
+      "imageUrl": "https://images.unsplash.com/photo-1596774844399-a8c541793744?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxncmF5JTIwc3V2fGVufDB8fHx8MTc2MzIwOTIxM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray suv"
+    },
+    {
+      "id": "placeholder-4wd-white",
+      "description": "A white 4WD vehicle.",
+      "imageUrl": "https://images.unsplash.com/photo-1588857317765-716d1e4e46a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMDR3ZHxlbnwwfHx8fDE3NjMyMDk3OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white 4wd"
+    },
+    {
+      "id": "placeholder-ute-white",
+      "description": "A white ute/pickup truck.",
+      "imageUrl": "https://images.unsplash.com/photo-1626965823267-b51e4414c13a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMHV0ZXxlbnwwfHx8fDE3NjMyMDk5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white ute"
+    },
+    {
+      "id": "placeholder-ute-black",
+      "description": "A black ute/pickup truck.",
+      "imageUrl": "https://images.unsplash.com/photo-1621254363229-46c5a2046949?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibGFjayUyMHV0ZXxlbnwwfHx8fDE3NjMyMDk5MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black ute"
+    },
+    {
+      "id": "placeholder-coupe-yellow",
+      "description": "A yellow sports coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1582838547630-de525b5832a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx5ZWxsb3clMjBjb3VwZXxlbnwwfHx8fDE3NjMyMTExODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "yellow coupe"
+    },
+    {
+      "id": "placeholder-coupe-orange",
+      "description": "An orange sports coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1559409137-0158a18357f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvcmFuZ2UlMjBjb3VwZXxlbnwwfHx8fDE3NjMyMTExODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "orange coupe"
+    },
+    {
+      "id": "placeholder-hypercar-red",
+      "description": "A red hypercar.",
+      "imageUrl": "https://images.unsplash.com/photo-1614261180222-378747a82b4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWQlMjBoeXBlcmNhcnxlbnwwfHx8fDE3NjMyMTExODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red hypercar"
+    },
+    {
+      "id": "placeholder-hypercar-blue",
+      "description": "A blue hypercar.",
+      "imageUrl": "https://images.unsplash.com/photo-1610731046036-9e9b609c1c5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxibHVlJTIwaHlwZXJjYXJ8ZW58MHx8fHwxNzYzMjExMTg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue hypercar"
+    },
+    {
+      "id": "placeholder-ev-white",
+      "description": "A white electric vehicle.",
+      "imageUrl": "https://images.unsplash.com/photo-1667952243765-a690076a5924?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMGV2fGVufDB8fHx8MTc2MzIxMTQyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "white ev"
+    },
+    {
+      "id": "placeholder-ev-gray",
+      "description": "A gray electric vehicle.",
+      "imageUrl": "https://images.unsplash.com/photo-1678235289900-534351659a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxncmF5JTIwZXZ8ZW58MHx8fHwxNzYzMjExNDIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray ev"
+    },
+    {
+      "id": "placeholder-sedan-70s-brown",
+      "description": "A brown 1970s sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1599623838919-7963353597a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHw3MH MlMjBzZWRhbnxlbnwwfHx8fDE3NjMyMTE5MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "70s sedan"
+    },
+    {
+      "id": "placeholder-sedan-80s-white",
+      "description": "A white 1980s sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1618814583155-b46138657688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHw4MH MlMjBzZWRhbnxlbnwwfHx8fDE3NjMyMTE5MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "80s sedan"
     }
   ]
 }

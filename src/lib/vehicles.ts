@@ -1,15 +1,427 @@
-
 import type { Vehicle } from './types';
 import { FITMENT_DATA } from './fitment-data';
 import { FLUIDS_DATA } from './fluids-data';
 
 export const VEHICLE_DATABASE: Vehicle[] = [
-  // Existing Cars
+  // Holden / GM-H
+  {
+    id: 'holden-commodore-vb-vl',
+    make: 'Holden',
+    model: 'Commodore (1st Gen)',
+    variant: 'VB/VC/VH/VK/VL',
+    years: '1978-1988',
+    imageId: 'placeholder-sedan-80s-white',
+    modGuideId: 'holden-v8-early',
+    fluidsGuideId: 'holden-v8-early',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 20000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['holden-commodore-early'],
+  },
+  {
+    id: 'holden-commodore-vn-vs',
+    make: 'Holden',
+    model: 'Commodore (2nd Gen)',
+    variant: 'VN/VP/VR/VS (V6/V8)',
+    years: '1988-1997',
+    imageId: 'placeholder-sedan-red',
+    modGuideId: 'holden-v8-5l',
+    fluidsGuideId: 'holden-v8-5l',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Automatic Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['holden-commodore-early'],
+  },
+  {
+    id: 'holden-commodore-vt-vz-v6',
+    make: 'Holden',
+    model: 'Commodore (3rd Gen)',
+    variant: 'VT/VX/VY/VZ (Ecotec/Alloytec V6)',
+    years: '1997-2007',
+    imageId: 'sv6-commodore',
+    modGuideId: 'alloytec-v6',
+    fluidsGuideId: 'alloytec-v6',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+  },
+    {
+    id: 'holden-commodore-vt-vz-v8',
+    make: 'Holden',
+    model: 'Commodore (3rd Gen)',
+    variant: 'VT/VX/VY/VZ (Gen III LS1 V8)',
+    years: '1999-2007',
+    imageId: 'placeholder-sedan-blue',
+    modGuideId: 'gm-ls1',
+    fluidsGuideId: 'gm-ls1',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+  },
+    {
+    id: 'holden-commodore-ve-vf-v8',
+    make: 'Holden',
+    model: 'Commodore (4th Gen)',
+    variant: 'VE/VF (Gen IV/V LS2/LS3/LSA V8)',
+    years: '2006-2017',
+    imageId: 'placeholder-sedan-black',
+    modGuideId: 'gm-ls3',
+    fluidsGuideId: 'gm-ls3',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 100000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['holden-commodore-ve-vf'],
+  },
+  {
+    id: 'holden-cruze',
+    make: 'Holden',
+    model: 'Cruze',
+    variant: 'JH',
+    years: '2011-2016',
+    imageId: 'placeholder-sedan-gray',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'holden-monaro',
+    make: 'Holden',
+    model: 'Monaro',
+    variant: 'V2/VZ (LS1 V8)',
+    years: '2001-2006',
+    imageId: 'placeholder-coupe-dark',
+    modGuideId: 'gm-ls1',
+    fluidsGuideId: 'gm-ls1',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+  },
+  // Ford Australia
+  {
+    id: 'ford-falcon-xc-xf',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'XC/XD/XE/XF',
+    years: '1976-1988',
+    imageId: 'placeholder-sedan-70s-brown',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'ford-falcon-ea-el',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'EA/EB/ED/EF/EL',
+    years: '1988-1998',
+    imageId: 'placeholder-sedan-maroon',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'ford-territory',
+    make: 'Ford',
+    model: 'Territory',
+    variant: 'SX/SY/SZ',
+    years: '2004-2016',
+    imageId: 'placeholder-suv-gray',
+    modGuideId: 'barra-turbo', // Turbo models share principles
+    fluidsGuideId: 'barra-na',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['ford-territory'],
+  },
+  // Toyota
+  {
+    id: 'toyota-camry',
+    make: 'Toyota',
+    model: 'Camry',
+    variant: 'XV20-XV70',
+    years: '1997-Present',
+    imageId: 'placeholder-sedan-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+    {
+    id: 'toyota-corolla',
+    make: 'Toyota',
+    model: 'Corolla',
+    variant: 'E90-E210',
+    years: '1987-Present',
+    imageId: 'placeholder-hatch-white-modern',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  // Mitsubishi Australia
+  {
+    id: 'mitsubishi-magna',
+    make: 'Mitsubishi',
+    model: 'Magna / Verada',
+    variant: 'TM-TW',
+    years: '1985-2005',
+    imageId: 'placeholder-sedan-silver',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Timing Belt', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'mitsubishi-380',
+    make: 'Mitsubishi',
+    model: '380',
+    variant: 'DB',
+    years: '2005-2008',
+    imageId: 'placeholder-sedan-gray',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Timing Belt', oemIntervalKm: 105000, oemIntervalMonths: 60, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  // Compact / Hatch
+  {
+    id: 'mazda-3',
+    make: 'Mazda',
+    model: '3',
+    variant: 'BK-BP',
+    years: '2003-Present',
+    imageId: 'placeholder-hatch-black',
+    fluidsGuideId: 'skyactiv-g',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'honda-civic',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '7th-11th Gen',
+    years: '2000-Present',
+    imageId: 'placeholder-sedan-white',
+    modGuideId: 'k20c1', // for Type R
+    fluidsGuideId: 'k20c1',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 48000, oemIntervalMonths: 36, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['honda-civic-type-r-fk8'],
+  },
+  // Sedans
+  {
+    id: 'bmw-3-series',
+    make: 'BMW',
+    model: '3 Series',
+    variant: 'E46-G20',
+    years: '1997-Present',
+    imageId: 'placeholder-sedan-blue',
+    modGuideId: 's54', // M3
+    fluidsGuideId: 's54',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['bmw-m3-e46'],
+  },
+  // SUVs / Crossovers
+  {
+    id: 'toyota-rav4',
+    make: 'Toyota',
+    model: 'RAV4',
+    variant: 'XA20-XA50',
+    years: '2000-Present',
+    imageId: 'placeholder-suv-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'mazda-cx5',
+    make: 'Mazda',
+    model: 'CX-5',
+    variant: 'KE-KF',
+    years: '2012-Present',
+    imageId: 'placeholder-suv-blue',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  // 4WD
+  {
+    id: 'toyota-landcruiser',
+    make: 'Toyota',
+    model: 'LandCruiser',
+    variant: '100/200/300 Series',
+    years: '1998-Present',
+    imageId: 'placeholder-4wd-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Front Differential Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+      { name: 'Rear Differential Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'nissan-patrol-y62',
+    make: 'Nissan',
+    model: 'Patrol',
+    variant: 'Y62',
+    years: '2010-Present',
+    imageId: 'placeholder-4wd-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  // Utes
+  {
+    id: 'toyota-hilux',
+    make: 'Toyota',
+    model: 'HiLux',
+    variant: '7th/8th Gen',
+    years: '2004-Present',
+    imageId: 'placeholder-ute-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'ford-ranger',
+    make: 'Ford',
+    model: 'Ranger',
+    variant: 'T6/Next-Gen',
+    years: '2011-Present',
+    imageId: 'placeholder-ute-black',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  // Performance Cars
+  {
+    id: 'nissan-370z',
+    make: 'Nissan',
+    model: '370Z',
+    variant: 'Z34 (VQ37VHR)',
+    years: '2009-2020',
+    imageId: 'placeholder-coupe-white-modern',
+    modGuideId: 'vq35', // similar principles
+    fluidsGuideId: 'vq35',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['nissan-350z'],
+  },
+  {
+    id: 'nissan-gtr-r35',
+    make: 'Nissan',
+    model: 'GT-R',
+    variant: 'R35 (VR38DETT)',
+    years: '2007-Present',
+    imageId: 'placeholder-coupe-gray-modern',
+    modGuideId: 'vr30ddtt', // Shares some DNA
+    fluidsGuideId: 'vr30ddtt',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis' },
+    ],
+  },
+  // Hypercars
+  {
+    id: 'porsche-911',
+    make: 'Porsche',
+    model: '911',
+    variant: '996/997/991/992',
+    years: '1997-Present',
+    imageId: 'placeholder-coupe-silver',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'lamborghini-gallardo-huracan',
+    make: 'Lamborghini',
+    model: 'Gallardo / Huracán',
+    variant: 'V10',
+    years: '2003-Present',
+    imageId: 'placeholder-coupe-yellow',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'ferrari-458',
+    make: 'Ferrari',
+    model: '458 Italia',
+    variant: 'V8',
+    years: '2009-2015',
+    imageId: 'placeholder-hypercar-red',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+  },
+  // EVs
+  {
+    id: 'tesla-model-3',
+    make: 'Tesla',
+    model: 'Model 3',
+    variant: 'Standard/Long Range/Performance',
+    years: '2017-Present',
+    imageId: 'placeholder-ev-white',
+    serviceItems: [
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+      { name: 'Cabin Air Filter', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  {
+    id: 'tesla-model-y',
+    make: 'Tesla',
+    model: 'Model Y',
+    variant: 'Standard/Long Range/Performance',
+    years: '2020-Present',
+    imageId: 'placeholder-ev-gray',
+    serviceItems: [
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+      { name: 'Cabin Air Filter', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+  },
+  // Existing Cars (from previous context, kept for completeness)
   {
     id: 'ford-falcon-fg-turbo',
     make: 'Ford',
     model: 'Falcon',
-    variant: 'FG/FG-X Turbo (Barra)',
+    variant: 'FG/FG-X (Barra Turbo)',
     years: '2008-2016',
     imageId: 'ford-falcon-fg-turbo',
     specificVariants: ['XR6 Turbo', 'G6E Turbo'],
@@ -70,13 +482,13 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant (Super Long Life)', oemIntervalKm: 150000, oemIntervalMonths: 96, type: 'Chassis' },
     ],
-    fitment: FITMENT_DATA['toyota-86'], // Fitment is very similar to Gen 1
+    fitment: FITMENT_DATA['toyota-86'],
   },
   {
     id: 'sv6-commodore',
     make: 'Holden',
     model: 'Commodore',
-    variant: 'SV6 (VE/VF - V6)',
+    variant: 'SV6 (VE/VF - Alloytec V6)',
     years: '2006-2017',
     imageId: 'sv6-commodore',
     specificVariants: ['SV6', 'Calais', 'Omega'],
@@ -92,38 +504,13 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Brake Fluid', oemIntervalKm: 30000, oemIntervalMonths: 24, type: 'Chassis' },
       { name: 'Coolant', oemIntervalKm: 150000, oemIntervalMonths: 60, type: 'Chassis' },
     ],
-    fitment: FITMENT_DATA['sv6-commodore'],
-  },
-  // Nissan Skylines
-  {
-    id: 'nissan-skyline-r32-gts',
-    make: 'Nissan',
-    model: 'Skyline',
-    variant: 'R32 GTS Non-Turbo (RB20DE)',
-    years: '1989-1994',
-    imageId: 'placeholder-coupe-gray',
-    specificVariants: ['GTS', 'GTS Type J', 'GTS Type S'],
-    modGuideId: 'rb25de-na', // Use RB25DE NA guide as principles are similar
-    fluidsGuideId: 'rb20det', // Fluids are similar to turbo version
-    serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
-      { name: 'Spark Plugs', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
-      { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
-      { name: 'Fuel Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
-      { name: 'Timing Belt', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
-      { name: 'Manual Transmission Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis', transmission: 'Manual' },
-      { name: 'Automatic Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
-      { name: 'Differential Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
-    ],
-    fitment: FITMENT_DATA['nissan-skyline-r32-gtst'],
+    fitment: FITMENT_DATA['holden-commodore-ve-vf'],
   },
   {
     id: 'nissan-skyline-r32-gtst',
     make: 'Nissan',
     model: 'Skyline',
-    variant: 'R32 GTS-t Turbo (RB20DET)',
+    variant: 'R32 GTS-t (RB20DET Turbo)',
     years: '1989-1994',
     imageId: 'placeholder-coupe-gray',
     specificVariants: ['GTS-t Type M'],
@@ -167,35 +554,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['nissan-skyline-r32-gtr'],
   },
-   {
-    id: 'nissan-skyline-r33-gts',
-    make: 'Nissan',
-    model: 'Skyline',
-    variant: 'R33 GTS Non-Turbo (RB25DE)',
-    years: '1993-1998',
-    imageId: 'placeholder-coupe-blue',
-    specificVariants: ['GTS', 'GTS Type G'],
-    modGuideId: 'rb25de-na',
-    fluidsGuideId: 'rb25de',
-    serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
-      { name: 'Spark Plugs (Platinum)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
-      { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
-      { name: 'Fuel Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
-      { name: 'Timing Belt', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
-      { name: 'Manual Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis', transmission: 'Manual' },
-      { name: 'Automatic Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
-      { name: 'Differential Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis' },
-      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
-    ],
-    fitment: FITMENT_DATA['nissan-skyline-r33-gtst'], // Fitment is similar to GTS-t
-  },
   {
     id: 'nissan-skyline-r33-gtst',
     make: 'Nissan',
     model: 'Skyline',
-    variant: 'R33 GTS25t Turbo (RB25DET)',
+    variant: 'R33 GTS25t (RB25DET Turbo)',
     years: '1993-1998',
     imageId: 'placeholder-coupe-blue',
     specificVariants: ['GTS25t Spec 1', 'GTS25t Spec 2'],
@@ -216,34 +579,10 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     fitment: FITMENT_DATA['nissan-skyline-r33-gtst'],
   },
   {
-    id: 'nissan-skyline-r34-gt',
-    make: 'Nissan',
-    model: 'Skyline',
-    variant: 'R34 GT Non-Turbo (RB25DE NEO)',
-    years: '1998-2002',
-    imageId: 'placeholder-coupe-silver',
-    specificVariants: ['GT', '25GT', '25GT-V'],
-    modGuideId: 'rb25de-na',
-    fluidsGuideId: 'rb25det-neo', // Similar enough for fluids
-    serviceItems: [
-      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
-      { name: 'Spark Plugs (Platinum)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
-      { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
-      { name: 'Fuel Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
-      { name: 'Timing Belt', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
-      { name: 'Manual Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis', transmission: 'Manual' },
-      { name: 'Automatic Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
-      { name: 'Differential Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis' },
-      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
-      { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
-    ],
-    fitment: FITMENT_DATA['nissan-skyline-r34-gtt'], // Fitment is similar to GTT
-  },
-  {
     id: 'nissan-skyline-r34-gtt',
     make: 'Nissan',
     model: 'Skyline',
-    variant: 'R34 GTT Turbo (RB25DET NEO)',
+    variant: 'R34 GTT (RB25DET NEO Turbo)',
     years: '1998-2002',
     imageId: 'placeholder-coupe-silver',
     specificVariants: ['GTT'],
@@ -288,7 +627,78 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['nissan-skyline-r34-gtr'],
   },
-  // Ford Falcons
+  {
+    id: 'nissan-skyline-r32-gts-na',
+    make: 'Nissan',
+    model: 'Skyline',
+    variant: 'R32 GTS (RB20DE Non-Turbo)',
+    years: '1989-1994',
+    imageId: 'placeholder-coupe-gray',
+    specificVariants: ['GTS', 'GTS Type J', 'GTS Type S'],
+    modGuideId: 'rb25de-na', 
+    fluidsGuideId: 'rb20det',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Fuel Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Timing Belt', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
+      { name: 'Manual Transmission Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis', transmission: 'Manual' },
+      { name: 'Automatic Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Differential Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['nissan-skyline-r32-gtst'],
+  },
+   {
+    id: 'nissan-skyline-r33-gts-na',
+    make: 'Nissan',
+    model: 'Skyline',
+    variant: 'R33 GTS (RB25DE Non-Turbo)',
+    years: '1993-1998',
+    imageId: 'placeholder-coupe-blue',
+    specificVariants: ['GTS', 'GTS Type G'],
+    modGuideId: 'rb25de-na',
+    fluidsGuideId: 'rb25de',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
+      { name: 'Spark Plugs (Platinum)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Fuel Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Timing Belt', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
+      { name: 'Manual Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis', transmission: 'Manual' },
+      { name: 'Automatic Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Differential Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['nissan-skyline-r33-gtst'],
+  },
+  {
+    id: 'nissan-skyline-r34-gt-na',
+    make: 'Nissan',
+    model: 'Skyline',
+    variant: 'R34 GT (RB25DE NEO Non-Turbo)',
+    years: '1998-2002',
+    imageId: 'placeholder-coupe-silver',
+    specificVariants: ['GT', '25GT', '25GT-V'],
+    modGuideId: 'rb25de-na',
+    fluidsGuideId: 'rb25det-neo',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Spark Plugs (Platinum)', oemIntervalKm: 60000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Engine Air Filter', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
+      { name: 'Fuel Filter', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
+      { name: 'Timing Belt', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Engine' },
+      { name: 'Manual Transmission Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis', transmission: 'Manual' },
+      { name: 'Automatic Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Automatic' },
+      { name: 'Differential Fluid', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Chassis' },
+      { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
+      { name: 'Coolant', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis' },
+    ],
+    fitment: FITMENT_DATA['nissan-skyline-r34-gtt'],
+  },
   {
     id: 'ford-falcon-au',
     make: 'Ford',
@@ -297,7 +707,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1998-2002',
     imageId: 'placeholder-sedan-gold',
     specificVariants: ['Forte', 'Futura', 'XR6'],
-    modGuideId: 'barra-na', // Principles are very similar
+    modGuideId: 'barra-na',
     fluidsGuideId: 'barra-na',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
@@ -315,7 +725,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'ford-falcon-ba-bf',
     make: 'Ford',
     model: 'Falcon',
-    variant: 'BA/BF I6 (Barra)',
+    variant: 'BA/BF I6 (Barra Non-Turbo)',
     years: '2002-2008',
     imageId: 'placeholder-sedan-silver',
     specificVariants: ['XT', 'Futura', 'Fairmont', 'XR6'],
@@ -334,7 +744,6 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['ford-falcon-ba-bf'],
   },
-  // VW Golf R
   {
     id: 'vw-golf-r-mk5',
     make: 'Volkswagen',
@@ -362,7 +771,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'vw-golf-r-mk6',
     make: 'Volkswagen',
     model: 'Golf R',
-    variant: 'Mk6 (EA113)',
+    variant: 'Mk6 (EA113 Turbo)',
     years: '2009-2013',
     imageId: 'placeholder-hatch-black',
     specificVariants: ['Golf R'],
@@ -386,7 +795,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'vw-golf-r-mk7',
     make: 'Volkswagen',
     model: 'Golf R',
-    variant: 'Mk7/7.5 (EA888 Gen3)',
+    variant: 'Mk7/7.5 (EA888 Gen3 Turbo)',
     years: '2013-2020',
     imageId: 'placeholder-hatch-lapiz',
     specificVariants: ['R', 'R Performance Pack'],
@@ -407,11 +816,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'vw-golf-r-mk8',
     make: 'Volkswagen',
     model: 'Golf R',
-    variant: 'Mk8 (EA888 Gen4)',
+    variant: 'Mk8 (EA888 Gen4 Turbo)',
     years: '2021-Present',
     imageId: 'placeholder-hatch-white-modern',
     specificVariants: ['R', 'R Performance'],
-    modGuideId: 'ea888-gen3', // Gen4 is very similar to Gen3 for basic stages
+    modGuideId: 'ea888-gen3',
     fluidsGuideId: 'ea888-gen4',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
@@ -423,7 +832,6 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['vw-golf-r-mk8'],
   },
-  // Other Cars
   {
     id: 'mercedes-ml500-w164',
     make: 'Mercedes-Benz',
@@ -432,7 +840,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '2007-2011',
     imageId: 'placeholder-suv-black',
     specificVariants: ['ML 500'],
-    modGuideId: 'mercedes-m278', // No specific guide, but M278 is a closer relative
+    modGuideId: 'mercedes-m278',
     fluidsGuideId: 'mercedes-m273',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
@@ -472,7 +880,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'ford-mondeo-mc',
     make: 'Ford',
     model: 'Mondeo',
-    variant: 'MC EcoBoost',
+    variant: 'MC (EcoBoost)',
     years: '2015-2022',
     imageId: 'placeholder-wagon-gray',
     specificVariants: ['Ambiente', 'Trend', 'Titanium'],
@@ -509,13 +917,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['honda-accord-cl9'],
   },
-  // START OF NEW CARS
-  // Subaru
   {
     id: 'subaru-wrx-sti-gc8',
     make: 'Subaru',
     model: 'Impreza WRX/STI',
-    variant: 'GC8 (EJ20)',
+    variant: 'GC8 (EJ20 Turbo)',
     years: '1992-2000',
     imageId: 'placeholder-coupe-blue',
     specificVariants: ['WRX', 'STI', 'Type R', '22B'],
@@ -538,11 +944,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'subaru-wrx-sti-gd-5x100',
     make: 'Subaru',
     model: 'Impreza WRX/STI (5x100)',
-    variant: 'GD "Bug/Blob/Hawk" (EJ20/EJ25)',
+    variant: 'GD "Bug/Blob/Hawk" (EJ20/25 Turbo)',
     years: '2001-2004',
     imageId: 'placeholder-coupe-blue-fast',
     specificVariants: ['WRX', 'STI'],
-    modGuideId: 'ej20', // Covers early GDs
+    modGuideId: 'ej20',
     fluidsGuideId: 'ej20',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
@@ -561,7 +967,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'subaru-wrx-sti-gd-5x114',
     make: 'Subaru',
     model: 'Impreza STI (5x114.3)',
-    variant: 'GD "Hawkeye" (EJ25)',
+    variant: 'GD "Hawkeye" (EJ25 Turbo)',
     years: '2005-2007',
     imageId: 'placeholder-coupe-blue-fast',
     specificVariants: ['STI', 'S203', 'S204'],
@@ -584,12 +990,12 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'subaru-wrx-sti-va',
     make: 'Subaru',
     model: 'WRX/STI',
-    variant: 'VA (FA20/EJ25)',
+    variant: 'VA (FA20/EJ25 Turbo)',
     years: '2015-2021',
     imageId: 'placeholder-sedan-silver',
     specificVariants: ['WRX', 'WRX Premium', 'STI', 'STI Premium', 'S209'],
-    modGuideId: 'ej25', // STI uses EJ25
-    fluidsGuideId: 'fa20-dit', // WRX uses FA20 DIT
+    modGuideId: 'ej25',
+    fluidsGuideId: 'fa20-dit',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 96000, oemIntervalMonths: 60, type: 'Engine' },
@@ -602,12 +1008,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['subaru-wrx-sti-va'],
   },
-  // Mitsubishi
   {
     id: 'mitsubishi-evo-8-9',
     make: 'Mitsubishi',
     model: 'Lancer Evolution',
-    variant: 'VIII/IX (4G63)',
+    variant: 'VIII/IX (4G63 Turbo)',
     years: '2003-2007',
     imageId: 'placeholder-sedan-silver',
     specificVariants: ['VIII GSR', 'VIII MR', 'IX GSR', 'IX MR'],
@@ -630,7 +1035,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'mitsubishi-evo-10',
     make: 'Mitsubishi',
     model: 'Lancer Evolution',
-    variant: 'X (4B11)',
+    variant: 'X (4B11 Turbo)',
     years: '2008-2016',
     imageId: 'placeholder-sedan-black',
     specificVariants: ['GSR', 'MR', 'Final Edition'],
@@ -650,16 +1055,15 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['mitsubishi-evo-10'],
   },
-  // Mazda
   {
     id: 'mazda-mx5-nd',
     make: 'Mazda',
     model: 'MX-5',
     variant: 'ND (SkyActiv-G)',
     years: '2015-Present',
-    imageId: 'toyota-86', // Visually similar
+    imageId: 'toyota-86',
     specificVariants: ['Roadster', 'RF', 'Club', 'Grand Touring'],
-    modGuideId: 'zn6-zn8', // Similar class of car
+    modGuideId: 'zn8',
     fluidsGuideId: 'skyactiv-g',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
@@ -676,7 +1080,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'mazda-rx7-fd',
     make: 'Mazda',
     model: 'RX-7',
-    variant: 'FD (13B-REW)',
+    variant: 'FD (13B-REW Twin-Turbo Rotary)',
     years: '1992-2002',
     imageId: 'placeholder-coupe-dark',
     specificVariants: ['Type R', 'Type RS', 'Type RZ', 'Spirit R'],
@@ -694,7 +1098,6 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['mazda-rx7-fd'],
   },
-  // Honda
   {
     id: 'honda-s2000',
     make: 'Honda',
@@ -720,7 +1123,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'honda-civic-type-r-fk8',
     make: 'Honda',
     model: 'Civic Type R',
-    variant: 'FK8 (K20C1)',
+    variant: 'FK8 (K20C1 Turbo)',
     years: '2017-2021',
     imageId: 'placeholder-hatch-white-modern',
     specificVariants: ['Type R', 'Type R GT'],
@@ -736,7 +1139,6 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['honda-civic-type-r-fk8'],
   },
-  // BMW
   {
     id: 'bmw-m3-e46',
     make: 'BMW',
@@ -765,7 +1167,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'bmw-m2-f87',
     make: 'BMW',
     model: 'M2',
-    variant: 'F87 (N55/S55)',
+    variant: 'F87 (N55/S55 Turbo)',
     years: '2016-2021',
     imageId: 'placeholder-coupe-blue',
     specificVariants: ['M2', 'M2 Competition', 'M2 CS'],
@@ -782,12 +1184,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['bmw-m2-f87'],
   },
-  // Ford (US)
   {
     id: 'ford-mustang-s550',
     make: 'Ford',
     model: 'Mustang GT',
-    variant: 'S550 (5.0 Coyote)',
+    variant: 'S550 (5.0 Coyote V8)',
     years: '2015-2023',
     imageId: 'placeholder-coupe-dark',
     specificVariants: ['GT', 'GT Premium', 'Bullitt', 'Mach 1'],
@@ -805,7 +1206,6 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['ford-mustang-s550'],
   },
-  // Nissan Z
   {
     id: 'nissan-350z',
     make: 'Nissan',
@@ -828,7 +1228,6 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     ],
     fitment: FITMENT_DATA['nissan-350z'],
   },
-  // New Additions
   {
     id: 'honda-accord-2000',
     make: 'Honda',
@@ -837,7 +1236,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     years: '1998-2002',
     imageId: 'placeholder-sedan-white',
     specificVariants: ['DX', 'LX', 'EX', 'V6'],
-    modGuideId: 'k24a', // Similar principles apply
+    modGuideId: 'k24a',
     fluidsGuideId: 'honda-f-series',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
@@ -914,7 +1313,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'infiniti-q50-q60',
     make: 'Infiniti',
     model: 'Q50 / Q60',
-    variant: 'V37 (VR30DDTT)',
+    variant: 'V37 (VR30DDTT Turbo)',
     years: '2016-Present',
     imageId: 'placeholder-coupe-red-90s',
     specificVariants: ['3.0t Luxe', 'Red Sport 400'],
@@ -934,7 +1333,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'mustang-foxbody',
     make: 'Ford',
     model: 'Mustang',
-    variant: 'Fox Body (5.0L)',
+    variant: 'Fox Body (5.0L V8)',
     years: '1987-1993',
     imageId: 'placeholder-coupe-white-80s',
     specificVariants: ['LX 5.0', 'GT'],
@@ -954,11 +1353,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'mustang-sn95',
     make: 'Ford',
     model: 'Mustang',
-    variant: 'SN95 / New Edge (4.6L/5.0L)',
+    variant: 'SN95 / New Edge (4.6L/5.0L V8)',
     years: '1994-2004',
     imageId: 'placeholder-coupe-red-90s',
     specificVariants: ['GT', 'Cobra', 'Bullitt', 'Mach 1'],
-    modGuideId: 'foxbody-5.0', // Similar principles
+    modGuideId: 'foxbody-5.0',
     fluidsGuideId: 'ford-mod-v8',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
@@ -974,11 +1373,11 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'mustang-s197',
     make: 'Ford',
     model: 'Mustang',
-    variant: 'S197 (4.6L/5.0L)',
+    variant: 'S197 (4.6L/5.0L V8)',
     years: '2005-2014',
     imageId: 'placeholder-coupe-blue-muscle',
     specificVariants: ['GT', 'Boss 302', 'Shelby GT500'],
-    modGuideId: 'coyote-s550', // Similar principles
+    modGuideId: 'coyote-s550',
     fluidsGuideId: 'coyote-s197',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
@@ -994,7 +1393,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     id: 'mustang-s650',
     make: 'Ford',
     model: 'Mustang',
-    variant: 'S650 (5.0 Coyote)',
+    variant: 'S650 (5.0 Coyote V8)',
     years: '2024-Present',
     imageId: 'placeholder-coupe-black-muscle',
     specificVariants: ['GT', 'Dark Horse'],
@@ -1012,3 +1411,5 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     fitment: FITMENT_DATA['mustang-s650'],
   },
 ];
+
+    

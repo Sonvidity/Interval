@@ -1,4 +1,3 @@
-
 import type { ModGuide } from './types';
 
 type ModData = {
@@ -6,6 +5,132 @@ type ModData = {
 };
 
 export const MOD_DATA: ModData = {
+    'gm-ls1': {
+        summary: "The Gen III LS1 V8 is a legendary engine known for its simplicity, reliability, and huge aftermarket support. It responds incredibly well to modifications, making it a favorite for swaps and builds.",
+        powerLimit: "450-500whp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Basic bolt-ons to improve breathing and sound.',
+                cost: '$2,000 - $4,000 AUD',
+                power: '330-360whp (245-270wkW)',
+                common_mods: 'OTR (Over-The-Radiator) Cold Air Intake, Cat-back exhaust, ECU Tune (Mafless).'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving exhaust flow and camshaft for the signature V8 sound and power.',
+                cost: '$4,500 - $7,000 AUD',
+                power: '380-420whp (280-315wkW)',
+                common_mods: 'Stage 1 + Camshaft upgrade, Valve springs, Full exhaust system with headers/extractors.'
+            },
+            {
+                name: 'Stage 3 (Forced Induction)',
+                description: 'Adding a supercharger for a massive and reliable power increase.',
+                cost: '$12,000 - $20,000+ AUD',
+                power: '500whp+',
+                common_mods: 'Stage 2 + Supercharger kit (e.g., Harrop, Magnuson), Upgraded fuel injectors.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Oil Consumption',
+                description: 'Some LS1s can consume oil, often due to PCV system issues or piston ring design. Regular oil level checks are important.'
+            },
+            {
+                name: 'Lifter Failure',
+                description: 'The stock lifters can fail, especially with aggressive camshafts. Upgrading the lifters during a cam swap is highly recommended.'
+            }
+        ]
+    },
+    'gm-ls3': {
+        summary: "The 6.2L LS3 V8 is an evolution of the LS1/LS2, offering a larger displacement and better-flowing cylinder heads from the factory. It's an incredibly capable and reliable engine for making big power.",
+        powerLimit: "500-550whp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Basic bolt-ons for a significant power gain and V8 roar.',
+                cost: '$2,500 - $4,500 AUD',
+                power: '420-450whp (315-335wkW)',
+                common_mods: 'OTR Cold Air Intake, Cat-back exhaust, ECU Tune (Mafless).'
+            },
+            {
+                name: 'Stage 2',
+                description: 'A camshaft and full exhaust really wakes the engine up.',
+                cost: '$5,000 - $8,000 AUD',
+                power: '480-520whp (360-390wkW)',
+                common_mods: 'Stage 1 + Camshaft upgrade, Full exhaust system with headers/extractors.'
+            },
+            {
+                name: 'Stage 3 (Forced Induction)',
+                description: 'Supercharging the LS3 is a proven path to huge, reliable power.',
+                cost: '$15,000 - $25,000+ AUD',
+                power: '600whp+',
+                common_mods: 'Stage 2 + Supercharger kit (e.g., Harrop, Magnuson, LSA swap), Upgraded fuel system.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Lifter Failure',
+                description: 'Similar to the LS1, the stock lifters can be a weak point with aggressive cams or high mileage. It is best practice to replace them during a cam upgrade.'
+            },
+            {
+                name: 'Valve Train Stability',
+                description: 'When upgrading the camshaft, a full valve train upgrade including dual valve springs, pushrods, and a trunnion upgrade for the rocker arms is highly recommended for reliability at high RPM.'
+            }
+        ]
+    },
+    'holden-v8-early': {
+        summary: "The original Holden V8 (253/308ci) is a classic pushrod engine. Modifications are old-school but effective, focusing on carburetion, heads, and camshafts.",
+        powerLimit: "300-350hp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Basic upgrades for better breathing.',
+                cost: '$1,500 - $3,000 AUD',
+                power: '200-240hp',
+                common_mods: '4-barrel carburetor, Intake manifold, Headers/Extractors, Dual exhaust.'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving the top end for more power.',
+                cost: '$4,000 - $8,000 AUD',
+                power: '280-320hp',
+                common_mods: 'Stage 1 + Camshaft upgrade, Cylinder head porting or aftermarket heads.'
+            },
+        ],
+        common_issues: [
+            {
+                name: 'Overheating',
+                description: 'Stock cooling systems can struggle with modified engines. An upgraded radiator is a wise investment.'
+            },
+        ]
+    },
+    'holden-v8-5l': {
+        summary: "The last Australian-made Holden V8 (5.0L 304ci) is a beloved engine. While not as advanced as the later LS-series, it has a unique character and a dedicated following.",
+        powerLimit: "350-400hp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Simple bolt-ons and a tune to uncork the 5.0L.',
+                cost: '$2,000 - $4,000 AUD',
+                power: '250-280hp',
+                common_mods: 'Cold air intake, Cat-back exhaust, ECU tune/chip.'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Unlocking more power with heads and cam.',
+                cost: '$5,000 - $10,000 AUD',
+                power: '320-380hp',
+                common_mods: 'Stage 1 + Camshaft, Ported heads or aftermarket heads (e.g. Yella Terra), Full exhaust.'
+            },
+        ],
+        common_issues: [
+            {
+                name: 'Intake Manifold Gaskets',
+                description: 'The stock intake manifold gaskets are prone to leaking, causing vacuum leaks and poor running.'
+            },
+        ]
+    },
     'zn6': {
         summary: "The first-generation Toyota 86/Subaru BRZ (ZN6/ZC6) is a fantastic, lightweight chassis that is often described as a 'momentum car'. Modifications typically focus on addressing the infamous mid-range torque dip and enhancing the already great handling.",
         powerLimit: "280-300whp (approx. 210-225wkW)",
@@ -169,16 +294,16 @@ export const MOD_DATA: ModData = {
             {
                 name: 'Stage 1',
                 description: 'Improving sound and throttle response.',
-                cost: '$800 - $2,000 AUD',
+                cost: '$800 - $1,500 AUD',
                 power: '220-235whp (165-175wkW)',
-                common_mods: 'Cat-back exhaust, High-flow panel filter, ECU Tune.'
+                common_mods: 'Cat-back exhaust, High-flow panel filter.'
             },
             {
                 name: 'Stage 2',
-                description: 'Extracting more from the intake and exhaust side.',
+                description: 'Extracting more from the intake and exhaust side with a tune.',
                 cost: '$2,500 - $4,500 AUD',
                 power: '240-260whp (180-195wkW)',
-                common_mods: 'Stage 1 + High-flow catalytic converters, OTR (Over-The-Radiator) cold air intake.'
+                common_mods: 'Stage 1 + High-flow catalytic converters, OTR (Over-The-Radiator) cold air intake, ECU Tune.'
             },
             {
                 name: 'Stage 3 (Forced Induction)',
