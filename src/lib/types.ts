@@ -1,5 +1,6 @@
 
 
+
 export type ServiceItem = {
   name: string;
   oemIntervalKm: number;
@@ -9,6 +10,7 @@ export type ServiceItem = {
 };
 
 export type WheelFitment = {
+  id: string; // Unique ID for this fitment guide
   pcd: string;
   studPattern: string;
   oemSize: {
@@ -25,6 +27,7 @@ export type WheelFitment = {
 };
 
 export type ModGuide = {
+  id: string; // Unique ID for this mod guide
   summary: string;
   powerLimit: string;
   stages: {
@@ -41,6 +44,7 @@ export type ModGuide = {
 };
 
 export type FluidsGuide = {
+  id: string; // Unique ID for this fluids guide
   engineOil: {
     daily: { viscosity: string; description: string };
     spirited: { viscosity: string; description: string };
@@ -66,7 +70,7 @@ export type Vehicle = {
   fluidsGuideId?: string;
   serviceItems: ServiceItem[];
   specificVariants?: string[];
-  fitment?: WheelFitment;
+  fitmentId?: string;
 };
 
 export type ModStage = 'Stock' | 'Stage 1' | 'Stage 2' | 'Stage 3';

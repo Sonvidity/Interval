@@ -1,11 +1,8 @@
 import type { WheelFitment } from './types';
 
-type FitmentData = {
-  [key: string]: WheelFitment;
-};
-
-export const FITMENT_DATA: FitmentData = {
-    'holden-commodore-early': {
+export const FITMENT_DATA: WheelFitment[] = [
+    {
+        id: 'holden-commodore-early',
         pcd: '5x120',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '15x6', tyre: '205/65R15', offset: '+43' },
@@ -14,7 +11,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x8', minTyre: '235/40R18', maxTyre: '245/40R18', offset: '+40 to +48' },
         ],
     },
-    'holden-commodore-vt-vz': {
+    {
+        id: 'holden-commodore-vt-vz',
         pcd: '5x120',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x8', tyre: '235/45R17', offset: '+48' },
@@ -25,7 +23,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x9.5 (R)', minTyre: '275/30R20', maxTyre: '285/25R20', offset: '+45 to +55' },
         ],
     },
-    'holden-commodore-ve-vf': {
+    {
+        id: 'holden-commodore-ve-vf',
         pcd: '5x120',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '18x8', tyre: '245/45R18', offset: '+48' },
@@ -35,7 +34,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x10 (R)', minTyre: '275/30R20', maxTyre: '285/30R20', offset: '+40 to +50' },
         ],
     },
-    'ford-territory': {
+    {
+        id: 'ford-territory',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x7.5', tyre: '235/60R17', offset: '+36.5' },
@@ -44,7 +44,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x8.5', minTyre: '245/45R20', maxTyre: '255/45R20', offset: '+30 to +38' },
         ],
     },
-    'ford-falcon-fg-turbo': {
+    {
+        id: 'ford-falcon-fg-turbo',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '19x8', tyre: '245/35R19', offset: '+36' },
@@ -56,7 +57,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x10', minTyre: '275/30R20', maxTyre: '285/25R20', offset: '+40 to +50' },
         ],
     },
-    'toyota-86': {
+    {
+        id: 'toyota-86',
         pcd: '5x100',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '17x7', tyre: '215/45R17', offset: '+48' },
@@ -67,7 +69,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x9.5', minTyre: '245/35R18', maxTyre: '255/35R18', offset: '+38 to +45' },
         ],
     },
-    'nissan-skyline-r32-gtst': {
+    {
+        id: 'nissan-skyline-r32-gtst',
         pcd: '4x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '16x6.5', tyre: '205/55R16', offset: '+40' },
@@ -77,7 +80,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x9.5', minTyre: '225/40R18', maxTyre: '235/40R18', offset: '+20 to +30' },
         ],
     },
-    'nissan-skyline-r32-gtr': {
+    {
+        id: 'nissan-skyline-r32-gtr',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '16x8', tyre: '225/50R16', offset: '+30' },
@@ -88,7 +92,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x10.5', minTyre: '275/35R18', maxTyre: '285/30R18', offset: '+15' },
         ],
     },
-    'nissan-skyline-r33-gtst': {
+    {
+        id: 'nissan-skyline-r33-gtst',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '17x7', tyre: '215/50R17', offset: '+40' },
@@ -98,7 +103,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x9.5', minTyre: '255/30R19', maxTyre: '265/30R19', offset: '+25 to +35' },
         ],
     },
-    'nissan-skyline-r34-gtt': {
+    {
+        id: 'nissan-skyline-r34-gtt',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '17x7.5', tyre: '225/45R17', offset: '+40' },
@@ -108,7 +114,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x9.5', minTyre: '255/30R19', maxTyre: '265/30R19', offset: '+22 to +30' },
         ],
     },
-    'nissan-skyline-r34-gtr': {
+    {
+        id: 'nissan-skyline-r34-gtr',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '18x9', tyre: '245/40R18', offset: '+30' },
@@ -118,7 +125,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x10.5', minTyre: '275/30R19', maxTyre: '285/30R19', offset: '+12 to +15' },
         ],
     },
-    'ford-falcon-au': {
+    {
+        id: 'ford-falcon-au',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '15x6', tyre: '205/65R15', offset: '+6' },
@@ -127,7 +135,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x8', minTyre: '235/40R18', maxTyre: '245/40R18', offset: '+4 to +10' },
         ],
     },
-    'ford-falcon-ba-bf': {
+    {
+        id: 'ford-falcon-ba-bf',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x7.5', tyre: '235/45R17', offset: '+36.5' },
@@ -136,7 +145,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x8.5', minTyre: '245/35R19', maxTyre: '255/35R19', offset: '+30 to +38' },
         ],
     },
-    'vw-golf-r-mk5': {
+    {
+        id: 'vw-golf-r-mk5',
         pcd: '5x112',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '18x7.5', tyre: '225/40R18', offset: '+51' },
@@ -145,7 +155,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x8.5', minTyre: '225/35R19', maxTyre: '235/35R19', offset: '+45' },
         ],
     },
-    'vw-golf-r-mk6': {
+    {
+        id: 'vw-golf-r-mk6',
         pcd: '5x112',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '18x7.5', tyre: '225/40R18', offset: '+51' },
@@ -154,7 +165,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x8.5', minTyre: '225/35R19', maxTyre: '235/35R19', offset: '+45' },
         ],
     },
-    'vw-golf-r-mk7': {
+    {
+        id: 'vw-golf-r-mk7',
         pcd: '5x112',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '19x8', tyre: '235/35R19', offset: '+50' },
@@ -164,7 +176,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x8.5', minTyre: '235/30R20', maxTyre: '245/30R20', offset: '+45' },
         ],
     },
-    'vw-golf-r-mk8': {
+    {
+        id: 'vw-golf-r-mk8',
         pcd: '5x112',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '19x8', tyre: '235/35R19', offset: '+50' },
@@ -173,7 +186,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x8.5', minTyre: '235/30R20', maxTyre: '245/30R20', offset: '+45' },
         ],
     },
-    'mercedes-ml500': {
+    {
+        id: 'mercedes-ml500',
         pcd: '5x112',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '19x8.5', tyre: '255/50R19', offset: '+58' },
@@ -182,7 +196,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '21x10', minTyre: '265/40R21', maxTyre: '295/35R21', offset: '+40 to +50' },
         ],
     },
-    'mercedes-ml500-w166': {
+    {
+        id: 'mercedes-ml500-w166',
         pcd: '5x112',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '19x8.5', tyre: '255/50R19', offset: '+59' },
@@ -191,7 +206,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '21x10', minTyre: '265/40R21', maxTyre: '295/35R21', offset: '+45 to +55' },
         ],
     },
-    'ford-mondeo-mc': {
+    {
+        id: 'ford-mondeo-mc',
         pcd: '5x108',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '18x8', tyre: '235/45R18', offset: '+55' },
@@ -200,7 +216,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x8.5', minTyre: '235/35R20', maxTyre: '245/35R20', offset: '+45 to +50' },
         ],
     },
-    'honda-accord-cl9': {
+    {
+        id: 'honda-accord-cl9',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x7', tyre: '225/45R17', offset: '+55' },
@@ -209,7 +226,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x8.5', minTyre: '235/40R18', maxTyre: '245/40R18', offset: '+40 to +48' },
         ],
     },
-    'subaru-wrx-sti-gc8': {
+    {
+        id: 'subaru-wrx-sti-gc8',
         pcd: '5x100',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '16x7', tyre: '205/50R16', offset: '+53' },
@@ -218,7 +236,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '17x9', minTyre: '235/40R17', maxTyre: '245/40R17', offset: '+35 to +44' },
         ],
     },
-    'subaru-wrx-sti-gd-5x100': {
+    {
+        id: 'subaru-wrx-sti-gd-5x100',
         pcd: '5x100',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '17x7.5', tyre: '225/45R17', offset: '+53' },
@@ -228,7 +247,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x9.5', minTyre: '245/35R18', maxTyre: '255/35R18', offset: '+38 to +44' },
         ],
     },
-    'subaru-wrx-sti-gd-5x114': {
+    {
+        id: 'subaru-wrx-sti-gd-5x114',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '17x8', tyre: '225/45R17', offset: '+53' },
@@ -238,7 +258,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x9.5', minTyre: '255/35R18', maxTyre: '265/35R18', offset: '+38 to +44' },
         ],
     },
-    'subaru-wrx-sti-va': {
+    {
+        id: 'subaru-wrx-sti-va',
         pcd: '5x114.3',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '19x8.5', tyre: '245/35R19', offset: '+55' },
@@ -247,7 +268,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x9.5', minTyre: '255/35R19', maxTyre: '265/35R19', offset: '+38 to +45' },
         ],
     },
-    'mitsubishi-evo-8-9': {
+    {
+        id: 'mitsubishi-evo-8-9',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x8', tyre: '235/45R17', offset: '+38' },
@@ -256,7 +278,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x9.5', minTyre: '255/35R18', maxTyre: '265/35R18', offset: '+22 to +35' },
         ],
     },
-    'mitsubishi-evo-10': {
+    {
+        id: 'mitsubishi-evo-10',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '18x8.5', tyre: '245/40R18', offset: '+38' },
@@ -265,7 +288,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x10.5', minTyre: '275/35R18', maxTyre: '285/30R18', offset: '+15 to +25' },
         ],
     },
-    'mazda-mx5-nd': {
+    {
+        id: 'mazda-mx5-nd',
         pcd: '4x100',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x7', tyre: '205/45R17', offset: '+45' },
@@ -274,7 +298,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '17x9', minTyre: '235/40R17', maxTyre: '245/40R17', offset: '+40 to +45' },
         ],
     },
-    'mazda-rx7-fd': {
+    {
+        id: 'mazda-rx7-fd',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '16x8', tyre: '225/50R16', offset: '+50' },
@@ -285,7 +310,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x10 (R)', minTyre: '265/35R18', maxTyre: '285/30R18', offset: '+40' },
         ],
     },
-    'honda-s2000': {
+    {
+        id: 'honda-s2000',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x7 (F), 17x8.5 (R)', tyre: '215/45R17 (F), 245/40R17 (R)', offset: '+55 (F), +65 (R)' },
@@ -294,7 +320,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '17x10 (R)', minTyre: '255/40R17', maxTyre: '275/40R17', offset: '+45 to +55' },
         ],
     },
-    'honda-civic-type-r-fk8': {
+    {
+        id: 'honda-civic-type-r-fk8',
         pcd: '5x120',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '20x8.5', tyre: '245/30R20', offset: '+60' },
@@ -303,7 +330,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x9.5', minTyre: '255/35R19', maxTyre: '265/35R19', offset: '+45 to +55' },
         ],
     },
-    'bmw-m3-e46': {
+    {
+        id: 'bmw-m3-e46',
         pcd: '5x120',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '18x8 (F), 18x9 (R)', tyre: '225/45R18 (F), 255/40R18 (R)', offset: '+47 (F), +26 (R)' },
@@ -313,7 +341,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x10.5 (R)', minTyre: '275/30R19', maxTyre: '285/30R19', offset: '+20 to +25' },
         ],
     },
-    'bmw-m2-f87': {
+    {
+        id: 'bmw-m2-f87',
         pcd: '5x120',
         studPattern: 'M14 x 1.25',
         oemSize: { wheel: '19x9 (F), 19x10 (R)', tyre: '245/35R19 (F), 265/35R19 (R)', offset: '+29 (F), +40 (R)' },
@@ -322,7 +351,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x10.5 (R)', minTyre: '285/30R19', maxTyre: '295/30R19', offset: '+35 to +45' },
         ],
     },
-    'ford-mustang-s550': {
+    {
+        id: 'ford-mustang-s550',
         pcd: '5x114.3',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '19x8.5', tyre: '255/40R19', offset: '+45' },
@@ -333,7 +363,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x11 (R)', minTyre: '305/30R20', maxTyre: '315/30R20', offset: '+50 to +55' },
         ],
     },
-    'nissan-350z': {
+    {
+        id: 'nissan-350z',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '18x8 (F), 18x8.5 (R)', tyre: '225/45R18 (F), 245/45R18 (R)', offset: '+30 (F), +33 (R)' },
@@ -344,7 +375,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x10.5 (R)', minTyre: '275/35R19', maxTyre: '285/35R19', offset: '+22' },
         ],
     },
-    'honda-accord-2000': {
+    {
+        id: 'honda-accord-2000',
         pcd: '4x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '15x6', tyre: '195/65R15', offset: '+55' },
@@ -353,7 +385,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '17x7.5', minTyre: '215/45R17', maxTyre: '225/45R17', offset: '+40 to +48' },
         ],
     },
-    'honda-accord-2008': {
+    {
+        id: 'honda-accord-2008',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '17x7.5', tyre: '225/50R17', offset: '+55' },
@@ -362,7 +395,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x8.5', minTyre: '245/40R19', maxTyre: '255/35R19', offset: '+40 to +48' },
         ],
     },
-    'honda-accord-2018': {
+    {
+        id: 'honda-accord-2018',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.5',
         oemSize: { wheel: '19x8.5', tyre: '235/40R19', offset: '+50' },
@@ -371,7 +405,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x9', minTyre: '245/35R20', maxTyre: '255/35R20', offset: '+38 to +45' },
         ],
     },
-    'nissan-skyline-v35': {
+    {
+        id: 'nissan-skyline-v35',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '17x7.5', tyre: '215/55R17', offset: '+45' },
@@ -380,7 +415,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x9.5', minTyre: '255/35R19', maxTyre: '265/35R19', offset: '+22 to +35' },
         ],
     },
-    'infiniti-q50-q60': {
+    {
+        id: 'infiniti-q50-q60',
         pcd: '5x114.3',
         studPattern: 'M12 x 1.25',
         oemSize: { wheel: '19x8.5', tyre: '245/40R19', offset: '+50' },
@@ -390,7 +426,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x10 (R)', minTyre: '275/30R20', maxTyre: '285/30R20', offset: '+40 to +50' },
         ],
     },
-    'mustang-foxbody': {
+    {
+        id: 'mustang-foxbody',
         pcd: '4x108',
         studPattern: '1/2" - 20',
         oemSize: { wheel: '15x7', tyre: '225/60R15', offset: '+22' },
@@ -399,7 +436,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '17x9', minTyre: '255/40R17', maxTyre: '275/40R17', offset: '+20 to +26' },
         ],
     },
-    'mustang-sn95': {
+    {
+        id: 'mustang-sn95',
         pcd: '5x114.3',
         studPattern: '1/2" - 20',
         oemSize: { wheel: '17x8', tyre: '245/45R17', offset: '+30' },
@@ -409,7 +447,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '18x10', minTyre: '285/35R18', maxTyre: '295/35R18', offset: '+20 to +25' },
         ],
     },
-    'mustang-s197': {
+    {
+        id: 'mustang-s197',
         pcd: '5x114.3',
         studPattern: '1/2" - 20',
         oemSize: { wheel: '18x8', tyre: '235/50R18', offset: '+44' },
@@ -419,7 +458,8 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '20x9.5', minTyre: '275/35R20', maxTyre: '285/35R20', offset: '+35 to +45' },
         ],
     },
-    'mustang-s650': {
+    {
+        id: 'mustang-s650',
         pcd: '5x114.3',
         studPattern: 'M14 x 1.5',
         oemSize: { wheel: '19x8.5', tyre: '255/40R19', offset: '+42.5' },
@@ -428,6 +468,6 @@ export const FITMENT_DATA: FitmentData = {
             { wheel: '19x11 (R)', minTyre: '305/30R19', maxTyre: '315/30R19', offset: '+45 to +55' },
         ],
     },
-};
+];
 
     
