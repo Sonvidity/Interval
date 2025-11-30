@@ -5,6 +5,17 @@ type FluidsData = {
 };
 
 export const FLUIDS_DATA: FluidsData = {
+  'l67-supercharged-v6': {
+    engineOil: {
+        daily: { viscosity: '10W-40', description: 'A quality semi-synthetic or full synthetic 10W-40 works well.' },
+        spirited: { viscosity: '10W-40', description: 'A good quality 10W-40 provides ample protection for spirited driving.' },
+        track: { viscosity: '10W-50', description: 'For track use, a thicker 10W-50 helps maintain oil pressure under high heat.' },
+    },
+    oilFilter: {
+        oem: 'ACDelco PF52E',
+        ryco: 'Z154',
+    },
+  },
   'holden-v8-early': {
     engineOil: {
       daily: { viscosity: '20W-50', description: 'A high-zinc mineral oil is essential for flat-tappet camshafts found in these engines.' },

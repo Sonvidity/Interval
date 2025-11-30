@@ -5,6 +5,43 @@ type ModData = {
 };
 
 export const MOD_DATA: ModData = {
+    'l67-supercharged-v6': {
+        summary: "The L67 Supercharged V6 is a robust pushrod engine known for its reliability and torque. Modifications are cost-effective and can yield significant power increases.",
+        powerLimit: "300-350whp",
+        stages: [
+            {
+                name: 'Stage 1',
+                description: 'Basic bolt-ons to improve breathing and reduce belt slip.',
+                cost: '$500 - $1,500 AUD',
+                power: '220-240whp (165-180wkW)',
+                common_mods: 'Smaller supercharger pulley (e.g., 10psi), High-flow air filter, Colder spark plugs, Cat-back exhaust.'
+            },
+            {
+                name: 'Stage 2',
+                description: 'Improving exhaust flow and fueling to support more boost.',
+                cost: '$1,500 - $3,500 AUD',
+                power: '250-280whp (185-210wkW)',
+                common_mods: 'Stage 1 + High-flow catalytic converters, Upgraded injectors, ECU Tune.'
+            },
+            {
+                name: 'Stage 3',
+                description: 'Adding a camshaft and intercooler to push the stock supercharger to its limits.',
+                cost: '$4,000 - $8,000+ AUD',
+                power: '300whp+',
+                common_mods: 'Stage 2 + Camshaft upgrade, Valve springs, Intercooler kit.'
+            }
+        ],
+        common_issues: [
+            {
+                name: 'Intake Manifold Gaskets',
+                description: 'The lower intake manifold gaskets are made of plastic and prone to failing, causing coolant to leak into the engine oil. Upgrading to metal gaskets is a critical preventative fix.'
+            },
+            {
+                name: 'Supercharger Coupler',
+                description: 'The stock supercharger coupler can wear out, causing a loud rattling sound from the snout. An upgraded solid or oil-filled coupler is a common replacement.'
+            }
+        ]
+    },
     'gm-ls1': {
         summary: "The Gen III LS1 V8 is a legendary engine known for its simplicity, reliability, and huge aftermarket support. It responds incredibly well to modifications, making it a favorite for swaps and builds.",
         powerLimit: "450-500whp",
@@ -296,7 +333,7 @@ export const MOD_DATA: ModData = {
                 description: 'Improving sound and throttle response.',
                 cost: '$800 - $1,500 AUD',
                 power: '220-235whp (165-175wkW)',
-                common_mods: 'Cat-back exhaust, High-flow panel filter.'
+                common_mods: 'High-flow panel filter, Cat-back exhaust.'
             },
             {
                 name: 'Stage 2',
