@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -135,6 +136,39 @@ export default function VehicleDatabasePage() {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+          </CardContent>
+        </Card>
+      )}
+
+      {!selectedVehicle && (
+        <Card className="max-w-6xl mx-auto">
+          <CardHeader>
+            <CardTitle>Full Vehicle List</CardTitle>
+            <CardDescription>A complete list of all vehicles currently in the database.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="max-h-[80vh] overflow-y-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Year</TableHead>
+                    <TableHead>Make</TableHead>
+                    <TableHead>Model</TableHead>
+                    <TableHead>Variant</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {VEHICLE_DATABASE.sort((a,b) => `${a.make} ${a.model}`.localeCompare(`${b.make} ${b.model}`)).map(vehicle => (
+                    <TableRow key={vehicle.id} onClick={() => handleSelectVehicle(vehicle)} className="cursor-pointer">
+                      <TableCell>{vehicle.years}</TableCell>
+                      <TableCell>{vehicle.make}</TableCell>
+                      <TableCell>{vehicle.model}</TableCell>
+                      <TableCell>{vehicle.variant}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </CardContent>
         </Card>
       )}
