@@ -251,6 +251,84 @@
       "description": "A white 1980s sedan.",
       "imageUrl": "https://images.unsplash.com/photo-1618814583155-b46138657688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHw4MH MlMjBzZWRhbnxlbnwwfHx8fDE3NjMyMTE5MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "80s sedan"
+    },
+    {
+      "id": "placeholder-coupe-orange-70s",
+      "description": "An orange 1970s coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1599623838919-7963353597a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHw3MH MlMjBzZWRhbnxlbnwwfHx8fDE3NjMyMTE5MTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "70s coupe"
+    },
+    {
+      "id": "placeholder-sedan-tiny-blue",
+      "description": "A small blue sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1552642762-c28839b2b516?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGJsdWUlMjBzZWRhbnxlbnwwfHx8fDE3NjM4NTAyMjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "small sedan"
+    },
+    {
+      "id": "placeholder-sedan-small-white",
+      "description": "A small white sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1581136451381-8b2094c9f131?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMHdoaXRlJTIwc2VkYW58ZW58MHx8fHwxNzYzODUwMjI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "small sedan"
+    },
+    {
+      "id": "placeholder-ute-red",
+      "description": "A red ute.",
+      "imageUrl": "https://images.unsplash.com/photo-1574009879796-a8a25c1ea796?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWQlMjB1dGV8ZW58MHx8fHwxNzYzODUwNDc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red ute"
+    },
+    {
+      "id": "placeholder-coupe-black-90s",
+      "description": "A black 90s coupe.",
+      "imageUrl": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxibGFjayUyMDkwcyUyMGNvdXBlfGVufDB8fHx8MTc2Mzg1MDQ3OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black coupe"
+    },
+    {
+      "id": "placeholder-hatch-red",
+      "description": "A red hatchback.",
+      "imageUrl": "https://images.unsplash.com/photo-1599912027806-cfec9f5941b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWQlMjBoYXRjaGJhY2t8ZW58MHx8fHwxNzYzODUwNzIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red hatchback"
+    },
+    {
+      "id": "placeholder-sedan-black-modern",
+      "description": "A modern black sedan.",
+      "imageUrl": "https://images.unsplash.com/photo-1619844326533-33c04d1f2373?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibGFjayUyMG1vZGVybiUyMHNlZGFufGVufDB8fHx8MTc2Mzg1MDcyMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "black sedan"
+    },
+    {
+      "id": "placeholder-hatch-gray",
+      "description": "A gray hatchback.",
+      "imageUrl": "https://images.unsplash.com/photo-1579566986926-2537f1228f4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmF5JTIwaGF0Y2hiYWNrfGVufDB8fHx8MTc2Mzg1MDcyMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gray hatchback"
+    },
+    {
+      "id": "placeholder-suv-red",
+      "description": "A red SUV.",
+      "imageUrl": "https://images.unsplash.com/photo-1614026480312-a57934257829?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWQlMjBzdXZ8ZW58MHx8fHwxNzYzODUwNzIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "red suv"
+    },
+    {
+      "id": "placeholder-suv-large-black",
+      "description": "A large black SUV.",
+      "imageUrl": "https://images.unsplash.com/photo-1555397435-3c46a6c4a867?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYXJnZSUyMGJsYWNrJTIwc3V2fGVufDB8fHx8MTc2Mzg1MDcyMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "large suv"
+    },
+    {
+      "id": "placeholder-ute-blue",
+      "description": "A blue ute.",
+      "imageUrl": "https://images.unsplash.com/photo-1632717013824-348507c5a751?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxibHVlJTIwdXRlfGVufDB8fHx8MTc2Mzg1MTg4NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue ute"
+    },
+    {
+      "id": "placeholder-hatch-yellow",
+      "description": "A yellow hatchback.",
+      "imageUrl": "https://images.unsplash.com/photo-1598586958893-2a42b109c148?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx5ZWxsb3clMjBoYXRjaGJhY2t8ZW58MHx8fHwxNzYzODUxODg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "yellow hatchback"
+    },
+    {
+      "id": "placeholder-sedan-black-gangster",
+      "description": "A black sedan that looks like a gangster car.",
+      "imageUrl": "https://images.unsplash.com/photo-1591839885818-2432d4b9759c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnYW5nc3RlciUyMGNhcnxlbnwwfHx8fDE3NjM4NTIwNjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gangster car"
     }
   ]
 }
