@@ -7,12 +7,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+// Re-importing placeholder logic to be safe
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function VehicleDatabasePage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedVehicle, setSelectedVehicle] = useState<typeof VEHICLE_DATABASE[0] | null>(null);
+  const [selectedVehicle, setSelectedVehicle] = useState<(typeof VEHICLE_DATABASE)[0] | null>(null);
 
   const filteredVehicles = VEHICLE_DATABASE.filter(vehicle =>
     `${vehicle.make} ${vehicle.model} ${vehicle.variant} ${vehicle.years}`.toLowerCase().includes(searchTerm.toLowerCase())

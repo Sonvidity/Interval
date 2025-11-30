@@ -1,24 +1,305 @@
 
 import type { Vehicle } from './types';
-import { FITMENT_DATA } from './fitment-data';
-import { FLUIDS_DATA } from './fluids-data';
+
+// This is a placeholder for a much more complex data structure.
+// In a real application, this would be a database.
+// The data here is not exhaustive and is for demonstration purposes only.
 
 export const VEHICLE_DATABASE: Vehicle[] = [
-  // Holden / GM-H
+  // Existing Holden Data (Restored and Verified)
   {
-    id: 'holden-commodore-vx-v6-ecotec',
+    id: 'holden-torana-lx-sl',
+    make: 'Holden',
+    model: 'Torana',
+    variant: 'LX SL',
+    years: '1976-1978',
+    imageId: 'placeholder-sedan-70s-brown',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    fluidsGuideId: 'holden-v8-early',
+  },
+  {
+    id: 'holden-torana-lx-ss',
+    make: 'Holden',
+    model: 'Torana',
+    variant: 'LX SS Hatchback',
+    years: '1976-1978',
+    imageId: 'placeholder-coupe-orange-70s',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-early',
+    fluidsGuideId: 'holden-v8-early',
+  },
+  {
+    id: 'holden-commodore-vb-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VB SL (V6)',
+    years: '1978-1980',
+    imageId: 'placeholder-sedan-brown',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vb-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VB SL/E (V8)',
+    years: '1978-1980',
+    imageId: 'placeholder-sedan-brown',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-early',
+    fluidsGuideId: 'holden-v8-early',
+  },
+  {
+    id: 'holden-commodore-vc-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VC L/SL (V6)',
+    years: '1980-1981',
+    imageId: 'placeholder-sedan-brown',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vc-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VC L/SL/SL/E (V8)',
+    years: '1980-1981',
+    imageId: 'placeholder-sedan-brown',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-early',
+    fluidsGuideId: 'holden-v8-early',
+  },
+  {
+    id: 'holden-commodore-vh-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VH SL/SLX (V6)',
+    years: '1981-1984',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vh-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VH SL/SLX/SS (V8)',
+    years: '1981-1984',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-early',
+    fluidsGuideId: 'holden-v8-early',
+  },
+  {
+    id: 'holden-commodore-vk-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VK (V6)',
+    years: '1984-1986',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vk-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VK SS (V8)',
+    years: '1984-1986',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-early',
+    fluidsGuideId: 'holden-v8-early',
+  },
+  {
+    id: 'holden-commodore-vl-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VL (RB30E V6)',
+    years: '1986-1988',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vl-turbo',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VL Turbo (RB30ET)',
+    years: '1986-1988',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'rb20det', // Similar enough for general mods
+  },
+  {
+    id: 'holden-commodore-vn-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VN (3.8L V6)',
+    years: '1988-1991',
+    imageId: 'placeholder-sedan-maroon',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vn-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VN SS (5.0L V8)',
+    years: '1989-1991',
+    imageId: 'placeholder-sedan-maroon',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-5l',
+    fluidsGuideId: 'holden-v8-5l',
+  },
+  {
+    id: 'holden-commodore-vp-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VP (3.8L V6)',
+    years: '1991-1993',
+    imageId: 'placeholder-sedan-maroon',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vp-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VP SS (5.0L V8)',
+    years: '1991-1993',
+    imageId: 'placeholder-sedan-maroon',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-5l',
+    fluidsGuideId: 'holden-v8-5l',
+  },
+  {
+    id: 'holden-commodore-vr-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VR (3.8L V6)',
+    years: '1993-1995',
+    imageId: 'placeholder-sedan-red',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vr-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VR SS (5.0L V8)',
+    years: '1993-1995',
+    imageId: 'placeholder-sedan-red',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-5l',
+    fluidsGuideId: 'holden-v8-5l',
+  },
+  {
+    id: 'holden-commodore-vs-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VS (Ecotec V6)',
+    years: '1995-1997',
+    imageId: 'placeholder-sedan-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+  },
+  {
+    id: 'holden-commodore-vs-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VS SS (5.0L V8)',
+    years: '1995-1997',
+    imageId: 'placeholder-sedan-white',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    modGuideId: 'holden-v8-5l',
+    fluidsGuideId: 'holden-v8-5l',
+  },
+  {
+    id: 'holden-commodore-vt-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VT (Ecotec V6)',
+    years: '1997-2000',
+    imageId: 'sv6-commodore',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    fitmentId: 'holden-commodore-vt-vz',
+  },
+  {
+    id: 'holden-commodore-vt-v6-supercharged',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VT (Supercharged V6)',
+    years: '1997-2000',
+    imageId: 'sv6-commodore',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    modGuideId: 'l67-supercharged-v6',
+    fluidsGuideId: 'l67-supercharged-v6',
+    fitmentId: 'holden-commodore-vt-vz',
+  },
+  {
+    id: 'holden-commodore-vt-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VT SS (LS1 V8)',
+    years: '1999-2000',
+    imageId: 'placeholder-sedan-red',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    modGuideId: 'gm-ls1',
+    fluidsGuideId: 'gm-ls1',
+    fitmentId: 'holden-commodore-vt-vz',
+  },
+  {
+    id: 'holden-commodore-vx-v6',
     make: 'Holden',
     model: 'Commodore',
     variant: 'VX (Ecotec V6)',
     years: '2000-2002',
     imageId: 'sv6-commodore',
-    modGuideId: 'alloytec-v6',
-    fluidsGuideId: 'alloytec-v6',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+    fluidsGuideId: 'alloytec-v6',
+    fitmentId: 'holden-commodore-vt-vz',
   },
   {
     id: 'holden-commodore-vx-v6-supercharged',
@@ -27,32 +308,32 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     variant: 'VX (Supercharged V6)',
     years: '2000-2002',
     imageId: 'sv6-commodore',
-    modGuideId: 'l67-supercharged-v6',
-    fluidsGuideId: 'l67-supercharged-v6',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 20000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+    modGuideId: 'l67-supercharged-v6',
+    fluidsGuideId: 'l67-supercharged-v6',
+    fitmentId: 'holden-commodore-vt-vz',
   },
   {
-    id: 'holden-commodore-vx-v8-ls1',
+    id: 'holden-commodore-vx-v8',
     make: 'Holden',
     model: 'Commodore',
     variant: 'VX SS (LS1 V8)',
     years: '2000-2002',
     imageId: 'placeholder-sedan-red',
-    modGuideId: 'gm-ls1',
-    fluidsGuideId: 'gm-ls1',
-     serviceItems: [
+    serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Engine' },
       { name: 'Transmission Fluid', oemIntervalKm: 100000, oemIntervalMonths: 60, type: 'Chassis', transmission: 'Automatic' },
       { name: 'Brake Fluid', oemIntervalKm: 40000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+    modGuideId: 'gm-ls1',
+    fluidsGuideId: 'gm-ls1',
+    fitmentId: 'holden-commodore-vt-vz',
   },
-    {
+  {
     id: 'holden-commodore-vy-v6',
     make: 'Holden',
     model: 'Commodore',
@@ -62,7 +343,8 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+    fluidsGuideId: 'alloytec-v6',
+    fitmentId: 'holden-commodore-vt-vz',
   },
   {
     id: 'holden-commodore-vy-v8',
@@ -71,12 +353,40 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     variant: 'VY SS (LS1 V8)',
     years: '2002-2004',
     imageId: 'placeholder-sedan-red',
-    modGuideId: 'gm-ls1',
-    fluidsGuideId: 'gm-ls1',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+    modGuideId: 'gm-ls1',
+    fluidsGuideId: 'gm-ls1',
+    fitmentId: 'holden-commodore-vt-vz',
+  },
+  {
+    id: 'holden-commodore-vz-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VZ (Alloytec V6)',
+    years: '2004-2006',
+    imageId: 'sv6-commodore',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    modGuideId: 'alloytec-v6',
+    fluidsGuideId: 'alloytec-v6',
+    fitmentId: 'holden-commodore-vt-vz',
+  },
+  {
+    id: 'holden-commodore-vz-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VZ SS (L76/L98 V8)',
+    years: '2004-2006',
+    imageId: 'placeholder-sedan-red',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    modGuideId: 'gm-ls1', // Close enough for basics
+    fluidsGuideId: 'gm-ls1',
+    fitmentId: 'holden-commodore-vt-vz',
   },
   {
     id: 'holden-commodore-ve-v6',
@@ -85,12 +395,12 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     variant: 'VE (Alloytec V6)',
     years: '2006-2013',
     imageId: 'sv6-commodore',
-    modGuideId: 'alloytec-v6',
-    fluidsGuideId: 'alloytec-v6',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-ve-vf'],
+    modGuideId: 'alloytec-v6',
+    fluidsGuideId: 'alloytec-v6',
+    fitmentId: 'holden-commodore-ve-vf',
   },
   {
     id: 'holden-commodore-ve-v8',
@@ -99,12 +409,40 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     variant: 'VE SS (L98/LS2 V8)',
     years: '2006-2013',
     imageId: 'placeholder-sedan-red',
-    modGuideId: 'gm-ls3',
-    fluidsGuideId: 'gm-ls3',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-ve-vf'],
+    modGuideId: 'gm-ls3',
+    fluidsGuideId: 'gm-ls3',
+    fitmentId: 'holden-commodore-ve-vf',
+  },
+  {
+    id: 'holden-commodore-vf-v6',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VF SV6 (LFX V6)',
+    years: '2013-2017',
+    imageId: 'sv6-commodore',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    modGuideId: 'alloytec-v6',
+    fluidsGuideId: 'alloytec-v6',
+    fitmentId: 'holden-commodore-ve-vf',
+  },
+  {
+    id: 'holden-commodore-vf-v8',
+    make: 'Holden',
+    model: 'Commodore',
+    variant: 'VF SS (LS3 V8)',
+    years: '2013-2017',
+    imageId: 'placeholder-sedan-red',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    modGuideId: 'gm-ls3',
+    fluidsGuideId: 'gm-ls3',
+    fitmentId: 'holden-commodore-ve-vf',
   },
   {
     id: 'holden-monaro-v2',
@@ -113,15 +451,140 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     variant: 'V2 (LS1 V8)',
     years: '2001-2006',
     imageId: 'placeholder-coupe-silver',
-    modGuideId: 'gm-ls1',
-    fluidsGuideId: 'gm-ls1',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 9, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['holden-commodore-vt-vz'],
+    modGuideId: 'gm-ls1',
+    fluidsGuideId: 'gm-ls1',
+    fitmentId: 'holden-commodore-vt-vz',
   },
   {
-    id: 'ford-falcon-au',
+    id: 'hsv-gts-r-w1',
+    make: 'HSV',
+    model: 'GTSR W1',
+    variant: 'VFII (LS9 Supercharged V8)',
+    years: '2017',
+    imageId: 'placeholder-sedan-gangster-green',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+    ],
+    modGuideId: 'gm-ls3', // Closest applicable guide for forced induction LS
+  },
+  // New Ford Data
+  {
+    id: 'ford-falcon-xc-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'XC (4.1L I6)',
+    years: '1976-1979',
+    imageId: 'placeholder-sedan-70s-brown',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-xc-v8',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'XC GXL / Fairmont (5.8L V8)',
+    years: '1976-1979',
+    imageId: 'placeholder-sedan-70s-brown',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-xd-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'XD (4.1L I6)',
+    years: '1979-1982',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-xe-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'XE (4.1L EFI I6)',
+    years: '1982-1984',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-xf-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'XF (4.1L EFI I6)',
+    years: '1984-1988',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-ea-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'EA (3.9L I6)',
+    years: '1988-1991',
+    imageId: 'placeholder-sedan-maroon',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-eb-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'EB (4.0L I6)',
+    years: '1991-1993',
+    imageId: 'placeholder-sedan-maroon',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-eb-v8',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'EB XR8 (5.0L V8)',
+    years: '1991-1993',
+    imageId: 'placeholder-sedan-red',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+    modGuideId: 'pushrod-5-0',
+    fluidsGuideId: 'pushrod-5-0',
+  },
+  {
+    id: 'ford-falcon-ed-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'ED (4.0L I6)',
+    years: '1993-1994',
+    imageId: 'placeholder-sedan-green',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-ed-v8',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'ED XR8 (5.0L V8)',
+    years: '1993-1994',
+    imageId: 'placeholder-sedan-red',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+    modGuideId: 'pushrod-5-0',
+    fluidsGuideId: 'pushrod-5-0',
+  },
+  {
+    id: 'ford-falcon-ef-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'EF (4.0L I6)',
+    years: '1994-1996',
+    imageId: 'placeholder-sedan-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-el-i6',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'EL (4.0L I6)',
+    years: '1996-1998',
+    imageId: 'placeholder-sedan-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' }],
+  },
+  {
+    id: 'ford-falcon-au-i6',
     make: 'Ford',
     model: 'Falcon',
     variant: 'AU (Intech I6)',
@@ -130,51 +593,169 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['ford-falcon-au'],
+    fitmentId: 'ford-falcon-au',
   },
   {
-    id: 'ford-falcon-ba-bf-na',
+    id: 'ford-falcon-au-v8',
     make: 'Ford',
     model: 'Falcon',
-    variant: 'BA/BF (Barra I6)',
-    years: '2002-2008',
-    imageId: 'placeholder-sedan-silver',
-    modGuideId: 'barra-na',
-    fluidsGuideId: 'barra-na',
+    variant: 'AU XR8 (5.0L Windsor V8)',
+    years: '1998-2002',
+    imageId: 'placeholder-sedan-red',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['ford-falcon-ba-bf'],
+    fitmentId: 'ford-falcon-au',
+    modGuideId: 'pushrod-5-0',
   },
   {
-    id: 'ford-falcon-ba-bf-turbo',
+    id: 'fpv-au-te50',
+    make: 'FPV',
+    model: 'TE50',
+    variant: 'AU Tickford (5.6L Windsor V8)',
+    years: '2000-2002',
+    imageId: 'placeholder-sedan-blue-fast',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+    ],
+    fitmentId: 'ford-falcon-au',
+  },
+  {
+    id: 'ford-falcon-ba-na',
     make: 'Ford',
     model: 'Falcon',
-    variant: 'BA/BF XR6 Turbo (Barra Turbo)',
-    years: '2002-2008',
+    variant: 'BA (Barra 182 I6)',
+    years: '2002-2005',
+    imageId: 'placeholder-sedan-silver',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+    modGuideId: 'barra-na',
+    fluidsGuideId: 'barra-na',
+    fitmentId: 'ford-falcon-ba-bf',
+  },
+  {
+    id: 'ford-falcon-ba-turbo',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'BA XR6 Turbo (Barra 240T)',
+    years: '2002-2005',
     imageId: 'ford-falcon-fg-turbo',
-    modGuideId: 'barra-turbo',
-    fluidsGuideId: 'barra-turbo',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['ford-falcon-ba-bf'],
+    modGuideId: 'barra-turbo',
+    fluidsGuideId: 'barra-turbo',
+    fitmentId: 'ford-falcon-ba-bf',
+  },
+  {
+    id: 'ford-falcon-bf-na',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'BF (Barra 190 I6)',
+    years: '2005-2008',
+    imageId: 'placeholder-sedan-silver',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+    modGuideId: 'barra-na',
+    fluidsGuideId: 'barra-na',
+    fitmentId: 'ford-falcon-ba-bf',
+  },
+  {
+    id: 'ford-falcon-bf-turbo',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'BF XR6 Turbo (Barra 245T)',
+    years: '2005-2008',
+    imageId: 'ford-falcon-fg-turbo',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Engine' },
+    ],
+    modGuideId: 'barra-turbo',
+    fluidsGuideId: 'barra-turbo',
+    fitmentId: 'ford-falcon-ba-bf',
+  },
+  {
+    id: 'ford-falcon-fg-na',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'FG (Barra 195 I6)',
+    years: '2008-2014',
+    imageId: 'placeholder-sedan-silver',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+    modGuideId: 'barra-na',
+    fluidsGuideId: 'barra-na',
+    fitmentId: 'ford-falcon-fg-turbo',
   },
   {
     id: 'ford-falcon-fg-turbo',
     make: 'Ford',
     model: 'Falcon',
-    variant: 'FG/FGX XR6 Turbo (Barra Turbo)',
-    years: '2008-2016',
+    variant: 'FG XR6 Turbo (Barra 270T)',
+    years: '2008-2014',
     imageId: 'ford-falcon-fg-turbo',
-    modGuideId: 'barra-turbo',
-    fluidsGuideId: 'barra-turbo',
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 60000, oemIntervalMonths: 36, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['ford-falcon-fg-turbo'],
+    modGuideId: 'barra-turbo',
+    fluidsGuideId: 'barra-turbo',
+    fitmentId: 'ford-falcon-fg-turbo',
+  },
+  {
+    id: 'fpv-fg-gt',
+    make: 'FPV',
+    model: 'GT',
+    variant: 'FG (5.0L Supercharged Coyote)',
+    years: '2010-2014',
+    imageId: 'placeholder-sedan-blue-fast',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+    modGuideId: 'coyote-s550', // Similar concepts apply
+  },
+  {
+    id: 'ford-falcon-fgx-turbo',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'FG X XR6 Turbo (Barra 270T)',
+    years: '2014-2016',
+    imageId: 'ford-falcon-fg-turbo',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+    modGuideId: 'barra-turbo',
+    fluidsGuideId: 'barra-turbo',
+    fitmentId: 'ford-falcon-fg-turbo',
+  },
+  {
+    id: 'ford-falcon-fgx-xr8',
+    make: 'Ford',
+    model: 'Falcon',
+    variant: 'FG X XR8 (5.0L Supercharged)',
+    years: '2014-2016',
+    imageId: 'placeholder-sedan-blue-fast',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+    modGuideId: 'coyote-s550',
+  },
+  {
+    id: 'fpv-gt-f-351',
+    make: 'FPV',
+    model: 'GT-F 351',
+    variant: 'FG X (5.0L Supercharged)',
+    years: '2014',
+    imageId: 'placeholder-sedan-black-gangster',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
+    ],
+    modGuideId: 'coyote-s550',
   },
   {
     id: 'ford-territory',
@@ -186,13 +767,14 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['ford-territory'],
+    fitmentId: 'ford-territory',
   },
+  // Existing other cars
   {
     id: 'toyota-86-zn6',
-    make: 'Toyota / Subaru',
-    model: '86 / BRZ (First Gen)',
-    variant: 'ZN6/ZC6 (FA20)',
+    make: 'Toyota',
+    model: '86',
+    variant: 'ZN6 (FA20)',
     years: '2012-2021',
     imageId: 'toyota-86',
     modGuideId: 'zn6',
@@ -203,13 +785,28 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Transmission Fluid', oemIntervalKm: 80000, oemIntervalMonths: 48, type: 'Chassis', transmission: 'Manual' },
       { name: 'Brake Fluid', oemIntervalKm: 45000, oemIntervalMonths: 24, type: 'Chassis' },
     ],
-    fitment: FITMENT_DATA['toyota-86'],
+    fitmentId: 'toyota-86',
+  },
+  {
+    id: 'subaru-brz-zc6',
+    make: 'Subaru',
+    model: 'BRZ',
+    variant: 'ZC6 (FA20)',
+    years: '2012-2021',
+    imageId: 'placeholder-coupe-blue',
+    modGuideId: 'zn6',
+    fluidsGuideId: 'fa20',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 90000, oemIntervalMonths: 60, type: 'Engine' },
+    ],
+    fitmentId: 'toyota-86',
   },
   {
     id: 'toyota-gr86-zn8',
-    make: 'Toyota / Subaru',
-    model: 'GR86 / BRZ (Second Gen)',
-    variant: 'ZN8/ZD8 (FA24)',
+    make: 'Toyota',
+    model: 'GR86',
+    variant: 'ZN8 (FA24)',
     years: '2022-Present',
     imageId: 'placeholder-coupe-red-90s',
     modGuideId: 'zn8',
@@ -218,7 +815,22 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 90000, oemIntervalMonths: 60, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['toyota-86'],
+    fitmentId: 'toyota-86',
+  },
+  {
+    id: 'subaru-brz-zd8',
+    make: 'Subaru',
+    model: 'BRZ',
+    variant: 'ZD8 (FA24)',
+    years: '2022-Present',
+    imageId: 'placeholder-coupe-blue-fast',
+    modGuideId: 'zn8',
+    fluidsGuideId: 'fa24',
+    serviceItems: [
+      { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 9, type: 'Engine' },
+      { name: 'Spark Plugs', oemIntervalKm: 90000, oemIntervalMonths: 60, type: 'Engine' },
+    ],
+    fitmentId: 'toyota-86',
   },
   {
     id: 'nissan-skyline-r32-gtst-turbo',
@@ -233,7 +845,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
       { name: 'Spark Plugs', oemIntervalKm: 20000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-skyline-r32-gtst'],
+    fitmentId: 'nissan-skyline-r32-gtst',
   },
   {
     id: 'nissan-skyline-r32-gts-na',
@@ -247,7 +859,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-skyline-r32-gtst'],
+    fitmentId: 'nissan-skyline-r32-gtst',
   },
   {
     id: 'nissan-skyline-r32-gtr',
@@ -261,7 +873,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-skyline-r32-gtr'],
+    fitmentId: 'nissan-skyline-r32-gtr',
   },
   {
     id: 'nissan-skyline-r33-gtst-turbo',
@@ -275,7 +887,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-skyline-r33-gtst'],
+    fitmentId: 'nissan-skyline-r33-gtst',
   },
   {
     id: 'nissan-skyline-r33-gts-na',
@@ -289,7 +901,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-skyline-r33-gtst'],
+    fitmentId: 'nissan-skyline-r33-gtst',
   },
   {
     id: 'nissan-skyline-r34-gtt-turbo',
@@ -303,7 +915,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-skyline-r34-gtt'],
+    fitmentId: 'nissan-skyline-r34-gtt',
   },
   {
     id: 'nissan-skyline-r34-gtr',
@@ -317,7 +929,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-skyline-r34-gtr'],
+    fitmentId: 'nissan-skyline-r34-gtr',
   },
   {
     id: 'vw-golf-mk5-r32',
@@ -331,7 +943,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['vw-golf-r-mk5'],
+    fitmentId: 'vw-golf-r-mk5',
   },
   {
     id: 'vw-golf-mk6-r',
@@ -345,7 +957,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['vw-golf-r-mk6'],
+    fitmentId: 'vw-golf-r-mk6',
   },
   {
     id: 'vw-golf-mk7-r',
@@ -359,7 +971,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['vw-golf-r-mk7'],
+    fitmentId: 'vw-golf-r-mk7',
   },
     {
     id: 'vw-golf-mk8-r',
@@ -373,7 +985,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['vw-golf-r-mk8'],
+    fitmentId: 'vw-golf-r-mk8',
   },
   {
     id: 'mercedes-ml500-w164',
@@ -386,7 +998,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 25000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mercedes-ml500'],
+    fitmentId: 'mercedes-ml500',
   },
   {
     id: 'mercedes-ml500-w166',
@@ -400,7 +1012,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 25000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mercedes-ml500-w166'],
+    fitmentId: 'mercedes-ml500-w166',
   },
   {
     id: 'ford-mondeo-mc',
@@ -414,7 +1026,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['ford-mondeo-mc'],
+    fitmentId: 'ford-mondeo-mc',
   },
   {
     id: 'honda-accord-cl9',
@@ -428,7 +1040,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['honda-accord-cl9'],
+    fitmentId: 'honda-accord-cl9',
   },
   {
     id: 'subaru-wrx-sti-gc8',
@@ -442,7 +1054,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['subaru-wrx-sti-gc8'],
+    fitmentId: 'subaru-wrx-sti-gc8',
   },
   {
     id: 'subaru-wrx-sti-gd-5x100',
@@ -456,7 +1068,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['subaru-wrx-sti-gd-5x100'],
+    fitmentId: 'subaru-wrx-sti-gd-5x100',
   },
   {
     id: 'subaru-wrx-sti-gd-5x114',
@@ -470,7 +1082,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 6250, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['subaru-wrx-sti-gd-5x114'],
+    fitmentId: 'subaru-wrx-sti-gd-5x114',
   },
   {
     id: 'subaru-wrx-sti-va',
@@ -484,7 +1096,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12500, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['subaru-wrx-sti-va'],
+    fitmentId: 'subaru-wrx-sti-va',
   },
   {
     id: 'mitsubishi-evo-viii',
@@ -498,7 +1110,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mitsubishi-evo-8-9'],
+    fitmentId: 'mitsubishi-evo-8-9',
   },
     {
     id: 'mitsubishi-evo-ix',
@@ -512,7 +1124,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mitsubishi-evo-8-9'],
+    fitmentId: 'mitsubishi-evo-8-9',
   },
   {
     id: 'mitsubishi-evo-x',
@@ -526,7 +1138,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mitsubishi-evo-10'],
+    fitmentId: 'mitsubishi-evo-10',
   },
   {
     id: 'mazda-mx5-nd',
@@ -539,7 +1151,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mazda-mx5-nd'],
+    fitmentId: 'mazda-mx5-nd',
   },
   {
     id: 'mazda-rx7-fd',
@@ -553,7 +1165,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mazda-rx7-fd'],
+    fitmentId: 'mazda-rx7-fd',
   },
   {
     id: 'honda-s2000',
@@ -567,7 +1179,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['honda-s2000'],
+    fitmentId: 'honda-s2000',
   },
   {
     id: 'honda-civic-type-r-fk8',
@@ -581,7 +1193,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['honda-civic-type-r-fk8'],
+    fitmentId: 'honda-civic-type-r-fk8',
   },
   {
     id: 'bmw-m3-e46',
@@ -595,7 +1207,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['bmw-m3-e46'],
+    fitmentId: 'bmw-m3-e46',
   },
   {
     id: 'bmw-m2-f87',
@@ -609,7 +1221,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 15000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['bmw-m2-f87'],
+    fitmentId: 'bmw-m2-f87',
   },
   {
     id: 'ford-mustang-s550',
@@ -623,7 +1235,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 16000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['ford-mustang-s550'],
+    fitmentId: 'ford-mustang-s550',
   },
   {
     id: 'nissan-350z',
@@ -637,7 +1249,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 6000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['nissan-350z'],
+    fitmentId: 'nissan-350z',
   },
   {
     id: 'honda-accord-10th-gen-k20c4',
@@ -651,7 +1263,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['honda-accord-2018'],
+    fitmentId: 'honda-accord-2018',
   },
   {
     id: 'honda-accord-euro-r-cl1',
@@ -691,7 +1303,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['honda-accord-cl9'],
+    fitmentId: 'honda-accord-cl9',
   },
   {
     id: 'infiniti-q50-q60-vr30',
@@ -705,7 +1317,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['infiniti-q50-q60'],
+    fitmentId: 'infiniti-q50-q60',
   },
   {
     id: 'ford-mustang-foxbody',
@@ -719,7 +1331,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mustang-foxbody'],
+    fitmentId: 'mustang-foxbody',
   },
   {
     id: 'ford-mustang-sn95',
@@ -733,7 +1345,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 8000, oemIntervalMonths: 6, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mustang-sn95'],
+    fitmentId: 'mustang-sn95',
   },
   {
     id: 'ford-mustang-s197',
@@ -747,7 +1359,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 12000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mustang-s197'],
+    fitmentId: 'mustang-s197',
   },
     {
     id: 'ford-mustang-s650',
@@ -761,7 +1373,7 @@ export const VEHICLE_DATABASE: Vehicle[] = [
     serviceItems: [
       { name: 'Engine Oil & Filter', oemIntervalKm: 16000, oemIntervalMonths: 12, type: 'Engine' },
     ],
-    fitment: FITMENT_DATA['mustang-s650'],
+    fitmentId: 'mustang-s650',
   },
   {
     id: 'toyota-landcruiser-200',
@@ -896,7 +1508,141 @@ export const VEHICLE_DATABASE: Vehicle[] = [
        { name: 'Brake Fluid', oemIntervalKm: 50000, oemIntervalMonths: 24, type: 'Chassis' },
        { name: 'Cabin Air Filter', oemIntervalKm: 30000, oemIntervalMonths: 12, type: 'Chassis' },
     ],
-  }
+  },
+  // Add new Accords here
+  {
+    id: 'honda-accord-1st-gen-sj',
+    make: 'Honda',
+    model: 'Accord',
+    variant: '1st Gen (SJ)',
+    years: '1976-1981',
+    imageId: 'placeholder-sedan-tiny-blue',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 5000, oemIntervalMonths: 6, type: 'Engine' }],
+    fluidsGuideId: 'honda-f-series',
+  },
+  {
+    id: 'honda-accord-2nd-gen-sy',
+    make: 'Honda',
+    model: 'Accord',
+    variant: '2nd Gen (SY)',
+    years: '1981-1985',
+    imageId: 'placeholder-sedan-small-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' }],
+    fluidsGuideId: 'honda-f-series',
+  },
+  {
+    id: 'honda-accord-3rd-gen-ca1',
+    make: 'Honda',
+    model: 'Accord',
+    variant: '3rd Gen (CA1)',
+    years: '1985-1989',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' }],
+    fluidsGuideId: 'honda-f-series',
+  },
+  {
+    id: 'honda-accord-3rd-gen-ca2',
+    make: 'Honda',
+    model: 'Accord',
+    variant: '3rd Gen (CA2)',
+    years: '1985-1989',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' }],
+    fluidsGuideId: 'honda-f-series',
+  },
+  {
+    id: 'honda-accord-3rd-gen-ca3',
+    make: 'Honda',
+    model: 'Accord',
+    variant: '3rd Gen (CA3)',
+    years: '1985-1989',
+    imageId: 'placeholder-sedan-80s-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' }],
+    fluidsGuideId: 'honda-f-series',
+  },
+    {
+    id: 'honda-accord-4th-gen-cb1',
+    make: 'Honda',
+    model: 'Accord',
+    variant: '4th Gen (CB1)',
+    years: '1989-1993',
+    imageId: 'placeholder-coupe-black-90s',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' }],
+    fluidsGuideId: 'honda-f-series',
+  },
+    {
+    id: 'honda-accord-4th-gen-cb7-sir',
+    make: 'Honda',
+    model: 'Accord',
+    variant: '4th Gen SiR (CB7)',
+    years: '1990-1993',
+    imageId: 'placeholder-coupe-black-90s',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 7500, oemIntervalMonths: 6, type: 'Engine' }],
+    modGuideId: 'h22a',
+    fluidsGuideId: 'h22a',
+  },
+  // Base Civics
+  {
+    id: 'honda-civic-5th-gen-eg',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '5th Gen (EG)',
+    years: '1991-1995',
+    imageId: 'placeholder-hatch-red',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' }],
+  },
+  {
+    id: 'honda-civic-6th-gen-ek',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '6th Gen (EK)',
+    years: '1995-2000',
+    imageId: 'placeholder-coupe-white-80s', // Reusing
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' }],
+  },
+  {
+    id: 'honda-civic-7th-gen-ep',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '7th Gen (EP)',
+    years: '2001-2005',
+    imageId: 'placeholder-hatch-black',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' }],
+  },
+  {
+    id: 'honda-civic-8th-gen-fn',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '8th Gen (FN/FD)',
+    years: '2007-2011',
+    imageId: 'placeholder-sedan-silver',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' }],
+  },
+  {
+    id: 'honda-civic-9th-gen-fb',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '9th Gen (FB)',
+    years: '2012-2016',
+    imageId: 'placeholder-sedan-gray',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' }],
+  },
+  {
+    id: 'honda-civic-10th-gen-fc',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '10th Gen (FC)',
+    years: '2017-2021',
+    imageId: 'placeholder-sedan-white',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' }],
+  },
+  {
+    id: 'honda-civic-11th-gen-fl',
+    make: 'Honda',
+    model: 'Civic',
+    variant: '11th Gen (FL)',
+    years: '2022-present',
+    imageId: 'placeholder-hatch-gray',
+    serviceItems: [{ name: 'Engine Oil & Filter', oemIntervalKm: 10000, oemIntervalMonths: 12, type: 'Engine' }],
+  },
 ];
-
-    
